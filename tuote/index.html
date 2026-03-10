@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Tuote – Rosterikuppia.fi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <main id="pageContent" class="detail-page view-fade">
+    <div class="container" style="padding-top: 24px;">
+      <a class="detail-back" href="../">← Takaisin tuotteisiin</a>
+      <div class="detail-layout">
+        <!-- Gallery -->
+        <div class="gallery">
+          <div class="gallery-main"><img id="mainImage" src="" alt=""></div>
+          <div class="gallery-thumbs" id="galleryThumbs"></div>
+        </div>
+        <!-- Info -->
+        <div class="detail-info">
+          <h1 id="detailTitle"></h1>
+          <div class="detail-rating">
+            <span class="stars" id="detailStars"></span>
+            <span id="detailReviews"></span>
+            <span id="detailSales" style="color:var(--fg-muted)"></span>
+          </div>
+          <div class="detail-price-box">
+            <span class="detail-price-big" id="detailPrice"></span>
+            <span class="detail-price-orig" id="detailOrigPrice"></span>
+            <span class="detail-price-discount" id="detailDiscount" style="display:none"></span>
+          </div>
+          <!-- Variants -->
+          <div class="variant-section" id="variantSection" style="display:none">
+            <div class="variant-label">Valitse malli:</div>
+            <div class="variant-options" id="variantOptions"></div>
+          </div>
+          <!-- Quantity -->
+          <div class="qty-row">
+            <span style="font-weight:600;font-size:.85rem;text-transform:uppercase;color:var(--fg-muted)">Määrä:</span>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="changeQty(-1)">−</button>
+              <input type="text" class="qty-val" id="qtyVal" value="1" readonly>
+              <button class="qty-btn" onclick="changeQty(1)">+</button>
+            </div>
+            <span class="stock-info" id="stockInfo"></span>
+          </div>
+          <!-- Shipping info -->
+          <div class="detail-shipping">
+            <div class="detail-shipping-row"><span>🚚</span> Toimituskulut lasketaan kassalla</div>
+            <div class="detail-shipping-row"><span>📦</span> Toimitusaika 10–25 arkipäivää</div>
+            <div class="detail-shipping-row"><span>↩️</span> 14 päivän palautusoikeus</div>
+            <div class="detail-shipping-row"><span>🔒</span> Turvallinen PayPal-maksaminen</div>
+          </div>
+          <!-- Add to cart -->
+          <div class="add-to-cart-row">
+            <button class="btn" onclick="addToCart()">🛒 Lisää ostoskoriin</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description images -->
+      <div class="desc-section" id="descSection" style="display:none">
+        <h2>Tuotekuvat &amp; kuvaus</h2>
+        <div class="desc-images" id="descImages"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script>var ROOT = '../'; var PAGE_ID = '';</script>
+  <script src="../products.js"></script>
+  <script src="../js/shared.js"></script>
+  <script src="../js/product.js"></script>
+</body>
+</html>

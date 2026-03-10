@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Palautus – Rosterikuppia.fi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <main id="pageContent" class="return-page view-fade">
+    <div class="container">
+      <a class="detail-back" href="../">← Takaisin kauppaan</a>
+      <div class="return-form-container" id="returnFormContent">
+        <h1>Palautus- ja reklamaatiolomake</h1>
+        <p class="subtitle">Täytä alla oleva lomake palauttaaksesi tuotteen tai tehdäksesi reklamaation. Käsittelemme pyyntösi 1–3 arkipäivän kuluessa.</p>
+
+        <div class="form-group">
+          <label>Tilausnumero *</label>
+          <input type="text" id="retOrderId" placeholder="Esim. RK-1234567890">
+        </div>
+        <div class="form-group">
+          <label>Nimi *</label>
+          <input type="text" id="retName" placeholder="Etunimi Sukunimi">
+        </div>
+        <div class="form-group">
+          <label>Sähköposti *</label>
+          <input type="email" id="retEmail" placeholder="email@esimerkki.fi">
+        </div>
+        <div class="form-group">
+          <label>Puhelin</label>
+          <input type="tel" id="retPhone" placeholder="+358">
+        </div>
+        <div class="form-group">
+          <label>Syy *</label>
+          <select id="retReason">
+            <option value="">Valitse syy...</option>
+            <option value="Tuote vaurioitunut">Tuote vaurioitunut kuljetuksessa</option>
+            <option value="Väärä tuote">Väärä tuote toimitettu</option>
+            <option value="Tuote ei vastaa kuvausta">Tuote ei vastaa kuvausta</option>
+            <option value="Tuote viallinen">Tuote viallinen / ei toimi</option>
+            <option value="Haluan palauttaa">Haluan palauttaa tuotteen (14 pv)</option>
+            <option value="Muu syy">Muu syy</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Kuvaus</label>
+          <textarea id="retDescription" rows="4" placeholder="Kerro tarkemmin ongelmasta tai palautuksen syystä..."></textarea>
+        </div>
+
+        <label style="display:block;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--fg-muted);margin-bottom:8px;">Kuva tuotteesta (valinnainen)</label>
+        <div class="return-upload-area" id="retUploadArea">
+          <div class="upload-icon">📷</div>
+          <div class="upload-text">Klikkaa tai raahaa kuva tähän<br><b>JPG, PNG, WebP – max 20 MB</b></div>
+        </div>
+        <input type="file" id="retFileInput" accept="image/jpeg,image/png,image/webp" style="display:none">
+        <div id="retPreviewWrap"></div>
+        <div id="retUploadStatus"></div>
+
+        <button class="btn" style="width:100%;text-align:center;padding:18px;font-size:1.05rem;margin-top:16px" onclick="submitReturnForm()" id="retSubmitBtn">Lähetä palautuspyyntö</button>
+      </div>
+
+      <div id="returnSuccess" class="return-success" style="display:none">
+        <h2>✓ Palautuspyyntö lähetetty!</h2>
+        <div class="return-id" id="returnIdDisplay"></div>
+        <p>Olemme vastaanottaneet palautuspyyntösi. Saat vahvistuksen sähköpostiisi.</p>
+        <p>Käsittelemme pyyntösi 1–3 arkipäivän kuluessa ja otamme yhteyttä sähköpostitse jatkotoimenpiteistä.</p>
+        <a class="btn" href="../" style="margin-top:16px">Takaisin kauppaan</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script>var ROOT = '../'; var PAGE_ID = 'return';</script>
+  <script src="../products.js"></script>
+  <script src="../js/shared.js"></script>
+  <script src="../js/return.js"></script>
+</body>
+</html>
