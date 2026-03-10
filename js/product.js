@@ -1,5 +1,5 @@
 /* ===== PRODUCT DETAIL PAGE ===== */
-(function() {
+(function() 
   var params = new URLSearchParams(window.location.search);
   var productId = params.get('id');
   var currentProduct = null;
@@ -138,6 +138,7 @@
         '</div>';
     }).join('');
     document.getElementById('reviewsList').innerHTML = listHtml;
+  }
 
   function updateDetailPrice(sale, orig) {
     document.getElementById('detailPrice').textContent = '\u20ac' + parseFloat(sale).toFixed(2);
