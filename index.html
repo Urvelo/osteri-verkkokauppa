@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rosterikuppi.fi – Kestävät metallikupit retkeilyyn | Suomalainen verkkokauppa</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:          #1a1a1a;
+      --bg-alt:      #111;
+      --fg:          #e8e6dc;
+      --fg-muted:    #999;
+      --accent:      #f7b829;
+      --card-bg:     #242424;
+      --border:      #333;
+      --success:     #4caf50;
+      --danger:      #e53935;
+      --font:        'Montserrat', system-ui, sans-serif;
+      --max-w:       1400px;
+      --pad:         24px;
+    }
+    @media (min-width: 768px) { :root { --pad: 48px; } }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font); background: var(--bg); color: var(--fg); line-height: 1.55; font-size: 15px; -webkit-text-size-adjust: 100%; }
+    h1,h2,h3,h4 { font-family: var(--font); font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad); }
+    .section { padding: 80px 0; }
+
+    /* HEADER */
+    header { background: rgba(0,0,0,.85); position: fixed; width: 100%; z-index: 200; backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; padding: 14px var(--pad); }
+    .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); text-decoration: none; cursor: pointer; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
+    nav { display: flex; align-items: center; gap: 6px; }
+    nav a { color: var(--fg); text-decoration: none; margin-left: 24px; font-weight: 600; text-transform: uppercase; font-size: .85rem; letter-spacing: .05em; transition: color .15s; cursor: pointer; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
+    nav a:hover { color: var(--accent); }
+    .cart-btn { position: relative; background: none; border: none; color: var(--fg); cursor: pointer; font-size: 1.4rem; margin-left: 20px; transition: color .15s; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+    .cart-btn:hover { color: var(--accent); }
+    .cart-count { position: absolute; top: -6px; right: -10px; background: var(--danger); color: #fff; font-size: .65rem; font-weight: 800; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+    /* BUTTONS */
+    .btn { display: inline-block; padding: 13px 30px; background: var(--accent); color: #111; text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; font-size: .9rem; border: 2px solid var(--accent); cursor: pointer; transition: all .15s; font-family: var(--font); -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+    .btn:hover { opacity: .9; transform: translateY(-1px); }
+    .btn:active { transform: scale(.97); }
+    .btn--outline { background: transparent; color: var(--accent); }
+    .btn--outline:hover { background: var(--accent); color: #111; }
+    .btn--sm { padding: 8px 16px; font-size: .8rem; }
+    .btn--danger { background: var(--danger); border-color: var(--danger); color: #fff; }
+    .btn--success { background: var(--success); border-color: var(--success); color: #fff; }
+
+    /* HERO */
+    .hero { min-height: 80vh; position: relative; display: flex; align-items: center; background: var(--bg-alt); overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; object-fit: cover; width: 100%; height: 100%; opacity: .6; filter: brightness(.7); }
+    .hero-content { position: relative; z-index: 2; max-width: 740px; }
+    .hero h1 { font-size: clamp(2.4rem, 7vw, 5.5rem); line-height: 1.05; margin-bottom: 1rem; }
+    .hero p { font-size: 1.2rem; max-width: 600px; margin: 1.2rem 0 2rem; opacity: .9; }
+
+    /* STATS */
+    .stats-bar { background: var(--bg-alt); border-bottom: 1px solid var(--border); padding: 24px 0; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center; }
+    .stat-num { font-size: 2rem; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--fg-muted); margin-top: 4px; }
+
+    /* FILTERS */
+    .filters { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; align-items: center; }
+    .search-box { flex: 1; min-width: 220px; padding: 10px 16px; background: var(--card-bg); border: 1px solid var(--border); color: var(--fg); font-family: var(--font); font-size: .95rem; outline: none; }
+    .search-box:focus { border-color: var(--accent); }
+    .filter-btn { padding: 9px 18px; background: var(--card-bg); border: 1px solid var(--border); color: var(--fg); font-family: var(--font); font-size: .85rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; cursor: pointer; transition: all .15s; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+    .filter-btn:hover, .filter-btn.active { background: var(--accent); color: #111; border-color: var(--accent); }
+    select.filter-select { padding: 9px 14px; background: var(--card-bg); border: 1px solid var(--border); color: var(--fg); font-family: var(--font); font-size: .85rem; cursor: pointer; }
+
+    /* PRODUCT GRID */
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+    .product-card { background: var(--card-bg); border: 1px solid var(--border); text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: transform .2s, border-color .2s; overflow: hidden; cursor: pointer; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+    .product-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .product-image-wrap { position: relative; width: 100%; aspect-ratio: 1; background: #0a0a0a; overflow: hidden; }
+    .product-image { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+    .product-card:hover .product-image { transform: scale(1.05); }
+    .product-badge { position: absolute; top: 10px; left: 10px; background: var(--danger); color: #fff; font-size: .75rem; font-weight: 700; padding: 3px 8px; text-transform: uppercase; }
+    .product-info { padding: 16px; display: flex; flex-direction: column; flex: 1; }
+    .product-title { font-size: .9rem; font-weight: 600; text-transform: none; letter-spacing: 0; margin-bottom: 8px; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .product-meta { display: flex; justify-content: space-between; align-items: center; font-size: .8rem; color: var(--fg-muted); margin-bottom: 10px; }
+    .stars { color: var(--accent); letter-spacing: 1px; }
+    .product-price-row { margin-top: auto; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+    .product-price { font-size: 1.3rem; font-weight: 800; color: var(--accent); }
+    .product-orig-price { font-size: .85rem; color: var(--fg-muted); text-decoration: line-through; }
+    .product-discount { font-size: .75rem; font-weight: 700; color: var(--danger); background: rgba(229,57,53,.15); padding: 2px 6px; }
+    .product-card-btn { display: block; text-align: center; padding: 10px; background: transparent; border-top: 1px solid var(--border); color: var(--accent); font-weight: 700; font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; transition: all .15s; -webkit-user-select: none; user-select: none; }
+    .product-card:hover .product-card-btn { background: var(--accent); color: #111; }
+    .results-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: .9rem; color: var(--fg-muted); }
+    .load-more-wrap { text-align: center; margin-top: 40px; }
+    .no-results { text-align: center; padding: 60px 20px; color: var(--fg-muted); }
+    .no-results h3 { color: var(--fg); margin-bottom: 12px; }
+
+    /* ===== PRODUCT DETAIL PAGE ===== */
+    #detailView { display: none; padding-top: 70px; min-height: 100vh; }
+    #detailView.active { display: block; }
+    #shopView.hidden { display: none; }
+    .detail-back { display: inline-flex; align-items: center; gap: 8px; color: var(--fg-muted); text-decoration: none; font-size: .9rem; font-weight: 600; margin-bottom: 24px; cursor: pointer; transition: color .15s; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+    .detail-back:hover { color: var(--accent); }
+    .detail-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    /* Gallery */
+    .gallery { position: sticky; top: 80px; }
+    .gallery-main { width: 100%; aspect-ratio: 1; background: #0a0a0a; overflow: hidden; border: 1px solid var(--border); margin-bottom: 12px; }
+    .gallery-main img { width: 100%; height: 100%; object-fit: contain; cursor: zoom-in; }
+    .gallery-thumbs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
+    .gallery-thumb { width: 72px; height: 72px; flex-shrink: 0; border: 2px solid var(--border); cursor: pointer; overflow: hidden; transition: border-color .15s; background: #0a0a0a; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+    .gallery-thumb:hover, .gallery-thumb.active { border-color: var(--accent); }
+    .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    /* Detail info */
+    .detail-info h1 { font-size: 1.5rem; text-transform: none; letter-spacing: 0; line-height: 1.35; margin-bottom: 16px; }
+    .detail-rating { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; font-size: .9rem; }
+    .detail-rating .stars { font-size: 1.1rem; }
+    .detail-price-box { background: var(--bg-alt); border: 1px solid var(--border); padding: 20px; margin-bottom: 24px; }
+    .detail-price-big { font-size: 2.2rem; font-weight: 800; color: var(--accent); }
+    .detail-price-orig { font-size: 1.1rem; color: var(--fg-muted); text-decoration: line-through; margin-left: 12px; }
+    .detail-price-discount { display: inline-block; background: var(--danger); color: #fff; font-size: .85rem; font-weight: 700; padding: 3px 10px; margin-left: 12px; }
+    /* Variants */
+    .variant-section { margin-bottom: 24px; }
+    .variant-label { font-size: .85rem; font-weight: 600; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 10px; }
+    .variant-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .variant-opt { padding: 8px 16px; border: 2px solid var(--border); background: var(--card-bg); color: var(--fg); font-family: var(--font); font-size: .85rem; font-weight: 600; cursor: pointer; transition: all .15s; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+    .variant-opt:hover { border-color: var(--accent); }
+    .variant-opt.selected { border-color: var(--accent); background: var(--accent); color: #111; }
+    .variant-opt.out-of-stock { opacity: .4; cursor: not-allowed; text-decoration: line-through; }
+    /* Quantity */
+    .qty-row { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+    .qty-controls { display: flex; align-items: center; border: 1px solid var(--border); }
+    .qty-btn { width: 40px; height: 40px; background: var(--card-bg); color: var(--fg); border: none; font-size: 1.2rem; cursor: pointer; font-family: var(--font); transition: background .15s; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+    .qty-btn:hover { background: var(--accent); color: #111; }
+    .qty-val { width: 50px; height: 40px; text-align: center; background: var(--bg); color: var(--fg); border: none; border-left: 1px solid var(--border); border-right: 1px solid var(--border); font-family: var(--font); font-size: 1rem; font-weight: 700; }
+    .stock-info { font-size: .85rem; color: var(--fg-muted); }
+    .stock-info b { color: var(--success); }
+    /* Add to cart */
+    .add-to-cart-row { display: flex; gap: 12px; margin-bottom: 32px; }
+    .add-to-cart-row .btn { flex: 1; text-align: center; font-size: 1rem; padding: 16px; }
+    /* Shipping info badge */
+    .detail-shipping { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; padding: 16px; background: var(--card-bg); border: 1px solid var(--border); }
+    .detail-shipping-row { display: flex; align-items: center; gap: 10px; font-size: .85rem; color: var(--fg-muted); }
+    .detail-shipping-row span:first-child { font-size: 1.1rem; }
+    /* Description images */
+    .desc-section { margin-top: 48px; border-top: 1px solid var(--border); padding-top: 32px; }
+    .desc-section h2 { font-size: 1.4rem; margin-bottom: 24px; }
+    .desc-images { display: flex; flex-direction: column; gap: 8px; max-width: 800px; }
+    .desc-images img { width: 100%; height: auto; display: block; }
+
+    /* ===== CART SIDEBAR ===== */
+    .cart-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 300; }
+    .cart-overlay.open { display: block; }
+    .cart-sidebar { position: fixed; top: 0; right: -420px; width: 400px; max-width: 90vw; height: 100vh; background: var(--bg); border-left: 1px solid var(--border); z-index: 301; transition: right .3s ease; display: flex; flex-direction: column; }
+    .cart-sidebar.open { right: 0; }
+    .cart-header { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid var(--border); }
+    .cart-header h3 { font-size: 1.1rem; }
+    .cart-close { background: none; border: none; color: var(--fg); font-size: 1.5rem; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+    .cart-items { flex: 1; overflow-y: auto; padding: 16px; }
+    .cart-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+    .cart-item-img { width: 64px; height: 64px; object-fit: cover; flex-shrink: 0; background: #0a0a0a; }
+    .cart-item-info { flex: 1; min-width: 0; }
+    .cart-item-title { font-size: .8rem; font-weight: 600; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cart-item-variant { font-size: .75rem; color: var(--fg-muted); margin-bottom: 4px; }
+    .cart-item-price { font-size: .9rem; font-weight: 700; color: var(--accent); }
+    .cart-item-qty { display: flex; align-items: center; gap: 6px; margin-top: 6px; }
+    .cart-item-qty button { width: 24px; height: 24px; border: 1px solid var(--border); background: var(--card-bg); color: var(--fg); cursor: pointer; font-size: .9rem; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+    .cart-item-qty span { font-size: .85rem; font-weight: 700; min-width: 20px; text-align: center; }
+    .cart-item-remove { background: none; border: none; color: var(--danger); font-size: .75rem; cursor: pointer; margin-top: 4px; text-decoration: underline; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+    .cart-footer { padding: 20px; border-top: 1px solid var(--border); }
+    .cart-total { display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; }
+    .cart-total .price { color: var(--accent); }
+    .cart-empty { text-align: center; padding: 60px 20px; color: var(--fg-muted); }
+
+    /* Toast */
+    .toast { position: fixed; bottom: 30px; right: 30px; background: var(--success); color: #fff; padding: 14px 24px; font-family: var(--font); font-weight: 700; font-size: .9rem; z-index: 400; transform: translateY(100px); opacity: 0; transition: all .3s ease; }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    /* WHY US */
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px; margin-top: 40px; }
+    .feature-item { text-align: center; padding: 24px; }
+    .feature-icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .feature-item h3 { font-size: 1rem; margin-bottom: 8px; color: var(--accent); }
+    .feature-item p { font-size: .9rem; color: var(--fg-muted); line-height: 1.5; }
+
+    /* FOOTER */
+    footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding: 48px 0 32px; text-align: center; font-size: .85rem; color: #666; }
+    footer a { color: #888; transition: color .15s; }
+    footer a:hover { color: var(--accent); }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      :root { --pad: 20px; }
+      .detail-layout { gap: 32px; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    }
+    @media (max-width: 768px) {
+      :root { --pad: 16px; }
+      .section { padding: 48px 0; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .stat-num { font-size: 1.4rem; }
+      .stat-label { font-size: .7rem; }
+      nav a:not(.cart-btn) { display: none; }
+      .logo { font-size: 1.2rem; }
+      .header-inner { padding: 10px var(--pad); }
+      .hero { min-height: 60vh; }
+      .hero h1 { font-size: 1.8rem; }
+      .hero p { font-size: 1rem; margin: .8rem 0 1.5rem; }
+      .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .product-info { padding: 10px; }
+      .product-title { font-size: .78rem; -webkit-line-clamp: 2; }
+      .product-price { font-size: 1rem; }
+      .product-orig-price { font-size: .7rem; }
+      .product-discount { font-size: .65rem; padding: 1px 4px; }
+      .product-badge { font-size: .65rem; padding: 2px 6px; top: 6px; left: 6px; }
+      .product-card-btn { padding: 8px; font-size: .7rem; }
+      .product-meta { font-size: .7rem; margin-bottom: 6px; }
+      .detail-layout { grid-template-columns: 1fr; gap: 20px; }
+      .gallery { position: static; }
+      .gallery-main { aspect-ratio: 1; }
+      .gallery-thumb { width: 56px; height: 56px; }
+      .detail-info h1 { font-size: 1.1rem; margin-bottom: 12px; }
+      .detail-rating { font-size: .8rem; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+      .detail-price-big { font-size: 1.5rem; }
+      .detail-price-orig { font-size: .9rem; margin-left: 8px; }
+      .detail-price-discount { font-size: .75rem; padding: 2px 8px; margin-left: 8px; }
+      .detail-price-box { padding: 14px; margin-bottom: 16px; }
+      .variant-section { margin-bottom: 16px; }
+      .variant-opt { padding: 6px 12px; font-size: .8rem; }
+      .qty-row { gap: 10px; margin-bottom: 16px; }
+      .qty-btn { width: 44px; height: 44px; font-size: 1.3rem; }
+      .qty-val { width: 44px; height: 44px; }
+      .detail-shipping { padding: 12px; gap: 8px; margin-bottom: 16px; }
+      .detail-shipping-row { font-size: .8rem; }
+      .add-to-cart-row { flex-direction: column; margin-bottom: 24px; }
+      .add-to-cart-row .btn { padding: 14px; font-size: .95rem; }
+      .desc-section { margin-top: 32px; padding-top: 24px; }
+      .desc-section h2 { font-size: 1.1rem; margin-bottom: 16px; }
+      .filters { gap: 8px; margin-bottom: 20px; }
+      .search-box { min-width: 100%; padding: 10px 12px; font-size: .9rem; }
+      .filter-btn { padding: 7px 12px; font-size: .75rem; }
+      select.filter-select { padding: 8px 10px; font-size: .8rem; }
+      .features-grid { grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
+      .feature-item { padding: 16px 10px; }
+      .feature-icon { font-size: 2rem; margin-bottom: 8px; }
+      .feature-item h3 { font-size: .85rem; }
+      .feature-item p { font-size: .8rem; }
+      footer { padding: 32px 0 24px; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.5rem; }
+      .hero p { font-size: .9rem; }
+      .btn { padding: 11px 20px; font-size: .85rem; }
+      .product-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .product-info { padding: 8px; }
+      .product-title { font-size: .72rem; }
+      .product-price { font-size: .95rem; }
+      .product-meta { font-size: .65rem; }
+      .gallery-thumb { width: 48px; height: 48px; }
+    }
+    @media (max-width: 360px) {
+      .product-grid { grid-template-columns: 1fr; gap: 12px; }
+    }
+
+    /* ZOOM OVERLAY */
+    .zoom-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.9); z-index: 500; justify-content: center; align-items: center; cursor: zoom-out; }
+    .zoom-overlay.open { display: flex; }
+    .zoom-overlay img { max-width: 95vw; max-height: 95vh; object-fit: contain; }
+
+    /* ===== CHECKOUT VIEW ===== */
+    #checkoutView { display: none; padding-top: 70px; min-height: 100vh; }
+    #checkoutView.active { display: block; }
+    .checkout-layout { display: grid; grid-template-columns: 1.2fr .8fr; gap: 48px; padding-top: 24px; }
+    .checkout-form h2 { font-size: 1.4rem; margin-bottom: 24px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--fg-muted); margin-bottom: 6px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 16px; background: var(--card-bg); border: 1px solid var(--border); color: var(--fg); font-family: var(--font); font-size: .95rem; outline: none; transition: border-color .15s; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .checkout-summary { position: sticky; top: 80px; }
+    .checkout-summary h3 { font-size: 1.1rem; margin-bottom: 16px; }
+    .checkout-items { border: 1px solid var(--border); margin-bottom: 16px; }
+    .checkout-item { display: flex; gap: 12px; padding: 12px; border-bottom: 1px solid var(--border); }
+    .checkout-item:last-child { border-bottom: none; }
+    .checkout-item img { width: 56px; height: 56px; object-fit: cover; flex-shrink: 0; background: #0a0a0a; }
+    .checkout-item-info { flex: 1; min-width: 0; }
+    .checkout-item-title { font-size: .8rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .checkout-item-meta { font-size: .75rem; color: var(--fg-muted); margin-top: 2px; }
+    .checkout-item-price { font-size: .9rem; font-weight: 700; color: var(--accent); margin-top: 4px; }
+    .checkout-totals { border: 1px solid var(--border); padding: 16px; }
+    .checkout-totals-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: .9rem; }
+    .checkout-totals-row.total { border-top: 2px solid var(--accent); margin-top: 8px; padding-top: 12px; font-size: 1.1rem; font-weight: 700; }
+    .checkout-totals-row.total .price { color: var(--accent); }
+    .checkout-notice { margin-top: 16px; padding: 14px; background: var(--card-bg); border: 1px solid var(--border); font-size: .8rem; color: var(--fg-muted); line-height: 1.5; }
+    .checkout-notice b { color: var(--fg); }
+    .order-success { text-align: center; padding: 80px 20px; }
+    .order-success h2 { color: var(--success); margin-bottom: 16px; font-size: 2rem; }
+    .order-success p { color: var(--fg-muted); max-width: 500px; margin: 0 auto 24px; }
+    @media (max-width: 768px) {
+      .checkout-layout { grid-template-columns: 1fr; gap: 24px; }
+      .checkout-summary { position: static; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* POLICY PAGES */
+    .policy-content { padding-top: 100px; min-height: 80vh; }
+    .policy-content h1 { font-size: 2rem; margin-bottom: 24px; text-transform: none; }
+    .policy-content h2 { font-size: 1.2rem; margin: 24px 0 12px; text-transform: none; }
+    .policy-content p, .policy-content li { color: var(--fg-muted); line-height: 1.7; margin-bottom: 12px; font-size: .95rem; }
+    .policy-content ul { padding-left: 24px; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-inner">
+      <a class="logo" onclick="showShop()">Rosterikuppia</a>
+      <nav>
+        <a onclick="showShop()">Tuotteet</a>
+        <a href="#miksi">Miksi me</a>
+        <button class="cart-btn" onclick="toggleCart()" title="Ostoskori">
+          🛒 <span class="cart-count" id="cartCount" style="display:none">0</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== SHOP VIEW (tuotelistaus) ===== -->
+  <div id="shopView">
+    <!-- Hero -->
+    <section class="hero">
+      <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=2340&q=85" alt="Retkeilymuki luonnossa" class="hero-bg">
+      <div class="container hero-content">
+        <h1>Kestävät metallimukit<br>eräilyyn ja retkeilyyn</h1>
+        <p>Suomalainen verkkokauppa ruostumattomasta teräksestä valmistetuille kupeille ja mukeille. Laaja valikoima ulkoiluun – toimitamme koko Suomeen.</p>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;">
+          <a href="#tuotteet" class="btn">Selaa tuotteita</a>
+          <a href="#miksi" class="btn btn--outline">Lue lisää</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="container">
+        <div class="stats-grid">
+          <div><div class="stat-num" id="stat-products">0</div><div class="stat-label">Tuotetta valikoimassa</div></div>
+          <div><div class="stat-num" id="stat-customers">2 400+</div><div class="stat-label">Tyytyväistä asiakasta</div></div>
+          <div><div class="stat-num" id="stat-min">–</div><div class="stat-label">Alk. hinta</div></div>
+          <div><div class="stat-num" id="stat-shipping">�</div><div class="stat-label">Toimitus maailmanlaajuisesti</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products -->
+    <section class="section" id="tuotteet">
+      <div class="container">
+        <h2 style="text-align:center; font-size: 2.2rem; margin-bottom: 32px;">Kaikki tuotteet</h2>
+        <div class="filters">
+          <input type="text" class="search-box" id="searchInput" placeholder="Hae tuotteita...">
+          <select class="filter-select" id="sortSelect">
+            <option value="orders">Suosituimmat</option>
+            <option value="price-asc">Hinta: halvin ensin</option>
+            <option value="price-desc">Hinta: kallein ensin</option>
+            <option value="rating">Parhaat arvosanat</option>
+            <option value="discount">Suurin alennus</option>
+          </select>
+          <button class="filter-btn" data-filter="all" onclick="setFilter('all')">Kaikki</button>
+          <button class="filter-btn" data-filter="under5" onclick="setFilter('under5')">Alle 5€</button>
+          <button class="filter-btn" data-filter="5to10" onclick="setFilter('5to10')">5–15€</button>
+          <button class="filter-btn" data-filter="over10" onclick="setFilter('over10')">Yli 15€</button>
+        </div>
+        <div class="results-info"><span id="resultsCount">Ladataan...</span></div>
+        <div class="product-grid" id="productGrid"></div>
+        <div class="no-results" id="noResults" style="display:none;"><h3>Ei tuloksia</h3><p>Kokeile eri hakusanaa tai poista suodatus.</p></div>
+        <div class="load-more-wrap" id="loadMoreWrap" style="display:none;"><button class="btn btn--outline" onclick="loadMore()">Näytä lisää tuotteita</button></div>
+      </div>
+    </section>
+
+    <!-- Why Us -->
+    <section class="section" id="miksi" style="background: var(--bg-alt);">
+      <div class="container">
+        <h2 style="text-align:center; font-size: 2.2rem; margin-bottom: 12px;">Miksi Rosterikuppia?</h2>
+        <p style="text-align:center; color: var(--fg-muted); max-width: 600px; margin: 0 auto;">Suomalainen erikoiskauppa, joka on valinnut parhaat mukit sinulle.</p>
+        <div class="features-grid">
+          <div class="feature-item"><div class="feature-icon">🛡️</div><h3>Kestävä laatu</h3><p>304/316 ruostumaton teräs. Kestää iskuja, lämpöä ja korroosiota vuosikausia.</p></div>
+          <div class="feature-item"><div class="feature-icon">🚚</div><h3>Nopea toimitus</h3><p>Toimitamme tilaukset suoraan sinulle. Toimituskulut lasketaan osoitteesi mukaan.</p></div>
+          <div class="feature-item"><div class="feature-icon">↩️</div><h3>14 pv palautusoikeus</h3><p>Ei riski – jos tuote ei miellytä, palautat sen 14 päivän sisällä.</p></div>
+          <div class="feature-item"><div class="feature-icon">🔒</div><h3>Turvallinen maksu</h3><p>Maksa turvallisesti. Tietosi on suojattu ja tilaus vahvistetaan sähköpostilla.</p></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== PRODUCT DETAIL VIEW ===== -->
+  <div id="detailView">
+    <div class="container" style="padding-top: 24px;">
+      <a class="detail-back" onclick="showShop()">← Takaisin tuotteisiin</a>
+      <div class="detail-layout">
+        <!-- Gallery -->
+        <div class="gallery">
+          <div class="gallery-main"><img id="mainImage" src="" alt=""></div>
+          <div class="gallery-thumbs" id="galleryThumbs"></div>
+        </div>
+        <!-- Info -->
+        <div class="detail-info">
+          <h1 id="detailTitle"></h1>
+          <div class="detail-rating">
+            <span class="stars" id="detailStars"></span>
+            <span id="detailReviews"></span>
+            <span id="detailSales" style="color:var(--fg-muted)"></span>
+          </div>
+          <div class="detail-price-box">
+            <span class="detail-price-big" id="detailPrice"></span>
+            <span class="detail-price-orig" id="detailOrigPrice"></span>
+            <span class="detail-price-discount" id="detailDiscount" style="display:none"></span>
+          </div>
+          <!-- Variants -->
+          <div class="variant-section" id="variantSection" style="display:none">
+            <div class="variant-label">Valitse malli:</div>
+            <div class="variant-options" id="variantOptions"></div>
+          </div>
+          <!-- Quantity -->
+          <div class="qty-row">
+            <span style="font-weight:600;font-size:.85rem;text-transform:uppercase;color:var(--fg-muted)">Määrä:</span>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="changeQty(-1)">−</button>
+              <input type="text" class="qty-val" id="qtyVal" value="1" readonly>
+              <button class="qty-btn" onclick="changeQty(1)">+</button>
+            </div>
+            <span class="stock-info" id="stockInfo"></span>
+          </div>
+          <!-- Shipping info -->
+          <div class="detail-shipping">
+            <div class="detail-shipping-row"><span>🚚</span> </div>
+            <div class="detail-shipping-row"><span>📦</span> Toimitusaika 10–25 arkipäivää</div>
+            <div class="detail-shipping-row"><span>↩️</span> 14 päivän palautusoikeus</div>
+            <div class="detail-shipping-row"><span>🔒</span> Turvallinen paypal maksaminen</div>
+          </div>
+          <!-- Add to cart -->
+          <div class="add-to-cart-row">
+            <button class="btn" onclick="addToCart()">🛒 Lisää ostoskoriin</button>
+            <button class="btn btn--outline" onclick="buyNow()">Osta nyt →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description images -->
+      <div class="desc-section" id="descSection">
+        <h2>Tuotekuvat &amp; kuvaus</h2>
+        <div class="desc-images" id="descImages"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CART SIDEBAR ===== -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>🛒 Ostoskori</h3>
+      <button class="cart-close" onclick="toggleCart()">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="cart-total"><span>Yhteensä:</span><span class="price" id="cartTotal">€0.00</span></div>
+      <button class="btn" style="width:100%;text-align:center" onclick="checkout()">Siirry kassalle →</button>
+    </div>
+  </div>
+
+  <!-- Zoom overlay -->
+  <div class="zoom-overlay" id="zoomOverlay" onclick="this.classList.remove('open')">
+    <img id="zoomImg" src="">
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ===== CHECKOUT VIEW ===== -->
+  <div id="checkoutView">
+    <div class="container">
+      <a class="detail-back" onclick="showShop()">← Takaisin kauppaan</a>
+      <div id="checkoutContent">
+        <div class="checkout-layout">
+          <div class="checkout-form">
+            <h2>Toimitusosoite</h2>
+            <div class="form-row">
+              <div class="form-group"><label>Etunimi *</label><input type="text" id="coFirstName" required></div>
+              <div class="form-group"><label>Sukunimi *</label><input type="text" id="coLastName" required></div>
+            </div>
+            <div class="form-group"><label>Sähköposti *</label><input type="email" id="coEmail" required></div>
+            <div class="form-group"><label>Puhelin *</label><input type="tel" id="coPhone" placeholder="+358"></div>
+            <div class="form-group"><label>Osoite *</label><input type="text" id="coAddress" placeholder="Katuosoite"></div>
+            <div class="form-row">
+              <div class="form-group"><label>Postinumero *</label><input type="text" id="coPostal" maxlength="5"></div>
+              <div class="form-group"><label>Kaupunki *</label><input type="text" id="coCity"></div>
+            </div>
+            <div class="form-group"><label>Maa *</label>
+              <select id="coCountry" onchange="updateShipping()">
+                <option value="FI" selected>Suomi</option>
+                <option value="SE">Ruotsi</option>
+                <option value="NO">Norja</option>
+                <option value="DK">Tanska</option>
+                <option value="EE">Viro</option>
+                <option value="LV">Latvia</option>
+                <option value="LT">Liettua</option>
+                <option value="DE">Saksa</option>
+                <option value="OTHER">Muu maa</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Lisätiedot (valinnainen)</label><textarea id="coNotes" rows="3" placeholder="Esim. ovikoodi, toimitusohje..."></textarea></div>
+            <button class="btn" style="width:100%;text-align:center;padding:18px;font-size:1.05rem;margin-top:8px" onclick="placeOrder()">✓ Vahvista tilaus</button>
+          </div>
+          <div class="checkout-summary">
+            <h3>Tilauksesi</h3>
+            <div class="checkout-items" id="checkoutItems"></div>
+            <div class="checkout-totals">
+              <div class="checkout-totals-row"><span>Tuotteet</span><span id="coSubtotal">€0.00</span></div>
+              <div class="checkout-totals-row"><span>Toimitus</span><span id="coShipping">€4.90</span></div>
+              <div class="checkout-totals-row total"><span>Yhteensä</span><span class="price" id="coTotal">€0.00</span></div>
+            </div>
+            <div class="checkout-notice">
+              <b>📦 Toimitusaika:</b> 10–25 arkipäivää<br>
+              <b>🚚 Toimitusmaksut:</b> Riippuvat kohdemaasta<br>
+              <b>↩️ Palautusoikeus:</b> 14 päivää<br>
+              <b>📧 Vahvistus:</b> Tilausvahvistus sähköpostiisi
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="orderSuccess" class="order-success" style="display:none">
+        <h2>✓ Kiitos tilauksestasi!</h2>
+        <p>Tilausvahvistus lähetetään sähköpostiisi. Käsittelemme tilauksesi mahdollisimman pian.</p>
+        <p style="color:var(--fg-muted);font-size:.9rem;">Toimitusaika: 10–25 arkipäivää</p>
+        <button class="btn" onclick="showShop()" style="margin-top:16px">Jatka ostoksia</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p style="font-size:1.1rem; color: var(--accent); font-weight:700; margin-bottom:12px;">ROSTERIKUPPIA.FI</p>
+      <p>Suomalainen verkkokauppa – kestävät metallimukit retkeilyyn ja eräilyyn.</p>
+      <p style="margin-top:16px;">
+        <a href="javascript:void(0)" onclick="showPolicy('shipping')" style="margin:0 12px;">Toimitus &amp; palautukset</a> •
+        <a href="javascript:void(0)" onclick="showPolicy('privacy')" style="margin:0 12px;">Tietosuoja</a> •
+        <a href="javascript:void(0)" onclick="showPolicy('contact')" style="margin:0 12px;">Ota yhteyttä</a>
+      </p>
+      <p style="margin-top:16px; font-size:.75rem; color:#555;">© 2026 Rosterikuppia.fi – Kaikki oikeudet pidätetään. Y-tunnus: Tulossa</p>
+    </div>
+  </footer>
+
+  <!-- ===== POLICY MODAL ===== -->
+  <div id="policyView" class="policy-content container" style="display:none"></div>
+
+  <script src="products.js"></script>
+  <script>
+    // ===== CONFIG =====
+    const MARKUP = 2.4;  // Dropshipping kate: myyntihinta = hankintahinta × 2.4
+    const DELIVERY_DAYS = '10–25';
+    // Toimitushinnat maittain (€)
+    const SHIPPING_RATES = {
+      FI: 4.90,
+      SE: 6.90,
+      NO: 7.90,
+      DK: 6.90,
+      DE: 5.90,
+      EE: 5.90,
+      LT: 5.90,
+      LV: 5.90,
+      DEFAULT: 9.90,
+    };
+
+    // ===== STATE =====
+    let currentFilter = 'all', currentSort = 'orders', searchQuery = '', visibleCount = 12;
+    const PAGE_SIZE = 12;
+    let cart = JSON.parse(localStorage.getItem('rk_cart') || '[]');
+    let currentProduct = null;
+    let selectedSku = null;
+    let qty = 1;
+
+    // ===== PRICE HELPER (apply markup) =====
+    function shopPrice(raw) {
+      return Math.ceil(parseFloat(raw) * MARKUP * 100 - 1) / 100; // esim. 2.50 → 5.99
+    }
+
+    // ===== HELPERS =====
+    function renderStars(score) {
+      const s = parseFloat(score) || 0;
+      return '★'.repeat(Math.floor(s)) + '☆'.repeat(5 - Math.floor(s));
+    }
+    function formatOrders(n) {
+      if (n >= 10000) return '10 000+';
+      if (n >= 1000) return Math.floor(n/1000) + ' 000+';
+      return String(n);
+    }
+    function getDiscount(sale, orig) {
+      return orig > sale ? Math.round((1 - sale/orig) * 100) : 0;
+    }
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2500);
+    }
+    function saveCart() {
+      localStorage.setItem('rk_cart', JSON.stringify(cart));
+      updateCartCount();
+    }
+    function updateCartCount() {
+      const total = cart.reduce((s, i) => s + i.qty, 0);
+      const el = document.getElementById('cartCount');
+      el.style.display = total > 0 ? 'flex' : 'none';
+      el.textContent = total;
+    }
+
+    // ===== SHOP VIEW =====
+    function getFilteredProducts() {
+      let list = [...PRODUCTS];
+      if (searchQuery) { const q = searchQuery.toLowerCase(); list = list.filter(p => p.title.toLowerCase().includes(q)); }
+      // Price filters use shop prices (with markup)
+      if (currentFilter === 'under5') list = list.filter(p => shopPrice(p.salePrice) < 5);
+      else if (currentFilter === '5to10') list = list.filter(p => { const sp = shopPrice(p.salePrice); return sp >= 5 && sp <= 15; });
+      else if (currentFilter === 'over10') list = list.filter(p => shopPrice(p.salePrice) > 15);
+      if (currentSort === 'orders') list.sort((a,b) => b.orders - a.orders);
+      else if (currentSort === 'price-asc') list.sort((a,b) => a.salePrice - b.salePrice);
+      else if (currentSort === 'price-desc') list.sort((a,b) => b.salePrice - a.salePrice);
+      else if (currentSort === 'rating') list.sort((a,b) => parseFloat(b.score) - parseFloat(a.score));
+      else if (currentSort === 'discount') list.sort((a,b) => {
+        const da = a.originalPrice > 0 ? (1 - a.salePrice/a.originalPrice) : 0;
+        const db = b.originalPrice > 0 ? (1 - b.salePrice/b.originalPrice) : 0;
+        return db - da;
+      });
+      return list;
+    }
+
+    function renderProducts() {
+      const grid = document.getElementById('productGrid');
+      const filtered = getFilteredProducts();
+      const toShow = filtered.slice(0, visibleCount);
+      if (!toShow.length) {
+        grid.innerHTML = '';
+        document.getElementById('noResults').style.display = 'block';
+        document.getElementById('loadMoreWrap').style.display = 'none';
+        document.getElementById('resultsCount').textContent = '0 tuotetta';
+        return;
+      }
+      document.getElementById('noResults').style.display = 'none';
+      let html = '';
+      for (const p of toShow) {
+        const sp = shopPrice(p.salePrice);
+        const op = shopPrice(p.originalPrice);
+        const disc = getDiscount(sp, op);
+        html += `
+          <div class="product-card" onclick="openProduct('${p.id}')">
+            <div class="product-image-wrap">
+              <img src="${p.image}" alt="${p.title}" class="product-image" loading="lazy">
+              ${disc >= 15 ? `<span class="product-badge">-${disc}%</span>` : ''}
+            </div>
+            <div class="product-info">
+              <h3 class="product-title">${p.title}</h3>
+              <div class="product-meta">
+                <span class="stars">${renderStars(p.score)}</span>
+                <span>${renderStars(p.score)}</span>
+              </div>
+              <div class="product-price-row">
+                <span class="product-price">€${sp.toFixed(2)}</span>
+                ${op > sp ? `<span class="product-orig-price">€${op.toFixed(2)}</span>` : ''}
+                ${disc >= 10 ? `<span class="product-discount">-${disc}%</span>` : ''}
+              </div>
+            </div>
+            <div class="product-card-btn">Katso tuote →</div>
+          </div>`;
+      }
+      grid.innerHTML = html;
+      document.getElementById('resultsCount').textContent = `${filtered.length} tuotetta` + (filtered.length !== PRODUCTS.length ? ' (suodatettu)' : '');
+      document.getElementById('loadMoreWrap').style.display = visibleCount < filtered.length ? 'block' : 'none';
+    }
+
+    function updateStats() {
+      const minPrice = Math.min(...PRODUCTS.map(p => shopPrice(p.salePrice)));
+      document.getElementById('stat-products').textContent = PRODUCTS.length;
+      document.getElementById('stat-min').textContent = '€' + minPrice.toFixed(2);
+    }
+
+    function setFilter(f) {
+      currentFilter = f; visibleCount = PAGE_SIZE;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === f));
+      renderProducts();
+    }
+    function loadMore() { visibleCount += PAGE_SIZE; renderProducts(); }
+
+    function hideAllViews() {
+      document.getElementById('shopView').classList.add('hidden');
+      document.getElementById('detailView').classList.remove('active');
+      document.getElementById('detailView').style.display = 'none';
+      document.getElementById('checkoutView').classList.remove('active');
+      document.getElementById('checkoutView').style.display = 'none';
+      const pv = document.getElementById('policyView');
+      pv.style.display = 'none';
+      pv.innerHTML = '';
+    }
+    function showShop() {
+      hideAllViews();
+      document.getElementById('shopView').classList.remove('hidden');
+      window.scrollTo(0, 0);
+    }
+
+    // ===== PRODUCT DETAIL =====
+    function openProduct(id) {
+      const p = PRODUCTS.find(x => x.id === id);
+      if (!p) return;
+      currentProduct = p;
+      selectedSku = null;
+      qty = 1;
+
+      // Hide all, show detail
+      hideAllViews();
+      const dv = document.getElementById('detailView');
+      dv.style.display = 'block';
+      dv.classList.add('active');
+      window.scrollTo(0, 0);
+
+      // Title
+      document.getElementById('detailTitle').textContent = p.title;
+
+      // Rating
+      document.getElementById('detailStars').innerHTML = renderStars(p.score);
+      const evalCount = p.evaluationCount || p.evaluateRate || '0';
+      document.getElementById('detailReviews').textContent = evalCount + ' arvostelua';
+      document.getElementById('detailSales').textContent = '| ' + formatOrders(p.orders) + ' myyty';
+
+      // Price (with markup)
+      updateDetailPrice(shopPrice(p.salePrice), shopPrice(p.originalPrice));
+
+      // Gallery
+      const imgs = (p.images && p.images.length) ? p.images : [p.image];
+      document.getElementById('mainImage').src = imgs[0];
+      document.getElementById('mainImage').onclick = () => zoomImage(imgs[0]);
+      let thumbs = '';
+      imgs.forEach((img, i) => {
+        thumbs += `<div class="gallery-thumb ${i===0?'active':''}" onclick="selectThumb(this, '${img}')"><img src="${img}" alt=""></div>`;
+      });
+      document.getElementById('galleryThumbs').innerHTML = thumbs;
+
+      // Variants / SKUs
+      const skus = p.skus || [];
+      const varSection = document.getElementById('variantSection');
+      if (skus.length > 1) {
+        varSection.style.display = 'block';
+        let opts = '';
+        skus.forEach((s, i) => {
+          const oos = s.stock <= 0;
+          const name = s.name || ('Vaihtoehto ' + (i+1));
+          opts += `<button class="variant-opt ${oos?'out-of-stock':''}" data-idx="${i}" onclick="selectVariant(${i})" ${oos?'disabled':''}>${name} – €${shopPrice(s.price).toFixed(2)}</button>`;
+        });
+        document.getElementById('variantOptions').innerHTML = opts;
+        // Auto-select first in-stock
+        const first = skus.findIndex(s => s.stock > 0);
+        if (first >= 0) selectVariant(first);
+      } else if (skus.length === 1) {
+        varSection.style.display = 'none';
+        selectedSku = skus[0];
+        updateStockInfo(skus[0].stock);
+      } else {
+        varSection.style.display = 'none';
+        updateStockInfo(99);
+      }
+
+      // Qty
+      document.getElementById('qtyVal').value = 1;
+
+      // Description images
+      const descImgs = p.descriptionImages || [];
+      const descContainer = document.getElementById('descImages');
+      const descSection = document.getElementById('descSection');
+      if (descImgs.length > 0) {
+        descSection.style.display = 'block';
+        descContainer.innerHTML = descImgs.map(src => `<img src="${src}" alt="Tuotekuva" loading="lazy" onclick="zoomImage('${src}')" style="cursor:zoom-in">`).join('');
+      } else {
+        descSection.style.display = 'none';
+      }
+    }
+
+    function updateDetailPrice(sale, orig) {
+      document.getElementById('detailPrice').textContent = '€' + parseFloat(sale).toFixed(2);
+      const origEl = document.getElementById('detailOrigPrice');
+      const discEl = document.getElementById('detailDiscount');
+      if (orig > sale) {
+        origEl.textContent = '€' + parseFloat(orig).toFixed(2);
+        origEl.style.display = 'inline';
+        const d = getDiscount(sale, orig);
+        if (d >= 5) { discEl.textContent = '-' + d + '%'; discEl.style.display = 'inline-block'; }
+        else discEl.style.display = 'none';
+      } else {
+        origEl.style.display = 'none';
+        discEl.style.display = 'none';
+      }
+    }
+
+    function selectThumb(el, src) {
+      document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+      const main = document.getElementById('mainImage');
+      main.src = src;
+      main.onclick = () => zoomImage(src);
+    }
+
+    function selectVariant(idx) {
+      const skus = currentProduct.skus || [];
+      selectedSku = skus[idx];
+      document.querySelectorAll('.variant-opt').forEach(b => b.classList.toggle('selected', parseInt(b.dataset.idx) === idx));
+      if (selectedSku) {
+        updateDetailPrice(shopPrice(selectedSku.price), shopPrice(selectedSku.originalPrice || currentProduct.originalPrice));
+        updateStockInfo(selectedSku.stock);
+        if (selectedSku.image) {
+          document.getElementById('mainImage').src = selectedSku.image;
+        }
+      }
+    }
+
+    function updateStockInfo(stock) {
+      const el = document.getElementById('stockInfo');
+      if (stock > 10) el.innerHTML = '<b>Varastossa</b>';
+      else if (stock > 0) el.innerHTML = `<b style="color:var(--accent)">Vain ${stock} jäljellä!</b>`;
+      else el.innerHTML = '<span style="color:var(--danger)">Loppu</span>';
+    }
+
+    function changeQty(delta) {
+      qty = Math.max(1, Math.min(qty + delta, 99));
+      document.getElementById('qtyVal').value = qty;
+    }
+
+    function zoomImage(src) {
+      document.getElementById('zoomImg').src = src;
+      document.getElementById('zoomOverlay').classList.add('open');
+    }
+
+    // ===== CART =====
+    function addToCart() {
+      if (!currentProduct) return;
+      const sku = selectedSku || (currentProduct.skus && currentProduct.skus[0]) || null;
+      const skuId = sku ? sku.id : 'default';
+      const variantName = sku ? sku.name : '';
+      const price = sku ? shopPrice(sku.price) : shopPrice(currentProduct.salePrice);
+      const image = (sku && sku.image) || currentProduct.image;
+
+      const existing = cart.find(i => i.productId === currentProduct.id && i.skuId === skuId);
+      if (existing) {
+        existing.qty += qty;
+      } else {
+        cart.push({
+          productId: currentProduct.id,
+          skuId: skuId,
+          title: currentProduct.title,
+          variant: variantName,
+          price: price,
+          image: image,
+          qty: qty,
+        });
+      }
+      saveCart();
+      showToast(`✓ ${qty}x lisätty ostoskoriin!`);
+    }
+
+    function toggleCart() {
+      const sidebar = document.getElementById('cartSidebar');
+      const overlay = document.getElementById('cartOverlay');
+      const isOpen = sidebar.classList.contains('open');
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('open');
+      if (!isOpen) renderCart();
+    }
+
+    function renderCart() {
+      const container = document.getElementById('cartItems');
+      if (!cart.length) {
+        container.innerHTML = '<div class="cart-empty"><p>Ostoskori on tyhjä</p></div>';
+        document.getElementById('cartTotal').textContent = '€0.00';
+        return;
+      }
+      let html = '';
+      cart.forEach((item, i) => {
+        html += `
+          <div class="cart-item">
+            <img class="cart-item-img" src="${item.image}" alt="">
+            <div class="cart-item-info">
+              <div class="cart-item-title">${item.title}</div>
+              ${item.variant ? `<div class="cart-item-variant">${item.variant}</div>` : ''}
+              <div class="cart-item-price">€${(item.price * item.qty).toFixed(2)}</div>
+              <div class="cart-item-qty">
+                <button onclick="cartQty(${i}, -1)">−</button>
+                <span>${item.qty}</span>
+                <button onclick="cartQty(${i}, 1)">+</button>
+              </div>
+              <button class="cart-item-remove" onclick="removeCartItem(${i})">Poista</button>
+            </div>
+          </div>`;
+      });
+      container.innerHTML = html;
+      const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      document.getElementById('cartTotal').textContent = '€' + total.toFixed(2);
+    }
+
+    function cartQty(i, delta) {
+      cart[i].qty = Math.max(1, cart[i].qty + delta);
+      saveCart();
+      renderCart();
+    }
+
+    function removeCartItem(i) {
+      cart.splice(i, 1);
+      saveCart();
+      renderCart();
+    }
+
+    function checkout() {
+      if (!cart.length) { showToast('Ostoskori on tyhjä!'); return; }
+      toggleCart();
+      showCheckout();
+    }
+
+    function buyNow() {
+      addToCart();
+      setTimeout(() => showCheckout(), 300);
+    }
+
+    // ===== CHECKOUT =====
+    function showCheckout() {
+      if (!cart.length) { showToast('Ostoskori on tyhjä!'); return; }
+      hideAllViews();
+      const cv = document.getElementById('checkoutView');
+      cv.style.display = 'block';
+      cv.classList.add('active');
+      document.getElementById('checkoutContent').style.display = '';
+      document.getElementById('orderSuccess').style.display = 'none';
+      window.scrollTo(0, 0);
+      renderCheckout();
+    }
+
+    function getShippingCost() {
+      const country = document.getElementById('coCountry') ? document.getElementById('coCountry').value : 'FI';
+      return SHIPPING_RATES[country] || SHIPPING_RATES.DEFAULT;
+    }
+    function updateShipping() { renderCheckout(); }
+
+    function renderCheckout() {
+      let html = '';
+      cart.forEach(item => {
+        html += `<div class="checkout-item">
+          <img src="${item.image}" alt="">
+          <div class="checkout-item-info">
+            <div class="checkout-item-title">${item.title}</div>
+            <div class="checkout-item-meta">${item.variant ? item.variant + ' · ' : ''}${item.qty} kpl</div>
+            <div class="checkout-item-price">€${(item.price * item.qty).toFixed(2)}</div>
+          </div>
+        </div>`;
+      });
+      document.getElementById('checkoutItems').innerHTML = html;
+      const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      const shipping = getShippingCost();
+      document.getElementById('coSubtotal').textContent = '€' + subtotal.toFixed(2);
+      document.getElementById('coShipping').textContent = '€' + shipping.toFixed(2);
+      document.getElementById('coTotal').textContent = '€' + (subtotal + shipping).toFixed(2);
+    }
+
+    function placeOrder() {
+      const fields = ['coFirstName','coLastName','coEmail','coPhone','coAddress','coPostal','coCity'];
+      for (const id of fields) {
+        const el = document.getElementById(id);
+        if (!el.value.trim()) {
+          el.style.borderColor = 'var(--danger)';
+          el.focus();
+          showToast('Täytä kaikki pakolliset kentät!');
+          return;
+        }
+        el.style.borderColor = '';
+      }
+      // Build order object (could be sent to backend later)
+      const order = {
+        id: 'RK-' + Date.now(),
+        date: new Date().toISOString(),
+        customer: {
+          firstName: document.getElementById('coFirstName').value.trim(),
+          lastName: document.getElementById('coLastName').value.trim(),
+          email: document.getElementById('coEmail').value.trim(),
+          phone: document.getElementById('coPhone').value.trim(),
+          address: document.getElementById('coAddress').value.trim(),
+          postal: document.getElementById('coPostal').value.trim(),
+          city: document.getElementById('coCity').value.trim(),
+          country: document.getElementById('coCountry').value,
+          notes: document.getElementById('coNotes').value.trim(),
+        },
+        items: [...cart],
+        shipping: getShippingCost(),
+        subtotal: cart.reduce((s, i) => s + i.price * i.qty, 0),
+        total: cart.reduce((s, i) => s + i.price * i.qty, 0) + getShippingCost(),
+      };
+      // Save order to localStorage
+      const orders = JSON.parse(localStorage.getItem('rk_orders') || '[]');
+      orders.push(order);
+      localStorage.setItem('rk_orders', JSON.stringify(orders));
+      // Clear cart
+      cart = [];
+      saveCart();
+      // Show success
+      document.getElementById('checkoutContent').style.display = 'none';
+      document.getElementById('orderSuccess').style.display = 'block';
+      console.log('Order placed:', order);
+    }
+
+    // ===== POLICY PAGES =====
+    function showPolicy(page) {
+      hideAllViews();
+      const pv = document.getElementById('policyView');
+      pv.style.display = 'block';
+      window.scrollTo(0, 0);
+      if (page === 'shipping') {
+        pv.innerHTML = `
+          <a class="detail-back" onclick="showShop()">← Takaisin</a>
+          <h1>Toimitus & palautukset</h1>
+          <h2>Toimitus</h2>
+          <p>Toimitamme tilaukset suoraan osoitteeseesi. Toimituskulut riippuvat kohdemaan sijainnista:</p>
+          <ul>
+            <li><b>Suomi:</b> €4.90</li>
+            <li><b>Ruotsi, Tanska, Viro, Latvia, Liettua:</b> €5.90–€6.90</li>
+            <li><b>Norja:</b> €7.90</li>
+            <li><b>Saksa:</b> €5.90</li>
+            <li><b>Muu maa:</b> €9.90</li>
+          </ul>
+          <p><b>Toimitusaika:</b> ${DELIVERY_DAYS} arkipäivää tilauksen vahvistamisesta.</p>
+          <p>Saat sähköpostiisi tilausvahvistuksen ja seurantanumeron, kun paketti on lähtenyt matkaan.</p>
+          <h2>Palautukset</h2>
+          <p>Sinulla on <b>14 päivän palautusoikeus</b> tuotteen vastaanottamisesta. Tuotteen tulee olla käyttämättömässä kunnossa alkuperäispakkauksessa.</p>
+          <p>Ota yhteyttä asiakaspalveluumme palautuksen sopimiseksi: <b>info@rosterikuppia.fi</b></p>
+          <h2>Vaurioituneet tuotteet</h2>
+          <p>Jos tuote saapuu vaurioituneena, ota yhteyttä 48 tunnin sisällä vastaanottamisesta valokuvan kera. Lähetämme uuden tuotteen tai hyvitämme maksun.</p>
+        `;
+      } else if (page === 'privacy') {
+        pv.innerHTML = `
+          <a class="detail-back" onclick="showShop()">← Takaisin</a>
+          <h1>Tietosuojaseloste</h1>
+          <p>Rosterikuppia.fi kerää vain tilauksen käsittelyyn tarvittavat henkilötiedot:</p>
+          <ul>
+            <li>Nimi ja yhteystiedot (sähköposti, puhelin)</li>
+            <li>Toimitusosoite</li>
+            <li>Tilaushistoria</li>
+          </ul>
+          <p>Tietojasi ei luovuteta kolmansille osapuolille markkinointitarkoituksiin. Tietoja käytetään ainoastaan tilaustesi käsittelyyn ja toimittamiseen.</p>
+          <p>Sinulla on oikeus pyytää tietojesi tarkistamista, korjaamista tai poistamista. Ota yhteyttä: <b>info@rosterikuppia.fi</b></p>
+          <p>Noudatamme EU:n yleistä tietosuoja-asetusta (GDPR).</p>
+        `;
+      } else if (page === 'contact') {
+        pv.innerHTML = `
+          <a class="detail-back" onclick="showShop()">← Takaisin</a>
+          <h1>Ota yhteyttä</h1>
+          <p>Autamme mielellämme kaikissa tilauksiin ja tuotteisiin liittyvissä kysymyksissä.</p>
+          <p><b>📧 Sähköposti:</b> info@rosterikuppia.fi</p>
+          <p><b>⏰ Vastausaika:</b> 1–2 arkipäivää</p>
+          <p style="margin-top:24px;color:var(--fg-muted)">Rosterikuppia.fi<br>Suomi</p>
+        `;
+      }
+    }
+
+    // ===== EVENTS =====
+    document.getElementById('searchInput').addEventListener('input', e => {
+      searchQuery = e.target.value; visibleCount = PAGE_SIZE; renderProducts();
+    });
+    document.getElementById('sortSelect').addEventListener('change', e => {
+      currentSort = e.target.value; renderProducts();
+    });
+
+    // Handle back button
+    window.addEventListener('popstate', () => {
+      if (document.getElementById('detailView').classList.contains('active')) showShop();
+    });
+
+    // ===== INIT =====
+    document.addEventListener('DOMContentLoaded', () => {
+      setFilter('all');
+      updateStats();
+      renderProducts();
+      updateCartCount();
+    });
+  </script>
+
+</body>
+</html>
