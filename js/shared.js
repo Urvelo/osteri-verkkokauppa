@@ -67,20 +67,19 @@ function closeAuthModal() {
 function signInWithGoogle() {
   closeAuthModal();
   var provider = new firebase.auth.GoogleAuthProvider();
-  var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  if (isMobile) {
-    auth.signInWithRedirect(provider);
-  } else {
-    auth.signInWithPopup(provider).then(function(result) {
-      showToast('Tervetuloa, ' + (result.user.displayName || '') + '!');
-    }).catch(function(err) {
-      if (err.code === 'auth/popup-blocked' || err.code === 'auth/popup-closed-by-user') {
-        auth.signInWithRedirect(provider);
-      } else {
-        showToast('Kirjautuminen ep\u00e4onnistui: ' + (err.message || ''));
-      }
-    });
-  }
+  auth.signInWithPopup(provider).then(function(result) {
+    showToast('Tervetuloa, ' + (result.user.displayName || '') + '!');
+  }).catch(function(err) {
+    if (err.code === 'auth/popup-blocked' || err.code === 'auth/popup-closed-by-user') {
+      // Popup blocked — try redirect as last resort
+      auth.signInWithRedirect(provider);
+    } else if (err.code === 'auth/cancelled-popup-request') {
+      // Multiple popups requested, ignore
+    } else {
+      console.error('Auth error:', err.code, err.message);
+      showToast('Kirjautuminen ep\u00e4onnistui. Yrit\u00e4 uudelleen.');
+    }
+  });
 }
 
 /* ===== PRICE HELPERS ===== */
