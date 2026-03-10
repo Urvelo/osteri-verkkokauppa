@@ -3,16 +3,16 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Orders: anyone can create (guest checkout supported), only owner reads via console
+    // Orders: anyone can create, logged-in users read their own orders
     match /orders/{orderId} {
       allow read: if request.auth != null && resource.data.uid == request.auth.uid;
       allow create: if true;
       allow update, delete: if false;
     }
 
-    // Returns: anyone can create a return request
+    // Returns: anyone can create a return request, logged-in users read their own
     match /returns/{returnId} {
-      allow read: if false;
+      allow read: if request.auth != null && resource.data.uid == request.auth.uid;
       allow create: if true;
       allow update, delete: if false;
     }

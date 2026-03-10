@@ -403,6 +403,102 @@
       .return-form-container .form-group textarea { font-size: 16px; padding: 10px 12px; }
       .return-upload-area { padding: 16px; }
     }
+
+    /* ===== BOTTOM NAV (mobile app-style) ===== */
+    .bottom-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: rgba(17,17,17,.97); backdrop-filter: blur(12px); border-top: 1px solid var(--border); z-index: 250; padding: 6px 0 calc(6px + env(safe-area-inset-bottom, 0px)); }
+    .bottom-nav-inner { display: flex; justify-content: space-around; align-items: center; max-width: 500px; margin: 0 auto; }
+    .bnav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 12px; color: var(--fg-muted); text-decoration: none; font-size: .65rem; font-weight: 600; text-transform: uppercase; letter-spacing: .03em; cursor: pointer; transition: color .15s; -webkit-tap-highlight-color: transparent; touch-action: manipulation; position: relative; }
+    .bnav-item.active, .bnav-item:hover { color: var(--accent); }
+    .bnav-icon { font-size: 1.3rem; line-height: 1; }
+    .bnav-badge { position: absolute; top: 0; right: 4px; background: var(--danger); color: #fff; font-size: .55rem; font-weight: 800; min-width: 16px; height: 16px; border-radius: 8px; display: flex; align-items: center; justify-content: center; padding: 0 4px; }
+    @media (max-width: 768px) {
+      .bottom-nav { display: block; }
+      body { padding-bottom: 72px; }
+      footer { padding-bottom: 80px; }
+      .toast { bottom: 80px; }
+    }
+
+    /* ===== ACCOUNT VIEW ===== */
+    #accountView { display: none; padding-top: 70px; min-height: 100vh; }
+    #accountView.active { display: block; }
+    .account-header { display: flex; align-items: center; gap: 20px; padding: 32px 0; border-bottom: 1px solid var(--border); margin-bottom: 32px; }
+    .account-avatar { width: 72px; height: 72px; border-radius: 50%; border: 3px solid var(--accent); object-fit: cover; background: var(--card-bg); }
+    .account-avatar-placeholder { width: 72px; height: 72px; border-radius: 50%; border: 3px solid var(--accent); background: var(--card-bg); display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+    .account-info h2 { font-size: 1.4rem; text-transform: none; letter-spacing: 0; margin-bottom: 4px; }
+    .account-info p { color: var(--fg-muted); font-size: .9rem; }
+    .account-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
+    .account-stat { background: var(--card-bg); border: 1px solid var(--border); padding: 20px; text-align: center; }
+    .account-stat .num { font-size: 1.8rem; font-weight: 800; color: var(--accent); }
+    .account-stat .label { font-size: .75rem; text-transform: uppercase; color: var(--fg-muted); margin-top: 4px; }
+    .account-actions { display: flex; gap: 12px; margin-bottom: 32px; flex-wrap: wrap; }
+    .orders-title { font-size: 1.3rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .orders-title .count { background: var(--accent); color: #111; font-size: .75rem; font-weight: 700; padding: 2px 10px; border-radius: 10px; }
+    .order-card { background: var(--card-bg); border: 1px solid var(--border); margin-bottom: 16px; transition: border-color .2s; }
+    .order-card:hover { border-color: var(--accent); }
+    .order-card-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    .order-card-header .order-id { font-weight: 700; color: var(--accent); font-size: .95rem; }
+    .order-card-header .order-date { color: var(--fg-muted); font-size: .8rem; }
+    .order-card-header .order-total { font-weight: 700; font-size: 1rem; }
+    .order-status { display: inline-block; padding: 3px 10px; font-size: .7rem; font-weight: 700; text-transform: uppercase; border-radius: 3px; }
+    .order-status.new { background: rgba(247,184,41,.15); color: var(--accent); }
+    .order-status.processing { background: rgba(33,150,243,.15); color: #2196f3; }
+    .order-status.shipped { background: rgba(76,175,80,.15); color: var(--success); }
+    .order-card-body { display: none; padding: 0 20px 20px; border-top: 1px solid var(--border); }
+    .order-card.expanded .order-card-body { display: block; }
+    .order-item-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.05); }
+    .order-item-row:last-child { border-bottom: none; }
+    .order-item-row img { width: 48px; height: 48px; object-fit: cover; flex-shrink: 0; background: #0a0a0a; cursor: pointer; }
+    .order-item-row .item-title { flex: 1; font-size: .85rem; }
+    .order-item-row .item-title a { color: var(--accent); text-decoration: none; cursor: pointer; }
+    .order-item-row .item-title a:hover { text-decoration: underline; }
+    .order-item-row .item-qty { color: var(--fg-muted); font-size: .8rem; white-space: nowrap; }
+    .order-item-row .item-price { font-weight: 700; color: var(--accent); white-space: nowrap; }
+    .order-address { margin-top: 12px; padding: 12px; background: var(--bg); border: 1px solid var(--border); font-size: .85rem; color: var(--fg-muted); }
+    .order-address b { color: var(--fg); }
+    .order-actions { display: flex; gap: 10px; margin-top: 16px; }
+    .no-orders { text-align: center; padding: 60px 20px; color: var(--fg-muted); }
+    .no-orders h3 { color: var(--fg); margin-bottom: 12px; }
+    .login-prompt { text-align: center; padding: 80px 20px; }
+    .login-prompt h2 { margin-bottom: 12px; text-transform: none; }
+    .login-prompt p { color: var(--fg-muted); margin-bottom: 24px; }
+    @media (max-width: 768px) {
+      .account-header { padding: 20px 0; margin-bottom: 20px; gap: 14px; }
+      .account-avatar, .account-avatar-placeholder { width: 56px; height: 56px; }
+      .account-info h2 { font-size: 1.1rem; }
+      .account-stats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .account-stat { padding: 12px 8px; }
+      .account-stat .num { font-size: 1.3rem; }
+      .order-card-header { padding: 12px 14px; flex-wrap: wrap; gap: 6px; }
+      .order-card-body { padding: 0 14px 14px; }
+      .order-item-row img { width: 40px; height: 40px; }
+    }
+
+    /* ===== RECEIPT MODAL ===== */
+    .receipt-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.8); z-index: 500; justify-content: center; align-items: flex-start; overflow-y: auto; padding: 20px; }
+    .receipt-overlay.open { display: flex; }
+    .receipt-paper { background: #fff; color: #333; max-width: 600px; width: 100%; margin: 40px auto; padding: 40px; font-family: 'Montserrat', sans-serif; }
+    .receipt-header { text-align: center; border-bottom: 2px solid #f7b829; padding-bottom: 20px; margin-bottom: 20px; }
+    .receipt-header h1 { font-size: 1.5rem; color: #1a1a1a; margin-bottom: 4px; }
+    .receipt-header p { color: #999; font-size: .8rem; }
+    .receipt-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; font-size: .85rem; }
+    .receipt-meta b { color: #1a1a1a; }
+    .receipt-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    .receipt-table th { text-align: left; padding: 10px 8px; border-bottom: 2px solid #eee; font-size: .75rem; text-transform: uppercase; color: #999; }
+    .receipt-table td { padding: 10px 8px; border-bottom: 1px solid #eee; font-size: .85rem; }
+    .receipt-table .right { text-align: right; }
+    .receipt-totals { text-align: right; margin-bottom: 24px; }
+    .receipt-totals .row { display: flex; justify-content: flex-end; gap: 24px; padding: 4px 0; font-size: .9rem; }
+    .receipt-totals .row.grand { font-size: 1.2rem; font-weight: 800; color: #1a1a1a; border-top: 2px solid #f7b829; padding-top: 10px; margin-top: 8px; }
+    .receipt-footer { text-align: center; border-top: 1px solid #eee; padding-top: 16px; font-size: .8rem; color: #999; }
+    .receipt-actions { display: flex; gap: 12px; justify-content: center; margin-top: 20px; }
+    @media (max-width: 768px) {
+      .receipt-paper { padding: 20px; margin: 10px auto; }
+      .receipt-meta { grid-template-columns: 1fr; }
+    }
+
+    /* ===== PAGE TRANSITIONS ===== */
+    .view-fade { animation: viewFadeIn .3s ease; }
+    @keyframes viewFadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body>
@@ -414,6 +510,7 @@
       <nav>
         <a onclick="showShop()">Tuotteet</a>
         <a href="#miksi">Miksi me</a>
+        <a onclick="showAccount()">Tilini</a>
         <button class="user-btn" id="authBtn" onclick="handleAuthClick()" title="Kirjaudu">
           <span id="authBtnText">Kirjaudu</span>
         </button>
@@ -573,6 +670,25 @@
   <!-- Toast -->
   <div class="toast" id="toast"></div>
 
+  <!-- ===== BOTTOM NAV (mobile app-style) ===== -->
+  <div class="bottom-nav">
+    <div class="bottom-nav-inner">
+      <a class="bnav-item active" id="bnavHome" onclick="showShop();updateBnav('home')">
+        <span class="bnav-icon">🏠</span>Etusivu
+      </a>
+      <a class="bnav-item" id="bnavCart" onclick="toggleCart();updateBnav('cart')">
+        <span class="bnav-icon">🛒</span>Ostoskori
+        <span class="bnav-badge" id="bnavCartBadge" style="display:none">0</span>
+      </a>
+      <a class="bnav-item" id="bnavAccount" onclick="showAccount();updateBnav('account')">
+        <span class="bnav-icon">👤</span>Tilini
+      </a>
+      <a class="bnav-item" id="bnavReturn" onclick="showReturnForm();updateBnav('return')">
+        <span class="bnav-icon">📦</span>Palautus
+      </a>
+    </div>
+  </div>
+
   <!-- ===== CHECKOUT VIEW ===== -->
   <div id="checkoutView">
     <div class="container">
@@ -625,12 +741,7 @@
           </div>
         </div>
       </div>
-      <div id="orderSuccess" class="order-success" style="display:none">
-        <h2>✓ Kiitos tilauksestasi!</h2>
-        <p>Tilausvahvistus lähetetään sähköpostiisi. Käsittelemme tilauksesi mahdollisimman pian.</p>
-        <p style="color:var(--fg-muted);font-size:.9rem;">Toimitusaika: 10–25 arkipäivää</p>
-        <button class="btn" onclick="showShop()" style="margin-top:16px">Jatka ostoksia</button>
-      </div>
+      <div id="orderSuccess" class="order-success" style="display:none"></div>
     </div>
   </div>
 
@@ -660,6 +771,47 @@
       </button>
       <button class="close-auth" onclick="closeAuthModal()">Jatka ilman kirjautumista</button>
     </div>
+  </div>
+
+  <!-- ===== ACCOUNT VIEW ===== -->
+  <div id="accountView">
+    <div class="container" style="padding-top:24px">
+      <a class="detail-back" onclick="showShop()">← Takaisin kauppaan</a>
+      <div id="accountLoggedIn" style="display:none">
+        <div class="account-header">
+          <img class="account-avatar" id="accountAvatar" src="" alt="" style="display:none">
+          <div class="account-avatar-placeholder" id="accountAvatarPlaceholder">👤</div>
+          <div class="account-info">
+            <h2 id="accountName">–</h2>
+            <p id="accountEmail">–</p>
+          </div>
+        </div>
+        <div class="account-stats">
+          <div class="account-stat"><div class="num" id="accOrderCount">0</div><div class="label">Tilauksia</div></div>
+          <div class="account-stat"><div class="num" id="accTotalSpent">€0</div><div class="label">Yhteensä</div></div>
+          <div class="account-stat"><div class="num" id="accMember">–</div><div class="label">Jäsen</div></div>
+        </div>
+        <div class="account-actions">
+          <button class="btn btn--sm" onclick="showReturnForm()">📦 Palautuslomake</button>
+          <button class="btn btn--sm btn--outline" onclick="auth.signOut();showToast('Kirjauduit ulos');showShop()">Kirjaudu ulos</button>
+        </div>
+        <h3 class="orders-title">Tilaushistoria <span class="count" id="ordersCountBadge">0</span></h3>
+        <div id="ordersContainer"></div>
+      </div>
+      <div id="accountLoggedOut" class="login-prompt">
+        <h2>Kirjaudu sisään</h2>
+        <p>Kirjaudu Google-tililläsi nähdäksesi tilaushistoriasi ja kuitit.</p>
+        <button class="google-btn" onclick="signInWithGoogle()" style="max-width:360px;margin:0 auto">
+          <svg viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+          Kirjaudu Googlella
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== RECEIPT MODAL ===== -->
+  <div class="receipt-overlay" id="receiptOverlay" onclick="if(event.target===this)closeReceipt()">
+    <div class="receipt-paper" id="receiptPaper"></div>
   </div>
 
   <!-- ===== POLICY MODAL ===== -->
@@ -732,6 +884,8 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <!-- jsPDF for receipt generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
     // Firebase config
     const firebaseConfig = {
@@ -774,6 +928,8 @@
           const lastField = document.getElementById('coLastName');
           if (lastField && !lastField.value) lastField.value = parts.slice(1).join(' ') || '';
         }
+        // Update account view if visible
+        if (document.getElementById('accountView').classList.contains('active')) loadAccountData();
       } else {
         txt.textContent = 'Kirjaudu';
         const img = btn.querySelector('img');
@@ -781,12 +937,20 @@
       }
     });
 
+    // Handle redirect result (for mobile auth)
+    auth.getRedirectResult().then(result => {
+      if (result.user) {
+        showToast('Tervetuloa, ' + (result.user.displayName || '') + '!');
+      }
+    }).catch(err => {
+      if (err.code !== 'auth/credential-already-in-use') {
+        console.log('Redirect auth:', err.code);
+      }
+    });
+
     function handleAuthClick() {
       if (currentUser) {
-        if (confirm('Kirjaudu ulos?')) {
-          auth.signOut();
-          showToast('Kirjauduit ulos');
-        }
+        showAccount();
       } else {
         document.getElementById('authModal').classList.add('open');
       }
@@ -795,19 +959,25 @@
       document.getElementById('authModal').classList.remove('open');
     }
     function signInWithGoogle() {
+      closeAuthModal();
       const provider = new firebase.auth.GoogleAuthProvider();
-      auth.signInWithPopup(provider).then(result => {
-        closeAuthModal();
-        showToast('Tervetuloa, ' + (result.user.displayName || '') + '!');
-      }).catch(err => {
-        console.error('Auth error:', err);
-        // Popup blocked? Try redirect
-        if (err.code === 'auth/popup-blocked') {
-          auth.signInWithRedirect(provider);
-        } else {
-          showToast('Kirjautuminen epäonnistui');
-        }
-      });
+      // Mobile: use redirect (more reliable), Desktop: popup
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile) {
+        auth.signInWithRedirect(provider);
+      } else {
+        auth.signInWithPopup(provider).then(result => {
+          showToast('Tervetuloa, ' + (result.user.displayName || '') + '!');
+        }).catch(err => {
+          console.error('Auth error:', err);
+          if (err.code === 'auth/popup-blocked' || err.code === 'auth/popup-closed-by-user') {
+            // Fallback to redirect
+            auth.signInWithRedirect(provider);
+          } else {
+            showToast('Kirjautuminen ep\u00e4onnistui: ' + (err.message || ''));
+          }
+        });
+      }
     }
   </script>
 
@@ -870,6 +1040,9 @@
       const el = document.getElementById('cartCount');
       el.style.display = total > 0 ? 'flex' : 'none';
       el.textContent = total;
+      // Bottom nav badge
+      const badge = document.getElementById('bnavCartBadge');
+      if (badge) { badge.style.display = total > 0 ? 'flex' : 'none'; badge.textContent = total; }
     }
 
     // Helper: get display title (Finnish preferred)
@@ -959,6 +1132,8 @@
       document.getElementById('checkoutView').style.display = 'none';
       document.getElementById('returnView').classList.remove('active');
       document.getElementById('returnView').style.display = 'none';
+      document.getElementById('accountView').classList.remove('active');
+      document.getElementById('accountView').style.display = 'none';
       const pv = document.getElementById('policyView');
       pv.style.display = 'none';
       pv.innerHTML = '';
@@ -967,6 +1142,7 @@
       hideAllViews();
       document.getElementById('shopView').classList.remove('hidden');
       window.scrollTo(0, 0);
+      updateBnav('home');
     }
 
     // ===== PRODUCT DETAIL =====
@@ -982,6 +1158,7 @@
       const dv = document.getElementById('detailView');
       dv.style.display = 'block';
       dv.classList.add('active');
+      dv.classList.add('view-fade');
       window.scrollTo(0, 0);
 
       // Title
@@ -1254,7 +1431,7 @@
           country: document.getElementById('coCountry').value,
           notes: document.getElementById('coNotes').value.trim(),
         },
-        items: cart.map(i => ({ title: i.title, variant: i.variant, qty: i.qty, price: i.price, image: i.image })),
+        items: cart.map(i => ({ productId: i.productId, title: i.title, variant: i.variant, qty: i.qty, price: i.price, image: i.image })),
         shipping: getShippingCost(),
         subtotal: cart.reduce((s, i) => s + i.price * i.qty, 0),
         total: cart.reduce((s, i) => s + i.price * i.qty, 0) + getShippingCost(),
@@ -1298,10 +1475,339 @@
       // Clear cart
       cart = [];
       saveCart();
-      // Show success
+      // Show success with receipt
       document.getElementById('checkoutContent').style.display = 'none';
-      document.getElementById('orderSuccess').style.display = 'block';
+      const successEl = document.getElementById('orderSuccess');
+      successEl.style.display = 'block';
+      successEl.innerHTML = '<h2>✓ Kiitos tilauksestasi!</h2>' +
+        '<p>Tilausnumero: <b style="color:var(--accent);font-size:1.1rem">' + order.id + '</b></p>' +
+        '<p style="color:var(--fg-muted);font-size:.9rem;">Tilausvahvistus lähetetään sähköpostiisi. Toimitusaika: ' + DELIVERY_DAYS + ' arkipäivää.</p>' +
+        '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px">' +
+        '<button class="btn" onclick="showReceipt(\'' + order.id + '\')">📄 Näytä kuitti</button>' +
+        '<button class="btn btn--outline" onclick="downloadReceiptPDF(\'' + order.id + '\')">📥 Lataa PDF-kuitti</button>' +
+        '<button class="btn btn--outline" onclick="showShop()">Jatka ostoksia</button></div>';
       showToast('Tilaus vahvistettu!');
+    }
+
+    // ===== ACCOUNT VIEW =====
+    function showAccount() {
+      hideAllViews();
+      const av = document.getElementById('accountView');
+      av.style.display = 'block';
+      av.classList.add('active');
+      av.classList.add('view-fade');
+      window.scrollTo(0, 0);
+
+      if (currentUser) {
+        document.getElementById('accountLoggedIn').style.display = 'block';
+        document.getElementById('accountLoggedOut').style.display = 'none';
+        loadAccountData();
+      } else {
+        document.getElementById('accountLoggedIn').style.display = 'none';
+        document.getElementById('accountLoggedOut').style.display = 'block';
+      }
+    }
+
+    function loadAccountData() {
+      if (!currentUser) return;
+      // Update profile
+      document.getElementById('accountName').textContent = currentUser.displayName || 'K\u00e4ytt\u00e4j\u00e4';
+      document.getElementById('accountEmail').textContent = currentUser.email || '';
+      const avatar = document.getElementById('accountAvatar');
+      const placeholder = document.getElementById('accountAvatarPlaceholder');
+      if (currentUser.photoURL) {
+        avatar.src = currentUser.photoURL;
+        avatar.style.display = 'block';
+        placeholder.style.display = 'none';
+      } else {
+        avatar.style.display = 'none';
+        placeholder.style.display = 'flex';
+      }
+      // Member since
+      const created = currentUser.metadata && currentUser.metadata.creationTime;
+      if (created) {
+        const d = new Date(created);
+        document.getElementById('accMember').textContent = d.toLocaleDateString('fi-FI', { month: 'short', year: 'numeric' });
+      }
+
+      // Load orders from Firestore
+      document.getElementById('ordersContainer').innerHTML = '<div style="text-align:center;padding:30px;color:var(--fg-muted)">Ladataan tilauksia...</div>';
+      db.collection('orders')
+        .where('uid', '==', currentUser.uid)
+        .limit(50)
+        .get()
+        .then(snapshot => {
+          const orders = [];
+          snapshot.forEach(doc => orders.push(doc.data()));
+          // Sort by date client-side (newest first)
+          orders.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+          renderOrderHistory(orders);
+        })
+        .catch(err => {
+          console.error('Orders load error:', err);
+          // Fallback to localStorage
+          const localOrders = JSON.parse(localStorage.getItem('rk_orders') || '[]')
+            .filter(o => o.uid === currentUser.uid || o.userEmail === currentUser.email)
+            .reverse();
+          renderOrderHistory(localOrders);
+        });
+    }
+
+    function renderOrderHistory(orders) {
+      const container = document.getElementById('ordersContainer');
+      document.getElementById('accOrderCount').textContent = orders.length;
+      document.getElementById('ordersCountBadge').textContent = orders.length;
+      const totalSpent = orders.reduce((s, o) => s + (o.total || 0), 0);
+      document.getElementById('accTotalSpent').textContent = '\u20ac' + totalSpent.toFixed(0);
+
+      if (!orders.length) {
+        container.innerHTML = '<div class="no-orders"><h3>Ei vielä tilauksia</h3><p>Kun teet ensimmäisen tilauksen, se näkyy täällä.</p><button class="btn" onclick="showShop()" style="margin-top:16px">Selaa tuotteita</button></div>';
+        return;
+      }
+
+      let html = '';
+      orders.forEach(order => {
+        const date = order.date ? new Date(order.date).toLocaleDateString('fi-FI') : '–';
+        const statusClass = order.status || 'new';
+        const statusText = { new: 'Uusi', processing: 'Käsittelyssä', shipped: 'Lähetetty', delivered: 'Toimitettu' }[statusClass] || statusClass;
+        let itemsHtml = '';
+        (order.items || []).forEach(item => {
+          const linkStart = item.productId ? '<a onclick="openProduct(\'' + item.productId + '\')" style="color:var(--accent);cursor:pointer">' : '';
+          const linkEnd = item.productId ? '</a>' : '';
+          const imgClick = item.productId ? 'openProduct(\'' + item.productId + '\')' : '';
+          itemsHtml += '<div class="order-item-row">' +
+            '<img src="' + (item.image || '') + '" alt="" onerror="this.style.display=\'none\'" onclick="' + imgClick + '">' +
+            '<div class="item-title">' + linkStart + item.title + linkEnd +
+            (item.variant ? '<br><small style="color:var(--fg-muted)">' + item.variant + '</small>' : '') + '</div>' +
+            '<div class="item-qty">x' + item.qty + '</div>' +
+            '<div class="item-price">€' + (item.price * item.qty).toFixed(2) + '</div>' +
+            '</div>';
+        });
+        const c = order.customer || {};
+        html += '<div class="order-card" id="order_' + order.id + '">' +
+          '<div class="order-card-header" onclick="toggleOrderCard(\'' + order.id + '\')">' +
+          '<div><span class="order-id">' + order.id + '</span><span class="order-date"> • ' + date + '</span></div>' +
+          '<div style="display:flex;align-items:center;gap:10px"><span class="order-status ' + statusClass + '">' + statusText + '</span>' +
+          '<span class="order-total">€' + (order.total || 0).toFixed(2) + '</span></div></div>' +
+          '<div class="order-card-body">' + itemsHtml +
+          '<div class="order-address"><b>📦 Toimitusosoite:</b><br>' +
+          (c.firstName || '') + ' ' + (c.lastName || '') + '<br>' +
+          (c.address || '') + '<br>' + (c.postal || '') + ' ' + (c.city || '') + ', ' + (c.country || '') + '</div>' +
+          '<div class="order-actions">' +
+          '<button class="btn btn--sm" onclick="showReceipt(\'' + order.id + '\')">📄 Kuitti</button>' +
+          '<button class="btn btn--sm btn--outline" onclick="downloadReceiptPDF(\'' + order.id + '\')">📥 PDF</button>' +
+          '</div></div></div>';
+      });
+      container.innerHTML = html;
+    }
+
+    function toggleOrderCard(orderId) {
+      const card = document.getElementById('order_' + orderId);
+      if (card) card.classList.toggle('expanded');
+    }
+
+    // ===== RECEIPT DISPLAY =====
+    function getOrderData(orderId) {
+      // Try localStorage first
+      const localOrders = JSON.parse(localStorage.getItem('rk_orders') || '[]');
+      return localOrders.find(o => o.id === orderId);
+    }
+
+    function showReceipt(orderId) {
+      const order = getOrderData(orderId);
+      if (!order) {
+        // Try Firestore
+        db.collection('orders').doc(orderId).get().then(doc => {
+          if (doc.exists) buildReceiptHTML(doc.data());
+          else showToast('Tilausta ei l\u00f6ytynyt');
+        }).catch(() => showToast('Tilausta ei l\u00f6ytynyt'));
+        return;
+      }
+      buildReceiptHTML(order);
+    }
+
+    function buildReceiptHTML(order) {
+      const c = order.customer || {};
+      const date = order.date ? new Date(order.date).toLocaleDateString('fi-FI') : '–';
+      let itemRows = '';
+      (order.items || []).forEach(item => {
+        const clickAttr = item.productId ? ' onclick="closeReceipt();openProduct(\'' + item.productId + '\')" style="color:#1a68b0;cursor:pointer;text-decoration:underline"' : '';
+        itemRows += '<tr><td' + clickAttr + '>' + item.title +
+          (item.variant ? '<br><small style="color:#999">' + item.variant + '</small>' : '') +
+          '</td><td class="right">' + item.qty + '</td><td class="right">€' + item.price.toFixed(2) +
+          '</td><td class="right">€' + (item.price * item.qty).toFixed(2) + '</td></tr>';
+      });
+      const receiptHtml = '<div class="receipt-header">' +
+        '<h1>ROSTERIKUPPIA.FI</h1><p>Kuitti / Tilausvahvistus</p></div>' +
+        '<div class="receipt-meta">' +
+        '<div><b>Tilausnumero:</b> ' + order.id + '<br><b>Päivämäärä:</b> ' + date + '</div>' +
+        '<div><b>Asiakas:</b> ' + (c.firstName || '') + ' ' + (c.lastName || '') +
+        '<br><b>Sähköposti:</b> ' + (c.email || '') + '<br><b>Puhelin:</b> ' + (c.phone || '') + '</div></div>' +
+        '<div style="margin-bottom:8px;font-size:.85rem"><b>Toimitusosoite:</b> ' +
+        (c.address || '') + ', ' + (c.postal || '') + ' ' + (c.city || '') + ', ' + (c.country || '') + '</div>' +
+        '<table class="receipt-table"><thead><tr><th>Tuote</th><th class="right">Kpl</th><th class="right">á-hinta</th><th class="right">Yht.</th></tr></thead>' +
+        '<tbody>' + itemRows + '</tbody></table>' +
+        '<div class="receipt-totals">' +
+        '<div class="row"><span>Välisumma:</span><span>€' + (order.subtotal || 0).toFixed(2) + '</span></div>' +
+        '<div class="row"><span>Toimitus:</span><span>€' + (order.shipping || 0).toFixed(2) + '</span></div>' +
+        '<div class="row grand"><span>Yhteensä:</span><span>€' + (order.total || 0).toFixed(2) + '</span></div></div>' +
+        '<div class="receipt-footer"><p>Kiitos tilauksestasi! 🙏</p>' +
+        '<p>Toimitusaika: ' + DELIVERY_DAYS + ' arkipäivää</p>' +
+        '<p style="margin-top:8px">© 2026 Rosterikuppia.fi</p></div>' +
+        '<div class="receipt-actions">' +
+        '<button class="btn btn--sm" onclick="downloadReceiptPDF(\'' + order.id + '\')">📥 Lataa PDF</button>' +
+        '<button class="btn btn--sm btn--outline" onclick="closeReceipt()">Sulje</button></div>';
+      document.getElementById('receiptPaper').innerHTML = receiptHtml;
+      document.getElementById('receiptOverlay').classList.add('open');
+    }
+
+    function closeReceipt() {
+      document.getElementById('receiptOverlay').classList.remove('open');
+    }
+
+    // ===== PDF RECEIPT =====
+    function downloadReceiptPDF(orderId) {
+      const order = getOrderData(orderId);
+      if (!order) {
+        db.collection('orders').doc(orderId).get().then(doc => {
+          if (doc.exists) generatePDF(doc.data());
+          else showToast('Tilausta ei l\u00f6ytynyt');
+        }).catch(() => showToast('PDF-virhe'));
+        return;
+      }
+      generatePDF(order);
+    }
+
+    function generatePDF(order) {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      const c = order.customer || {};
+      const date = order.date ? new Date(order.date).toLocaleDateString('fi-FI') : '-';
+      const pg = doc.internal.pageSize;
+      const w = pg.getWidth();
+
+      // Header background
+      doc.setFillColor(26, 26, 26);
+      doc.rect(0, 0, w, 35, 'F');
+      doc.setFontSize(22);
+      doc.setTextColor(247, 184, 41);
+      doc.text('ROSTERIKUPPIA.FI', w / 2, 18, { align: 'center' });
+      doc.setFontSize(9);
+      doc.setTextColor(200, 200, 200);
+      doc.text('Kuitti / Tilausvahvistus', w / 2, 28, { align: 'center' });
+
+      // Order info
+      doc.setTextColor(50, 50, 50);
+      doc.setFontSize(10);
+      let y = 48;
+      doc.setFont(undefined, 'bold');
+      doc.text('Tilausnumero:', 14, y);
+      doc.setFont(undefined, 'normal');
+      doc.text(order.id || '', 55, y);
+      y += 7;
+      doc.setFont(undefined, 'bold');
+      doc.text('Pvm:', 14, y);
+      doc.setFont(undefined, 'normal');
+      doc.text(date, 55, y);
+
+      // Customer
+      doc.setFont(undefined, 'bold');
+      doc.text('Asiakas:', 110, 48);
+      doc.setFont(undefined, 'normal');
+      doc.text((c.firstName || '') + ' ' + (c.lastName || ''), 140, 48);
+      doc.text(c.email || '', 140, 55);
+      doc.text(c.phone || '', 140, 62);
+
+      // Address
+      y += 12;
+      doc.setFont(undefined, 'bold');
+      doc.text('Toimitusosoite:', 14, y);
+      doc.setFont(undefined, 'normal');
+      y += 6;
+      doc.text((c.address || '') + ', ' + (c.postal || '') + ' ' + (c.city || '') + ', ' + (c.country || ''), 14, y);
+
+      // Table header
+      y += 14;
+      doc.setFillColor(245, 245, 245);
+      doc.rect(14, y - 5, w - 28, 8, 'F');
+      doc.setFontSize(8);
+      doc.setFont(undefined, 'bold');
+      doc.setTextColor(120, 120, 120);
+      doc.text('TUOTE', 16, y);
+      doc.text('KPL', 130, y, { align: 'center' });
+      doc.text('A-HINTA', 157, y, { align: 'right' });
+      doc.text('YHTEENSA', w - 16, y, { align: 'right' });
+
+      // Items
+      doc.setFont(undefined, 'normal');
+      doc.setTextColor(50, 50, 50);
+      doc.setFontSize(9);
+      y += 8;
+      (order.items || []).forEach(item => {
+        let title = item.title || '';
+        if (title.length > 55) title = title.substring(0, 53) + '...';
+        doc.text(title, 16, y);
+        if (item.variant) {
+          doc.setFontSize(7);
+          doc.setTextColor(150, 150, 150);
+          doc.text(item.variant.substring(0, 50), 16, y + 4);
+          doc.setFontSize(9);
+          doc.setTextColor(50, 50, 50);
+        }
+        doc.text(String(item.qty), 130, y, { align: 'center' });
+        doc.text('EUR ' + item.price.toFixed(2), 157, y, { align: 'right' });
+        doc.text('EUR ' + (item.price * item.qty).toFixed(2), w - 16, y, { align: 'right' });
+        y += item.variant ? 10 : 7;
+        doc.setDrawColor(230, 230, 230);
+        doc.line(14, y - 2, w - 14, y - 2);
+      });
+
+      // Totals
+      y += 6;
+      doc.setFontSize(9);
+      doc.text('Valisumma:', 140, y, { align: 'right' });
+      doc.text('EUR ' + (order.subtotal || 0).toFixed(2), w - 16, y, { align: 'right' });
+      y += 6;
+      doc.text('Toimitus:', 140, y, { align: 'right' });
+      doc.text('EUR ' + (order.shipping || 0).toFixed(2), w - 16, y, { align: 'right' });
+      y += 3;
+      doc.setDrawColor(247, 184, 41);
+      doc.setLineWidth(1);
+      doc.line(120, y, w - 14, y);
+      y += 7;
+      doc.setFontSize(13);
+      doc.setFont(undefined, 'bold');
+      doc.text('Yhteensa:', 140, y, { align: 'right' });
+      doc.setTextColor(247, 184, 41);
+      doc.text('EUR ' + (order.total || 0).toFixed(2), w - 16, y, { align: 'right' });
+
+      // Footer
+      y += 20;
+      doc.setTextColor(150, 150, 150);
+      doc.setFontSize(8);
+      doc.setFont(undefined, 'normal');
+      doc.text('Kiitos tilauksestasi! Toimitusaika: ' + DELIVERY_DAYS + ' arkipaivaa.', w / 2, y, { align: 'center' });
+      y += 5;
+      doc.text('(c) 2026 Rosterikuppia.fi', w / 2, y, { align: 'center' });
+
+      doc.save('kuitti_' + order.id + '.pdf');
+      showToast('PDF-kuitti ladattu!');
+    }
+
+    // ===== BOTTOM NAV HELPER =====
+    function updateBnav(active) {
+      document.querySelectorAll('.bnav-item').forEach(el => el.classList.remove('active'));
+      const map = { home: 'bnavHome', cart: 'bnavCart', account: 'bnavAccount', return: 'bnavReturn' };
+      const el = document.getElementById(map[active]);
+      if (el) el.classList.add('active');
+    }
+    function updateBottomCartBadge() {
+      const total = cart.reduce((s, i) => s + i.qty, 0);
+      const badge = document.getElementById('bnavCartBadge');
+      if (badge) {
+        badge.style.display = total > 0 ? 'flex' : 'none';
+        badge.textContent = total;
+      }
     }
 
     // ===== RETURN FORM =====
