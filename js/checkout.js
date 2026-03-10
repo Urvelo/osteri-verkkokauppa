@@ -139,55 +139,49 @@
       console.log('Tilaus tallennettu:', order.id);
     }).catch(function(err) { console.error('Firestore error:', err); });
 
-    // Build items list with AliExpress links for owner email
-    var itemsList = order.items.map(function(i) {
-      var aliUrl = getProductUrl(i.productId);
-      var line = i.title + (i.variant ? ' (' + i.variant + ')' : '') + ' x' + i.qty + ' = \u20ac' + (i.price * i.qty).toFixed(2);
-      if (aliUrl) line += '\nAliExpress: ' + aliUrl;
-      return line;
-    }).join('\n\n');
-
-    // Owner email notification (with AliExpress links)
-    var emailBody = new FormData();
-    emailBody.append('Tilausnumero', order.id);
-    emailBody.append('PayPal', order.paypalOrderId || 'N/A');
-    emailBody.append('Pvm', new Date(order.date).toLocaleDateString('fi-FI'));
-    emailBody.append('Asiakas', order.customer.firstName + ' ' + order.customer.lastName);
-    emailBody.append('Email', order.customer.email);
-    emailBody.append('Puhelin', order.customer.phone);
-    emailBody.append('Osoite', order.customer.address + ', ' + order.customer.postal + ' ' + order.customer.city + ', ' + order.customer.country);
-    emailBody.append('Tuotteet', itemsList);
-    emailBody.append('Toimitus', '\u20ac' + order.shipping.toFixed(2));
-    emailBody.append('Yhteensa', '\u20ac' + order.total.toFixed(2));
-    if (order.customer.notes) emailBody.append('Lisatiedot', order.customer.notes);
-    emailBody.append('_subject', '\u2705 Uusi tilaus: ' + order.id + ' - \u20ac' + order.total.toFixed(2));
-    emailBody.append('_template', 'table');
-    emailBody.append('_captcha', 'false');
-    fetch('https://formsubmit.co/ajax/sovelluksenkehittaja@gmail.com', {
-      method: 'POST', body: emailBody
-    }).catch(function(e) { console.log('Owner email:', e); });
-
-    // Customer email confirmation
-    var custItems = order.items.map(function(i) {
+    // Build items HTML for emails
+    var itemsHtml = order.items.map(function(i) {
       return i.title + (i.variant ? ' (' + i.variant + ')' : '') + ' x' + i.qty + ' = \u20ac' + (i.price * i.qty).toFixed(2);
-    }).join('\n');
-    var custEmail = new FormData();
-    custEmail.append('Tilausnumero', order.id);
-    custEmail.append('Pvm', new Date(order.date).toLocaleDateString('fi-FI'));
-    custEmail.append('Tuotteet', custItems);
-    custEmail.append('Toimitus', '\u20ac' + order.shipping.toFixed(2));
-    custEmail.append('Yhteensa', '\u20ac' + order.total.toFixed(2));
-    custEmail.append('Osoite', order.customer.address + ', ' + order.customer.postal + ' ' + order.customer.city + ', ' + order.customer.country);
-    custEmail.append('Toimitusaika', DELIVERY_DAYS + ' arkip\u00e4iv\u00e4\u00e4');
-    custEmail.append('Palautus', 'Tuotteen palautuskustannus: \u20ac' + RETURN_FEE.toFixed(2));
-    custEmail.append('Info', 'Kiitos tilauksestasi! Tilausvahvistus on tallennettu tilillesi osoitteessa rosterikuppia.fi');
-    custEmail.append('_subject', 'Tilausvahvistus: ' + order.id + ' - Rosterikuppia.fi');
-    custEmail.append('_template', 'table');
-    custEmail.append('_captcha', 'false');
-    custEmail.append('_replyto', 'sovelluksenkehittaja@gmail.com');
-    fetch('https://formsubmit.co/ajax/' + order.customer.email, {
-      method: 'POST', body: custEmail
-    }).catch(function(e) { console.log('Customer email:', e); });
+    }).join('<br>');
+
+    // Build AliExpress links HTML for owner email
+    var aliLinksHtml = order.items.map(function(i) {
+      var aliUrl = getProductUrl(i.productId);
+      var name = i.title + (i.variant ? ' (' + i.variant + ')' : '') + ' x' + i.qty;
+      if (aliUrl) return name + '<br><a href="' + aliUrl + '">' + aliUrl + '</a>';
+      return name;
+    }).join('<br><br>');
+
+    var fullAddress = order.customer.address + ', ' + order.customer.postal + ' ' + order.customer.city + ', ' + order.customer.country;
+
+    // Owner email via EmailJS
+    emailjs.send('service_pl0if4u', 'template_5zzvxwf', {
+      order_id: order.id,
+      paypal_id: order.paypalOrderId || 'N/A',
+      date: new Date(order.date).toLocaleDateString('fi-FI'),
+      customer_name: order.customer.firstName + ' ' + order.customer.lastName,
+      customer_email: order.customer.email,
+      customer_phone: order.customer.phone || '-',
+      customer_address: fullAddress,
+      items_html: itemsHtml,
+      shipping: '\u20ac' + order.shipping.toFixed(2),
+      total: '\u20ac' + order.total.toFixed(2),
+      notes: order.customer.notes || '',
+      ali_links_html: aliLinksHtml
+    }).then(function() { console.log('Owner email sent'); }).catch(function(e) { console.log('Owner email error:', e); });
+
+    // Customer email via EmailJS
+    emailjs.send('service_pl0if4u', 'template_6d2ncuq', {
+      customer_name: order.customer.firstName,
+      customer_email: order.customer.email,
+      order_id: order.id,
+      items_html: itemsHtml,
+      shipping: '\u20ac' + order.shipping.toFixed(2),
+      total: '\u20ac' + order.total.toFixed(2),
+      customer_address: fullAddress,
+      delivery_time: DELIVERY_DAYS,
+      return_cost: '\u20ac' + RETURN_FEE.toFixed(2)
+    }).then(function() { console.log('Customer email sent'); }).catch(function(e) { console.log('Customer email error:', e); });
 
     // Save to localStorage
     var orders = JSON.parse(localStorage.getItem('rk_orders') || '[]');
