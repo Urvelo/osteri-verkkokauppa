@@ -43,7 +43,7 @@
               </select>
             </div>
             <div class="form-group"><label>Lisätiedot (valinnainen)</label><textarea id="coNotes" rows="3" placeholder="Esim. ovikoodi, toimitusohje..."></textarea></div>
-            <button class="btn" style="width:100%;text-align:center;padding:18px;font-size:1.05rem;margin-top:8px" onclick="placeOrder()">✓ Vahvista tilaus</button>
+            <div id="paypal-button-container" style="margin-top:16px"></div>
           </div>
           <div class="checkout-summary">
             <h3>Tilauksesi</h3>
@@ -57,7 +57,9 @@
               <b>📦 Toimitusaika:</b> 10–25 arkipäivää<br>
               <b>🚚 Toimitusmaksut:</b> Riippuvat kohdemaasta<br>
               <b>↩️ Palautusoikeus:</b> 14 päivää<br>
-              <b>📧 Vahvistus:</b> Tilausvahvistus sähköpostiisi
+              <b>� Maksu:</b> PayPal — maksu ennen tilauksen vahvistusta<br>
+              <b>📧 Vahvistus:</b> Tilausvahvistus sähköpostiisi<br>
+              <span style="font-size:.8rem;color:var(--fg-muted);margin-top:4px;display:inline-block">Tuotteen palautuskustannus: €8.99</span>
             </div>
           </div>
         </div>
@@ -67,6 +69,7 @@
   </main>
 
   <!-- Scripts -->
+  <script src="https://www.paypal.com/sdk/js?client-id=AWWxtpNCBSMw5X1fr0ub5kqhvlXDxq9uFuiyE62ns6y1-6XQV2bTwlzqCdNIOZMlOTTxJrHgypOH8AjN&currency=EUR" defer></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>

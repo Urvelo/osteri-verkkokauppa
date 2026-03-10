@@ -113,8 +113,7 @@ function updateCartCount() {
   var total = cart.reduce(function(s, i) { return s + i.qty; }, 0);
   var el = document.getElementById('cartCount');
   if (el) { el.style.display = total > 0 ? 'flex' : 'none'; el.textContent = total; }
-  var badge = document.getElementById('bnavCartBadge');
-  if (badge) { badge.style.display = total > 0 ? 'flex' : 'none'; badge.textContent = total; }
+
 }
 
 function getStockForCartItem(item) {
@@ -214,12 +213,7 @@ function zoomImage(src) {
   if (img && overlay) { img.src = src; overlay.classList.add('open'); }
 }
 
-function updateBnav(active) {
-  document.querySelectorAll('.bnav-item').forEach(function(el) { el.classList.remove('active'); });
-  var map = { home: 'bnavHome', cart: 'bnavCart', account: 'bnavAccount', return: 'bnavReturn' };
-  var el = document.getElementById(map[active]);
-  if (el) el.classList.add('active');
-}
+
 
 /* ===== RECEIPT ===== */
 function getOrderData(orderId) {
@@ -414,7 +408,6 @@ function injectSharedUI() {
     '<a class="logo" href="' + ROOT + '">Rosterikuppia</a>' +
     '<nav>' +
     '<a href="' + ROOT + '">Tuotteet</a>' +
-    '<a href="' + ROOT + '#miksi">Miksi me</a>' +
     '<a href="' + ROOT + 'tili/">Tilini</a>' +
     '<button class="user-btn" id="authBtn" onclick="handleAuthClick()" title="Kirjaudu">' +
     '<span id="authBtnText">Kirjaudu</span></button>' +
@@ -433,14 +426,7 @@ function injectSharedUI() {
     '<button class="btn" style="width:100%;text-align:center;padding:16px;font-size:1rem" onclick="goToCheckout()">Siirry kassalle \u2192</button>' +
     '</div></div>';
 
-  // Bottom nav
-  var bnavHTML = '<div class="bottom-nav"><div class="bottom-nav-inner">' +
-    '<a class="bnav-item" id="bnavHome" href="' + ROOT + '"><span class="bnav-icon">\ud83c\udfe0</span>Etusivu</a>' +
-    '<a class="bnav-item" id="bnavCart" onclick="toggleCart()"><span class="bnav-icon">\ud83d\uded2</span>Ostoskori' +
-    '<span class="bnav-badge" id="bnavCartBadge" style="display:none">0</span></a>' +
-    '<a class="bnav-item" id="bnavAccount" href="' + ROOT + 'tili/"><span class="bnav-icon">\ud83d\udc64</span>Tilini</a>' +
-    '<a class="bnav-item" id="bnavReturn" href="' + ROOT + 'palautus/"><span class="bnav-icon">\ud83d\udce6</span>Palautus</a>' +
-    '</div></div>';
+  // Bottom nav removed — navigation only via header
 
   // Auth modal
   var authHTML = '<div class="auth-modal-overlay" id="authModal"><div class="auth-modal">' +
@@ -466,10 +452,10 @@ function injectSharedUI() {
     '<p>Suomalainen verkkokauppa \u2013 kestävät metallikupit retkeilyyn ja eräilyyn.</p>' +
     '<p style="margin-top:16px;">' +
     '<a href="' + ROOT + 'tiedot/toimitus.html" style="margin:0 12px;">Toimitus &amp; palautukset</a> \u2022 ' +
-    '<a href="' + ROOT + 'palautus/" style="margin:0 12px;">Palautuslomake</a> \u2022 ' +
     '<a href="' + ROOT + 'tiedot/tietosuoja.html" style="margin:0 12px;">Tietosuoja</a> \u2022 ' +
     '<a href="' + ROOT + 'tiedot/yhteyta.html" style="margin:0 12px;">Ota yhteytt\u00e4</a></p>' +
-    '<p style="margin-top:16px;font-size:.75rem;color:#555;">\u00a9 2026 Rosterikuppia.fi \u2013 Kaikki oikeudet pid\u00e4tet\u00e4\u00e4n. Y-tunnus: Tulossa</p>' +
+    '<p style="margin-top:20px;font-size:.7rem;color:#444;"><a href="' + ROOT + 'palautus/" style="color:#555">Palautuslomake</a></p>' +
+    '<p style="margin-top:12px;font-size:.7rem;color:#444;">\u00a9 2026 Rosterikuppia.fi \u2013 Kaikki oikeudet pid\u00e4tet\u00e4\u00e4n. Y-tunnus: Tulossa</p>' +
     '</div></footer>';
 
   // Inject header at top
@@ -481,11 +467,8 @@ function injectSharedUI() {
     main.insertAdjacentHTML('afterend', footerHTML);
   }
 
-  // Inject overlays & nav at end
-  document.body.insertAdjacentHTML('beforeend', cartHTML + bnavHTML + authHTML + zoomHTML + toastHTML + receiptHTML);
-
-  // Set active bottom nav
-  if (PAGE_ID) updateBnav(PAGE_ID);
+  // Inject overlays at end (no bottom nav)
+  document.body.insertAdjacentHTML('beforeend', cartHTML + authHTML + zoomHTML + toastHTML + receiptHTML);
 
   // Update cart counts
   updateCartCount();

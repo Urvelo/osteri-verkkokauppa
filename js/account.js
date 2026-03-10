@@ -65,8 +65,6 @@
     var container = document.getElementById('ordersContainer');
     document.getElementById('accOrderCount').textContent = orders.length;
     document.getElementById('ordersCountBadge').textContent = orders.length;
-    var totalSpent = orders.reduce(function(s, o) { return s + (o.total || 0); }, 0);
-    document.getElementById('accTotalSpent').textContent = '\u20ac' + totalSpent.toFixed(0);
 
     if (!orders.length) {
       container.innerHTML = '<div class="no-orders"><h3>Ei vielä tilauksia</h3><p>Kun teet ensimmäisen tilauksen, se näkyy täällä.</p>' +
@@ -78,7 +76,7 @@
     orders.forEach(function(order) {
       var date = order.date ? new Date(order.date).toLocaleDateString('fi-FI') : '\u2013';
       var statusClass = order.status || 'new';
-      var statusText = { new: 'Uusi', processing: 'Käsittelyssä', shipped: 'Lähetetty', delivered: 'Toimitettu' }[statusClass] || statusClass;
+      var statusText = { new: 'Uusi', paid: 'Maksettu', processing: 'Käsittelyssä', shipped: 'Lähetetty', delivered: 'Toimitettu' }[statusClass] || statusClass;
       var itemsHtml = '';
       (order.items || []).forEach(function(item) {
         var linkStart = item.productId ? '<a onclick="openProduct(\'' + item.productId + '\')" style="color:var(--accent);cursor:pointer">' : '';

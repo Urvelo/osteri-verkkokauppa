@@ -277,6 +277,7 @@ footer a:hover { color: var(--accent); }
 .order-card-header .order-total { font-weight: 700; font-size: 1rem; }
 .order-status { display: inline-block; padding: 3px 10px; font-size: .7rem; font-weight: 700; text-transform: uppercase; border-radius: 3px; }
 .order-status.new { background: rgba(247,184,41,.15); color: var(--accent); }
+.order-status.paid { background: rgba(76,175,80,.15); color: var(--success); }
 .order-status.processing { background: rgba(33,150,243,.15); color: #2196f3; }
 .order-status.shipped { background: rgba(76,175,80,.15); color: var(--success); }
 .order-card-body { display: none; padding: 0 20px 20px; border-top: 1px solid var(--border); }
@@ -384,10 +385,7 @@ footer a:hover { color: var(--accent); }
   .feature-item h3 { font-size: .85rem; }
   .feature-item p { font-size: .8rem; }
   footer { padding: 32px 0 24px; }
-  .bottom-nav { display: block; }
-  body { padding-bottom: 72px; }
-  footer { padding-bottom: 80px; }
-  .toast { bottom: 80px; }
+  .toast { bottom: 24px; }
   .checkout-layout { grid-template-columns: 1fr; gap: 20px; }
   .checkout-summary { position: static; }
   .form-row { grid-template-columns: 1fr; gap: 8px; }
@@ -494,3 +492,7 @@ footer a:hover { color: var(--accent); }
 .info-section .form-group input:focus,
 .info-section .form-group select:focus,
 .info-section .form-group textarea:focus { border-color: var(--accent); }
+
+/* PAYPAL */
+#paypal-button-container { min-height: 50px; margin-top: 16px; }
+#paypal-button-container .paypal-buttons { max-width: 100%; }
