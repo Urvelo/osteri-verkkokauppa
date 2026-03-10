@@ -299,7 +299,38 @@
     @media (max-width: 768px) {
       .checkout-layout { grid-template-columns: 1fr; gap: 24px; }
       .checkout-summary { position: static; }
-      .form-row { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; gap: 10px; }
+      #checkoutView { padding-top: 60px; }
+      #checkoutView .container { padding: 0 12px; }
+      .checkout-form h2 { font-size: 1.15rem; margin-bottom: 16px; }
+      .form-group { margin-bottom: 10px; }
+      .form-group label { font-size: .72rem; margin-bottom: 4px; }
+      .form-group input, .form-group select, .form-group textarea { padding: 10px 12px; font-size: .9rem; }
+      .checkout-summary h3 { font-size: 1rem; margin-bottom: 12px; }
+      .checkout-item { padding: 10px; gap: 10px; }
+      .checkout-item img { width: 48px; height: 48px; }
+      .checkout-item-title { font-size: .75rem; }
+      .checkout-item-meta { font-size: .7rem; }
+      .checkout-item-price { font-size: .82rem; }
+      .checkout-totals { padding: 12px; }
+      .checkout-totals-row { font-size: .82rem; }
+      .checkout-totals-row.total { font-size: 1rem; }
+      .checkout-notice { padding: 10px; font-size: .75rem; }
+      .order-success { padding: 50px 16px; }
+      .order-success h2 { font-size: 1.5rem; }
+      .order-success p { font-size: .9rem; }
+    }
+    @media (max-width: 480px) {
+      #checkoutView { padding-top: 55px; }
+      #checkoutView .container { padding: 0 8px; }
+      .checkout-form h2 { font-size: 1.05rem; }
+      .form-group input, .form-group select, .form-group textarea { padding: 9px 10px; font-size: .85rem; }
+      .checkout-item img { width: 40px; height: 40px; }
+      .checkout-item-title { font-size: .7rem; }
+      .checkout-totals-row.total { font-size: .95rem; }
+      .checkout-notice { font-size: .7rem; padding: 8px; }
+      .order-success { padding: 40px 12px; }
+      .order-success h2 { font-size: 1.3rem; }
     }
 
     /* POLICY PAGES */
@@ -441,7 +472,6 @@
           <!-- Add to cart -->
           <div class="add-to-cart-row">
             <button class="btn" onclick="addToCart()">🛒 Lisää ostoskoriin</button>
-            <button class="btn btn--outline" onclick="buyNow()">Osta nyt →</button>
           </div>
         </div>
       </div>
@@ -921,10 +951,7 @@
       showCheckout();
     }
 
-    function buyNow() {
-      addToCart();
-      setTimeout(() => showCheckout(), 300);
-    }
+
 
     // ===== CHECKOUT =====
     function showCheckout() {
