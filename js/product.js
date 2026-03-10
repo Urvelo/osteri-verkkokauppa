@@ -1,5 +1,5 @@
 /* ===== PRODUCT DETAIL PAGE ===== */
-(function() 
+(function() {
   var params = new URLSearchParams(window.location.search);
   var productId = params.get('id');
   var currentProduct = null;
