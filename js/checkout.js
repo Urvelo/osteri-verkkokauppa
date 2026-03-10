@@ -245,6 +245,10 @@
         }
         var sums = updateTotals();
         return actions.order.create({
+          application_context: {
+            shipping_preference: 'NO_SHIPPING',
+            user_action: 'PAY_NOW'
+          },
           purchase_units: [{
             description: 'Rosterikuppia.fi tilaus',
             amount: {

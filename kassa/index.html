@@ -44,7 +44,7 @@
             </div>
             <div class="form-group"><label>Lisätiedot (valinnainen)</label><textarea id="coNotes" rows="2" placeholder="Esim. ovikoodi, toimitusohje..."></textarea></div>
             <h3 style="margin-top:20px">Maksu</h3>
-            <p style="font-size:.85rem;color:var(--fg-muted);margin:4px 0 8px">Vahvista maksu PayPal-tilillä tai -sovelluksella. Osoitetiedot toimitetaan yllä olevan lomakkeen mukaan.</p>
+            <p style="font-size:.85rem;color:var(--fg-muted);margin:4px 0 8px">PayPal-tilin omistajat: kirjaudu ja vahvista maksu — ei tarvitse syöttää osoitetta uudelleen.<br>Voit myös maksaa pankki- tai luottokortilla.</p>
             <div id="paypal-button-container"></div>
           </div>
           <div class="checkout-summary">
@@ -71,13 +71,13 @@
   </main>
 
   <!-- Scripts -->
-  <script src="https://www.paypal.com/sdk/js?client-id=AWWxtpNCBSMw5X1fr0ub5kqhvlXDxq9uFuiyE62ns6y1-6XQV2bTwlzqCdNIOZMlOTTxJrHgypOH8AjN&currency=EUR" defer></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=AWWxtpNCBSMw5X1fr0ub5kqhvlXDxq9uFuiyE62ns6y1-6XQV2bTwlzqCdNIOZMlOTTxJrHgypOH8AjN&currency=EUR&disable-funding=credit&intent=capture" defer></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
   <script>var ROOT = '../'; var PAGE_ID = '';</script>
-  <script src="../products.js?v=5"></script>
-  <script src="../js/shared.js?v=5"></script>
-  <script src="../js/checkout.js?v=5"></script>
+  <script src="../products.js?v=6"></script>
+  <script src="../js/shared.js?v=6"></script>
+  <script src="../js/checkout.js?v=6"></script>
 </body>
 </html>
