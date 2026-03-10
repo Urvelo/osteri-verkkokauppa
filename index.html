@@ -1463,16 +1463,24 @@
       .then(() => {
         // Send email notification via Formsubmit.co
         const retEmail = new FormData();
-        retEmail.append('Palautusnumero', returnId);
-        retEmail.append('Tilausnumero', orderId);
-        retEmail.append('Nimi', name);
-        retEmail.append('Email', email);
-        if (phone) retEmail.append('Puhelin', phone);
-        retEmail.append('Syy', reason);
-        if (description) retEmail.append('Kuvaus', description);
-        if (returnImageUrl) retEmail.append('Kuva', returnImageUrl);
+        let htmlBody = '<h2 style="color:#333">📦 Palautuspyyntö: ' + returnId + '</h2>' +
+          '<table style="border-collapse:collapse;width:100%;max-width:600px;font-family:Arial,sans-serif">' +
+          '<tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold;background:#f5f5f5">Palautusnumero</td><td style="padding:8px;border:1px solid #ddd">' + returnId + '</td></tr>' +
+          '<tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold;background:#f5f5f5">Tilausnumero</td><td style="padding:8px;border:1px solid #ddd">' + orderId + '</td></tr>' +
+          '<tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold;background:#f5f5f5">Nimi</td><td style="padding:8px;border:1px solid #ddd">' + name + '</td></tr>' +
+          '<tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold;background:#f5f5f5">Sähköposti</td><td style="padding:8px;border:1px solid #ddd">' + email + '</td></tr>' +
+          (phone ? '<tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold;background:#f5f5f5">Puhelin</td><td style="padding:8px;border:1px solid #ddd">' + phone + '</td></tr>' : '') +
+          '<tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold;background:#f5f5f5">Syy</td><td style="padding:8px;border:1px solid #ddd">' + reason + '</td></tr>' +
+          (description ? '<tr><td style="padding:8px;border:1px solid #ddd;font-weight:bold;background:#f5f5f5">Kuvaus</td><td style="padding:8px;border:1px solid #ddd">' + description + '</td></tr>' : '') +
+          '</table>';
+        if (returnImageUrl) {
+          htmlBody += '<h3 style="margin-top:20px;color:#333">Liitetty kuva:</h3>' +
+            '<p><a href="' + returnImageUrl + '" target="_blank">Lataa kuva tästä</a></p>' +
+            '<img src="' + returnImageUrl + '" style="max-width:500px;border:2px solid #ddd;margin-top:8px" alt="Palautuskuva">';
+        }
+        retEmail.append('message', htmlBody);
         retEmail.append('_subject', 'Palautuspyynto: ' + returnId + ' - ' + reason);
-        retEmail.append('_template', 'table');
+        retEmail.append('_template', 'box');
         retEmail.append('_captcha', 'false');
         fetch('https://formsubmit.co/ajax/sovelluksenkehittaja@gmail.com', {
           method: 'POST', body: retEmail
