@@ -61,7 +61,31 @@
 
   window.updateShipping = function() { updateTotals(); };
 
-  function validateCart() {
+  function validateForm() {
+    // Required fields
+    var fields = [
+      { id: 'coFirstName', label: 'Etunimi' },
+      { id: 'coLastName', label: 'Sukunimi' },
+      { id: 'coEmail', label: 'S\u00e4hk\u00f6posti' },
+      { id: 'coAddress', label: 'Osoite' },
+      { id: 'coPostal', label: 'Postinumero' },
+      { id: 'coCity', label: 'Kaupunki' }
+    ];
+    for (var fi = 0; fi < fields.length; fi++) {
+      var el = document.getElementById(fields[fi].id);
+      if (!el || !el.value.trim()) {
+        showToast('T\u00e4yt\u00e4 kentt\u00e4: ' + fields[fi].label);
+        if (el) el.focus();
+        return false;
+      }
+    }
+    // Email format check
+    var emailVal = document.getElementById('coEmail').value.trim();
+    if (emailVal.indexOf('@') === -1 || emailVal.indexOf('.') === -1) {
+      showToast('Tarkista s\u00e4hk\u00f6postiosoite!');
+      document.getElementById('coEmail').focus();
+      return false;
+    }
     // Stock validation
     for (var ci = 0; ci < cart.length; ci++) {
       var stock = getStockForCartItem(cart[ci]);
@@ -79,25 +103,20 @@
 
   function buildOrderData(paypalOrderId, paypalDetails) {
     var sums = updateTotals();
-    // Extract address from PayPal response
-    var shipping = paypalDetails && paypalDetails.purchase_units && paypalDetails.purchase_units[0] && paypalDetails.purchase_units[0].shipping || {};
-    var payer = paypalDetails && paypalDetails.payer || {};
-    var payerName = payer.name || {};
-    var shippingName = shipping.name || {};
-    var shippingAddr = shipping.address || {};
+    // Use form data for address — PayPal only handles payment
     var notesEl = document.getElementById('coNotes');
     return {
       id: 'RK-' + Date.now(),
       date: new Date().toISOString(),
       customer: {
-        firstName: payerName.given_name || shippingName.full_name || '',
-        lastName: payerName.surname || '',
-        email: payer.email_address || (currentUser ? currentUser.email : ''),
-        phone: payer.phone && payer.phone.phone_number && payer.phone.phone_number.national_number || '',
-        address: [shippingAddr.address_line_1 || '', shippingAddr.address_line_2 || ''].filter(Boolean).join(', '),
-        postal: shippingAddr.postal_code || '',
-        city: shippingAddr.admin_area_2 || '',
-        country: shippingAddr.country_code || document.getElementById('coCountry').value,
+        firstName: document.getElementById('coFirstName').value.trim(),
+        lastName: document.getElementById('coLastName').value.trim(),
+        email: document.getElementById('coEmail').value.trim(),
+        phone: (document.getElementById('coPhone').value || '').trim(),
+        address: document.getElementById('coAddress').value.trim(),
+        postal: document.getElementById('coPostal').value.trim(),
+        city: document.getElementById('coCity').value.trim(),
+        country: document.getElementById('coCountry').value,
         notes: notesEl ? notesEl.value.trim() : ''
       },
       items: cart.map(function(i) {
@@ -221,7 +240,7 @@
     paypal.Buttons({
       style: { layout: 'vertical', color: 'gold', shape: 'rect', label: 'pay', height: 48 },
       createOrder: function(data, actions) {
-        if (!validateCart()) {
+        if (!validateForm()) {
           return new Promise(function(resolve, reject) { reject('Validointi ep\u00e4onnistui'); });
         }
         var sums = updateTotals();

@@ -17,8 +17,19 @@
       <div id="checkoutContent">
         <div class="checkout-layout">
           <div class="checkout-form">
-            <h2>Maksu ja toimitus</h2>
-            <div class="form-group"><label>Toimitusmaa</label>
+            <h2>Toimitus- ja yhteystiedot</h2>
+            <div class="form-row">
+              <div class="form-group"><label>Etunimi *</label><input type="text" id="coFirstName" required placeholder="Etunimi"></div>
+              <div class="form-group"><label>Sukunimi *</label><input type="text" id="coLastName" required placeholder="Sukunimi"></div>
+            </div>
+            <div class="form-group"><label>Sähköposti *</label><input type="email" id="coEmail" required placeholder="nimi@esimerkki.fi"></div>
+            <div class="form-group"><label>Puhelin</label><input type="tel" id="coPhone" placeholder="+358 40 1234567"></div>
+            <div class="form-group"><label>Osoite *</label><input type="text" id="coAddress" required placeholder="Katuosoite"></div>
+            <div class="form-row">
+              <div class="form-group"><label>Postinumero *</label><input type="text" id="coPostal" required placeholder="00100"></div>
+              <div class="form-group"><label>Kaupunki *</label><input type="text" id="coCity" required placeholder="Helsinki"></div>
+            </div>
+            <div class="form-group"><label>Toimitusmaa *</label>
               <select id="coCountry" onchange="updateShipping()">
                 <option value="FI" selected>Suomi</option>
                 <option value="SE">Ruotsi</option>
@@ -32,8 +43,9 @@
               </select>
             </div>
             <div class="form-group"><label>Lisätiedot (valinnainen)</label><textarea id="coNotes" rows="2" placeholder="Esim. ovikoodi, toimitusohje..."></textarea></div>
-            <p style="font-size:.85rem;color:var(--fg-muted);margin:12px 0 4px">Kirjaudu PayPaliin ja vahvista maksu. Toimitusosoite haetaan automaattisesti PayPal-tililtäsi.</p>
-            <div id="paypal-button-container" style="margin-top:8px"></div>
+            <h3 style="margin-top:20px">Maksu</h3>
+            <p style="font-size:.85rem;color:var(--fg-muted);margin:4px 0 8px">Vahvista maksu PayPal-tilillä tai -sovelluksella. Osoitetiedot toimitetaan yllä olevan lomakkeen mukaan.</p>
+            <div id="paypal-button-container"></div>
           </div>
           <div class="checkout-summary">
             <h3>Tilauksesi</h3>
@@ -64,8 +76,8 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
   <script>var ROOT = '../'; var PAGE_ID = '';</script>
-  <script src="../products.js?v=4"></script>
-  <script src="../js/shared.js?v=4"></script>
-  <script src="../js/checkout.js?v=4"></script>
+  <script src="../products.js?v=5"></script>
+  <script src="../js/shared.js?v=5"></script>
+  <script src="../js/checkout.js?v=5"></script>
 </body>
 </html>
