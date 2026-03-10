@@ -375,7 +375,7 @@
     <section class="hero">
       <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=2340&q=85" alt="Retkeilymuki luonnossa" class="hero-bg">
       <div class="container hero-content">
-        <h1>Kestävät metallimukit<br>eräilyyn ja retkeilyyn</h1>
+        <h1>Kestävät metallikupit<br>eräilyyn ja retkeilyyn</h1>
         <p>Suomalainen verkkokauppa ruostumattomasta teräksestä valmistetuille kupeille ja mukeille. Laaja valikoima ulkoiluun – toimitamme koko Suomeen.</p>
         <div style="display:flex;gap:16px;flex-wrap:wrap;">
           <a href="#tuotteet" class="btn">Selaa tuotteita</a>
@@ -425,7 +425,7 @@
     <section class="section" id="miksi" style="background: var(--bg-alt);">
       <div class="container">
         <h2 style="text-align:center; font-size: 2.2rem; margin-bottom: 12px;">Miksi Rosterikuppia?</h2>
-        <p style="text-align:center; color: var(--fg-muted); max-width: 600px; margin: 0 auto;">Suomalainen erikoiskauppa, joka on valinnut parhaat mukit sinulle.</p>
+        <p style="text-align:center; color: var(--fg-muted); max-width: 600px; margin: 0 auto;">Suomalainen erikoiskauppa, joka on valinnut parhaat kupit sinulle.</p>
         <div class="features-grid">
           <div class="feature-item"><div class="feature-icon">🛡️</div><h3>Kestävä laatu</h3><p>304/316 ruostumaton teräs. Kestää iskuja, lämpöä ja korroosiota vuosikausia.</p></div>
           <div class="feature-item"><div class="feature-icon">🚚</div><h3>Nopea toimitus</h3><p>Toimitamme tilaukset suoraan sinulle. Toimituskulut lasketaan osoitteesi mukaan.</p></div>
@@ -583,7 +583,7 @@
   <footer>
     <div class="container">
       <p style="font-size:1.1rem; color: var(--accent); font-weight:700; margin-bottom:12px;">ROSTERIKUPPIA.FI</p>
-      <p>Suomalainen verkkokauppa – kestävät metallimukit retkeilyyn ja eräilyyn.</p>
+      <p>Suomalainen verkkokauppa – kestävät metallikupit retkeilyyn ja eräilyyn.</p>
       <p style="margin-top:16px;">
         <a href="javascript:void(0)" onclick="showPolicy('shipping')" style="margin:0 12px;">Toimitus &amp; palautukset</a> •
         <a href="javascript:void(0)" onclick="showPolicy('privacy')" style="margin:0 12px;">Tietosuoja</a> •
@@ -657,10 +657,13 @@
       el.textContent = total;
     }
 
+    // Helper: get display title (Finnish preferred)
+    function pTitle(p) { return p.title_fi || p.title; }
+
     // ===== SHOP VIEW =====
     function getFilteredProducts() {
       let list = [...PRODUCTS];
-      if (searchQuery) { const q = searchQuery.toLowerCase(); list = list.filter(p => p.title.toLowerCase().includes(q)); }
+      if (searchQuery) { const q = searchQuery.toLowerCase(); list = list.filter(p => pTitle(p).toLowerCase().includes(q) || p.title.toLowerCase().includes(q)); }
       // Price filters use shop prices (with markup)
       if (currentFilter === 'under5') list = list.filter(p => shopPrice(p.salePrice) < 5);
       else if (currentFilter === '5to10') list = list.filter(p => { const sp = shopPrice(p.salePrice); return sp >= 5 && sp <= 15; });
@@ -697,11 +700,11 @@
         html += `
           <div class="product-card" onclick="openProduct('${p.id}')">
             <div class="product-image-wrap">
-              <img src="${p.image}" alt="${p.title}" class="product-image" loading="lazy">
+              <img src="${p.image}" alt="${pTitle(p)}" class="product-image" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22><rect fill=%22%23242424%22 width=%22200%22 height=%22200%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%23666%22 font-size=%2216%22 text-anchor=%22middle%22 dy=%22.3em%22>Kuva</text></svg>'">
               ${disc >= 15 ? `<span class="product-badge">-${disc}%</span>` : ''}
             </div>
             <div class="product-info">
-              <h3 class="product-title">${p.title}</h3>
+              <h3 class="product-title">${pTitle(p)}</h3>
               <div class="product-meta">
                 <span class="stars">${renderStars(p.score)}</span>
                 <span>${renderStars(p.score)}</span>
@@ -765,7 +768,7 @@
       window.scrollTo(0, 0);
 
       // Title
-      document.getElementById('detailTitle').textContent = p.title;
+      document.getElementById('detailTitle').textContent = pTitle(p);
 
       // Rating
       document.getElementById('detailStars').innerHTML = renderStars(p.score);
@@ -895,7 +898,7 @@
         cart.push({
           productId: currentProduct.id,
           skuId: skuId,
-          title: currentProduct.title,
+          title: pTitle(currentProduct),
           variant: variantName,
           price: price,
           image: image,
