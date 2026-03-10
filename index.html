@@ -1273,6 +1273,26 @@
         console.error('Firestore error:', err);
       });
 
+      // Send email notification via Formsubmit.co (free, no signup)
+      const itemsList = order.items.map(i => i.title + (i.variant ? ' ('+i.variant+')' : '') + ' x' + i.qty + ' = \u20ac' + (i.price*i.qty).toFixed(2)).join('\n');
+      const emailBody = new FormData();
+      emailBody.append('Tilausnumero', order.id);
+      emailBody.append('Pvm', new Date(order.date).toLocaleDateString('fi-FI'));
+      emailBody.append('Asiakas', order.customer.firstName + ' ' + order.customer.lastName);
+      emailBody.append('Email', order.customer.email);
+      emailBody.append('Puhelin', order.customer.phone);
+      emailBody.append('Osoite', order.customer.address + ', ' + order.customer.postal + ' ' + order.customer.city + ', ' + order.customer.country);
+      emailBody.append('Tuotteet', itemsList);
+      emailBody.append('Toimitus', '\u20ac' + order.shipping.toFixed(2));
+      emailBody.append('Yhteensa', '\u20ac' + order.total.toFixed(2));
+      if (order.customer.notes) emailBody.append('Lisatiedot', order.customer.notes);
+      emailBody.append('_subject', 'Uusi tilaus: ' + order.id + ' - \u20ac' + order.total.toFixed(2));
+      emailBody.append('_template', 'table');
+      emailBody.append('_captcha', 'false');
+      fetch('https://formsubmit.co/ajax/tobuhu07@gmail.com', {
+        method: 'POST', body: emailBody
+      }).catch(e => console.log('Email notification:', e));
+
       // Save order to localStorage too
       const orders = JSON.parse(localStorage.getItem('rk_orders') || '[]');
       orders.push(order);
@@ -1445,6 +1465,23 @@
       // Save to Firestore
       db.collection('returns').doc(returnId).set(returnData)
       .then(() => {
+        // Send email notification via Formsubmit.co
+        const retEmail = new FormData();
+        retEmail.append('Palautusnumero', returnId);
+        retEmail.append('Tilausnumero', orderId);
+        retEmail.append('Nimi', name);
+        retEmail.append('Email', email);
+        if (phone) retEmail.append('Puhelin', phone);
+        retEmail.append('Syy', reason);
+        if (description) retEmail.append('Kuvaus', description);
+        if (returnImageUrl) retEmail.append('Kuva', returnImageUrl);
+        retEmail.append('_subject', 'Palautuspyynto: ' + returnId + ' - ' + reason);
+        retEmail.append('_template', 'table');
+        retEmail.append('_captcha', 'false');
+        fetch('https://formsubmit.co/ajax/tobuhu07@gmail.com', {
+          method: 'POST', body: retEmail
+        }).catch(e => console.log('Return email:', e));
+
         document.getElementById('returnFormContent').style.display = 'none';
         document.getElementById('returnSuccess').style.display = 'block';
         document.getElementById('returnIdDisplay').textContent = returnId;
