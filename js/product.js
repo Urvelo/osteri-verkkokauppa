@@ -85,7 +85,59 @@
         return '<img src="' + src + '" alt="Tuotekuva" loading="lazy" onclick="zoomImage(\'' + src + '\')" style="cursor:zoom-in">';
       }).join('');
     }
+
+    // Reviews
+    renderReviews(p.id);
   }
+
+  function renderReviews(productId) {
+    if (typeof REVIEWS === 'undefined') return;
+    var reviews = REVIEWS[productId];
+    if (!reviews || !reviews.length) return;
+
+    document.getElementById('reviewsSection').style.display = 'block';
+
+    // Summary
+    var total = reviews.length;
+    var avgRating = reviews.reduce(function(s, r) { return s + r.rating; }, 0) / total;
+    var summaryHtml = '<div class="reviews-avg">' +
+      '<span class="reviews-avg-num">' + avgRating.toFixed(1) + '</span>' +
+      '<span class="reviews-avg-stars">' + renderStars(avgRating.toFixed(1)) + '</span>' +
+      '<span class="reviews-avg-count">' + total + ' arvostelua</span>' +
+      '</div>';
+    document.getElementById('reviewsSummary').innerHTML = summaryHtml;
+
+    // Country flag emoji helper
+    function countryFlag(cc) {
+      if (!cc || cc.length !== 2) return '';
+      var a = 0x1F1E6;
+      return String.fromCodePoint(a + cc.charCodeAt(0) - 65, a + cc.charCodeAt(1) - 65);
+    }
+
+    // List
+    var listHtml = reviews.map(function(r) {
+      var stars = '';
+      for (var si = 0; si < 5; si++) {
+        stars += si < r.rating ? '\u2605' : '\u2606';
+      }
+      var imgs = '';
+      if (r.images && r.images.length) {
+        imgs = '<div class="review-images">' + r.images.map(function(src) {
+          return '<img src="' + src + '" alt="" loading="lazy" onclick="zoomImage(\'' + src + '\')" style="cursor:zoom-in">';
+        }).join('') + '</div>';
+      }
+      var flag = countryFlag(r.country);
+      return '<div class="review-card">' +
+        '<div class="review-header">' +
+        '<span class="review-stars">' + stars + '</span>' +
+        '<span class="review-date">' + (r.date || '') + '</span>' +
+        '</div>' +
+        '<p class="review-comment">' + r.comment + '</p>' +
+        imgs +
+        '<div class="review-author">' + flag + ' ' + r.name + '</div>' +
+        '</div>';
+    }).join('');
+    document.getElementById('reviewsList').innerHTML = listHtml;
 
   function updateDetailPrice(sale, orig) {
     document.getElementById('detailPrice').textContent = '\u20ac' + parseFloat(sale).toFixed(2);
