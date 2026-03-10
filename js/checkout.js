@@ -61,18 +61,7 @@
 
   window.updateShipping = function() { updateTotals(); };
 
-  function validateForm() {
-    var fields = ['coFirstName', 'coLastName', 'coEmail', 'coPhone', 'coAddress', 'coPostal', 'coCity'];
-    for (var k = 0; k < fields.length; k++) {
-      var el = document.getElementById(fields[k]);
-      if (!el.value.trim()) {
-        el.style.borderColor = 'var(--danger)';
-        el.focus();
-        showToast('T\u00e4yt\u00e4 kaikki pakolliset kent\u00e4t!');
-        return false;
-      }
-      el.style.borderColor = '';
-    }
+  function validateCart() {
     // Stock validation
     for (var ci = 0; ci < cart.length; ci++) {
       var stock = getStockForCartItem(cart[ci]);
@@ -88,21 +77,28 @@
     return true;
   }
 
-  function buildOrderData(paypalOrderId) {
+  function buildOrderData(paypalOrderId, paypalDetails) {
     var sums = updateTotals();
+    // Extract address from PayPal response
+    var shipping = paypalDetails && paypalDetails.purchase_units && paypalDetails.purchase_units[0] && paypalDetails.purchase_units[0].shipping || {};
+    var payer = paypalDetails && paypalDetails.payer || {};
+    var payerName = payer.name || {};
+    var shippingName = shipping.name || {};
+    var shippingAddr = shipping.address || {};
+    var notesEl = document.getElementById('coNotes');
     return {
       id: 'RK-' + Date.now(),
       date: new Date().toISOString(),
       customer: {
-        firstName: document.getElementById('coFirstName').value.trim(),
-        lastName: document.getElementById('coLastName').value.trim(),
-        email: document.getElementById('coEmail').value.trim(),
-        phone: document.getElementById('coPhone').value.trim(),
-        address: document.getElementById('coAddress').value.trim(),
-        postal: document.getElementById('coPostal').value.trim(),
-        city: document.getElementById('coCity').value.trim(),
-        country: document.getElementById('coCountry').value,
-        notes: document.getElementById('coNotes').value.trim()
+        firstName: payerName.given_name || shippingName.full_name || '',
+        lastName: payerName.surname || '',
+        email: payer.email_address || (currentUser ? currentUser.email : ''),
+        phone: payer.phone && payer.phone.phone_number && payer.phone.phone_number.national_number || '',
+        address: [shippingAddr.address_line_1 || '', shippingAddr.address_line_2 || ''].filter(Boolean).join(', '),
+        postal: shippingAddr.postal_code || '',
+        city: shippingAddr.admin_area_2 || '',
+        country: shippingAddr.country_code || document.getElementById('coCountry').value,
+        notes: notesEl ? notesEl.value.trim() : ''
       },
       items: cart.map(function(i) {
         return { productId: i.productId, title: i.title, variant: i.variant, qty: i.qty, price: i.price, image: i.image };
@@ -225,7 +221,7 @@
     paypal.Buttons({
       style: { layout: 'vertical', color: 'gold', shape: 'rect', label: 'pay', height: 48 },
       createOrder: function(data, actions) {
-        if (!validateForm()) return actions.reject();
+        if (!validateCart()) return actions.reject();
         var sums = updateTotals();
         return actions.order.create({
           purchase_units: [{
@@ -237,14 +233,20 @@
                 item_total: { currency_code: 'EUR', value: sums.subtotal.toFixed(2) },
                 shipping: { currency_code: 'EUR', value: sums.shipping.toFixed(2) }
               }
+            },
+            shipping: {
+              name: { full_name: currentUser ? currentUser.displayName || '' : '' }
             }
-          }]
+          }],
+          application_context: {
+            shipping_preference: 'GET_FROM_FILE'
+          }
         });
       },
       onApprove: function(data, actions) {
         showToast('Maksu hyv\u00e4ksytty, k\u00e4sitell\u00e4\u00e4n...');
         return actions.order.capture().then(function(details) {
-          var order = buildOrderData(details.id);
+          var order = buildOrderData(details.id, details);
           order.paypalDetails = {
             payerEmail: details.payer && details.payer.email_address || '',
             payerName: details.payer && details.payer.name && details.payer.name.given_name || '',
@@ -263,24 +265,9 @@
     }).render('#paypal-button-container');
   }
 
-  // Pre-fill user info if logged in
-  function prefillUser() {
-    if (!currentUser) return;
-    var emailField = document.getElementById('coEmail');
-    if (emailField && !emailField.value) emailField.value = currentUser.email || '';
-    var nameField = document.getElementById('coFirstName');
-    if (nameField && !nameField.value && currentUser.displayName) {
-      var parts = currentUser.displayName.split(' ');
-      nameField.value = parts[0] || '';
-      var lastField = document.getElementById('coLastName');
-      if (lastField && !lastField.value) lastField.value = parts.slice(1).join(' ') || '';
-    }
-  }
-
   document.addEventListener('DOMContentLoaded', function() {
     // Wait for auth before rendering checkout
     auth.onAuthStateChanged(function() {
-      prefillUser();
       renderCheckout();
     });
   });

@@ -17,19 +17,8 @@
       <div id="checkoutContent">
         <div class="checkout-layout">
           <div class="checkout-form">
-            <h2>Toimitusosoite</h2>
-            <div class="form-row">
-              <div class="form-group"><label>Etunimi *</label><input type="text" id="coFirstName" required></div>
-              <div class="form-group"><label>Sukunimi *</label><input type="text" id="coLastName" required></div>
-            </div>
-            <div class="form-group"><label>Sähköposti *</label><input type="email" id="coEmail" required></div>
-            <div class="form-group"><label>Puhelin *</label><input type="tel" id="coPhone" placeholder="+358"></div>
-            <div class="form-group"><label>Osoite *</label><input type="text" id="coAddress" placeholder="Katuosoite"></div>
-            <div class="form-row">
-              <div class="form-group"><label>Postinumero *</label><input type="text" id="coPostal" maxlength="5"></div>
-              <div class="form-group"><label>Kaupunki *</label><input type="text" id="coCity"></div>
-            </div>
-            <div class="form-group"><label>Maa *</label>
+            <h2>Maksu ja toimitus</h2>
+            <div class="form-group"><label>Toimitusmaa</label>
               <select id="coCountry" onchange="updateShipping()">
                 <option value="FI" selected>Suomi</option>
                 <option value="SE">Ruotsi</option>
@@ -42,8 +31,9 @@
                 <option value="OTHER">Muu maa</option>
               </select>
             </div>
-            <div class="form-group"><label>Lisätiedot (valinnainen)</label><textarea id="coNotes" rows="3" placeholder="Esim. ovikoodi, toimitusohje..."></textarea></div>
-            <div id="paypal-button-container" style="margin-top:16px"></div>
+            <div class="form-group"><label>Lisätiedot (valinnainen)</label><textarea id="coNotes" rows="2" placeholder="Esim. ovikoodi, toimitusohje..."></textarea></div>
+            <p style="font-size:.85rem;color:var(--fg-muted);margin:12px 0 4px">Kirjaudu PayPaliin ja vahvista maksu. Toimitusosoite haetaan automaattisesti PayPal-tililtäsi.</p>
+            <div id="paypal-button-container" style="margin-top:8px"></div>
           </div>
           <div class="checkout-summary">
             <h3>Tilauksesi</h3>
