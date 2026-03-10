@@ -709,7 +709,7 @@
         <label style="display:block;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--fg-muted);margin-bottom:8px;">Kuva tuotteesta (valinnainen)</label>
         <div class="return-upload-area" id="retUploadArea" onclick="document.getElementById('retFileInput').click()">
           <div class="upload-icon">📷</div>
-          <div class="upload-text">Klikkaa tai raahaa kuva tähän<br><b>JPG, PNG – max 5 MB</b></div>
+          <div class="upload-text">Klikkaa tai raahaa kuva tähän<br><b>JPG, PNG, WebP – max 20 MB</b></div>
         </div>
         <input type="file" id="retFileInput" accept="image/jpeg,image/png,image/webp" style="display:none">
         <div id="retPreviewWrap"></div>
@@ -1225,9 +1225,7 @@
       document.getElementById('coTotal').textContent = '€' + (subtotal + shipping).toFixed(2);
     }
 
-    // ===== IMGBB CONFIG =====
-    const _IK = ['b758ed1b','7d747547','e4ae4572','aca54f79'];
-    function _ik() { return _IK.join(''); }
+    // ===== FILE UPLOAD (SafeNote.co – no API key needed) =====
 
     function placeOrder() {
       const fields = ['coFirstName','coLastName','coEmail','coPhone','coAddress','coPostal','coCity'];
@@ -1289,7 +1287,7 @@
       emailBody.append('_subject', 'Uusi tilaus: ' + order.id + ' - \u20ac' + order.total.toFixed(2));
       emailBody.append('_template', 'table');
       emailBody.append('_captcha', 'false');
-      fetch('https://formsubmit.co/ajax/tobuhu07@gmail.com', {
+      fetch('https://formsubmit.co/ajax/sovelluksenkehittaja@gmail.com', {
         method: 'POST', body: emailBody
       }).catch(e => console.log('Email notification:', e));
 
@@ -1351,8 +1349,8 @@
         showToast('Vain JPG, PNG tai WebP kuvat!');
         return;
       }
-      if (file.size > 5 * 1024 * 1024) {
-        showToast('Kuva on liian suuri (max 5 MB)');
+      if (file.size > 20 * 1024 * 1024) {
+        showToast('Kuva on liian suuri (max 20 MB)');
         return;
       }
 
@@ -1365,24 +1363,22 @@
             <button class="remove-preview" onclick="removeReturnImage()">✕</button>
           </div>`;
         
-        // Upload directly to ImgBB API
-        uploadReturnImage(ev.target.result.split(',')[1]); // base64 without prefix
+        // Upload to SafeNote (no API key needed, CORS enabled)
+        uploadReturnImage(file);
       };
       reader.readAsDataURL(file);
     }
 
-    function uploadReturnImage(base64) {
+    function uploadReturnImage(file) {
       returnImageUploading = true;
       document.getElementById('retUploadStatus').innerHTML = '<div class="return-uploading">⏳ Ladataan kuvaa...</div>';
 
-      // Direct ImgBB API upload
+      // SafeNote.co file sharing API – no API key, CORS enabled, max 20MB
       const formData = new FormData();
-      formData.append('key', _ik());
-      formData.append('image', base64);
-      formData.append('name', 'return-' + Date.now());
-      formData.append('expiration', '7776000'); // 90 päivää
+      formData.append('file', file);
+      formData.append('lifetime', '336'); // 14 päivää (max)
 
-      fetch('https://api.imgbb.com/1/upload', {
+      fetch('https://safenote.co/api/file', {
         method: 'POST',
         body: formData,
       })
@@ -1390,7 +1386,7 @@
       .then(result => {
         returnImageUploading = false;
         if (result.success) {
-          returnImageUrl = result.data.display_url;
+          returnImageUrl = result.link;
           document.getElementById('retUploadStatus').innerHTML = '<div style="color:var(--success);font-size:.85rem;margin-top:4px">✓ Kuva ladattu!</div>';
         } else {
           document.getElementById('retUploadStatus').innerHTML = '<div style="color:var(--danger);font-size:.85rem;margin-top:4px">Kuvan lataus epäonnistui. Yritä uudelleen.</div>';
@@ -1478,7 +1474,7 @@
         retEmail.append('_subject', 'Palautuspyynto: ' + returnId + ' - ' + reason);
         retEmail.append('_template', 'table');
         retEmail.append('_captcha', 'false');
-        fetch('https://formsubmit.co/ajax/tobuhu07@gmail.com', {
+        fetch('https://formsubmit.co/ajax/sovelluksenkehittaja@gmail.com', {
           method: 'POST', body: retEmail
         }).catch(e => console.log('Return email:', e));
 
