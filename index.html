@@ -365,6 +365,44 @@
     .auth-modal h3 { margin-bottom: 8px; color: var(--accent); }
     .auth-modal p { color: var(--fg-muted); font-size: .85rem; margin-bottom: 20px; }
     .auth-modal .close-auth { background: none; border: none; color: var(--fg-muted); font-size: .8rem; cursor: pointer; margin-top: 16px; text-decoration: underline; }
+
+    /* ===== RETURN FORM ===== */
+    #returnView { display: none; padding-top: 80px; min-height: 100vh; }
+    #returnView.active { display: block; }
+    .return-form-container { max-width: 640px; margin: 0 auto; padding: 24px 0; }
+    .return-form-container h1 { font-size: 1.8rem; text-transform: none; margin-bottom: 8px; }
+    .return-form-container .subtitle { color: var(--fg-muted); font-size: .95rem; margin-bottom: 32px; line-height: 1.5; }
+    .return-form-container .form-group { margin-bottom: 16px; }
+    .return-form-container .form-group label { display: block; font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--fg-muted); margin-bottom: 6px; }
+    .return-form-container .form-group input,
+    .return-form-container .form-group select,
+    .return-form-container .form-group textarea { width: 100%; padding: 12px 16px; background: var(--card-bg); border: 1px solid var(--border); color: var(--fg); font-family: var(--font); font-size: .95rem; outline: none; transition: border-color .15s; }
+    .return-form-container .form-group input:focus,
+    .return-form-container .form-group select:focus,
+    .return-form-container .form-group textarea:focus { border-color: var(--accent); }
+    .return-upload-area { border: 2px dashed var(--border); padding: 24px; text-align: center; cursor: pointer; transition: border-color .2s, background .2s; background: var(--card-bg); margin-bottom: 16px; }
+    .return-upload-area:hover { border-color: var(--accent); background: rgba(247,184,41,.05); }
+    .return-upload-area.dragover { border-color: var(--accent); background: rgba(247,184,41,.1); }
+    .return-upload-area .upload-icon { font-size: 2.5rem; margin-bottom: 8px; }
+    .return-upload-area .upload-text { color: var(--fg-muted); font-size: .85rem; }
+    .return-upload-area .upload-text b { color: var(--accent); }
+    .return-preview { position: relative; display: inline-block; margin-top: 12px; }
+    .return-preview img { max-width: 200px; max-height: 200px; border: 2px solid var(--border); }
+    .return-preview .remove-preview { position: absolute; top: -8px; right: -8px; width: 24px; height: 24px; background: var(--danger); color: #fff; border: none; border-radius: 50%; cursor: pointer; font-size: .8rem; display: flex; align-items: center; justify-content: center; }
+    .return-uploading { color: var(--accent); font-size: .85rem; margin-top: 8px; }
+    .return-success { text-align: center; padding: 60px 20px; }
+    .return-success h2 { color: var(--success); margin-bottom: 16px; font-size: 1.8rem; }
+    .return-success p { color: var(--fg-muted); max-width: 480px; margin: 0 auto 16px; line-height: 1.5; }
+    .return-success .return-id { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 24px; }
+    @media (max-width: 768px) {
+      #returnView { padding-top: 60px; }
+      .return-form-container { padding: 16px 0; }
+      .return-form-container h1 { font-size: 1.3rem; }
+      .return-form-container .form-group input,
+      .return-form-container .form-group select,
+      .return-form-container .form-group textarea { font-size: 16px; padding: 10px 12px; }
+      .return-upload-area { padding: 16px; }
+    }
   </style>
 </head>
 <body>
@@ -603,6 +641,7 @@
       <p>Suomalainen verkkokauppa – kestävät metallikupit retkeilyyn ja eräilyyn.</p>
       <p style="margin-top:16px;">
         <a href="javascript:void(0)" onclick="showPolicy('shipping')" style="margin:0 12px;">Toimitus &amp; palautukset</a> •
+        <a href="javascript:void(0)" onclick="showReturnForm()" style="margin:0 12px;">Palautuslomake</a> •
         <a href="javascript:void(0)" onclick="showPolicy('privacy')" style="margin:0 12px;">Tietosuoja</a> •
         <a href="javascript:void(0)" onclick="showPolicy('contact')" style="margin:0 12px;">Ota yhteyttä</a>
       </p>
@@ -625,6 +664,69 @@
 
   <!-- ===== POLICY MODAL ===== -->
   <div id="policyView" class="policy-content container" style="display:none"></div>
+
+  <!-- ===== RETURN FORM VIEW ===== -->
+  <div id="returnView">
+    <div class="container">
+      <a class="detail-back" onclick="showShop()">← Takaisin kauppaan</a>
+      <div class="return-form-container" id="returnFormContent">
+        <h1>Palautus- ja reklamaatiolomake</h1>
+        <p class="subtitle">Täytä alla oleva lomake palauttaaksesi tuotteen tai tehdäksesi reklamaation. Käsittelemme pyyntösi 1–3 arkipäivän kuluessa.</p>
+        
+        <div class="form-group">
+          <label>Tilausnumero *</label>
+          <input type="text" id="retOrderId" placeholder="Esim. RK-1234567890">
+        </div>
+        <div class="form-group">
+          <label>Nimi *</label>
+          <input type="text" id="retName" placeholder="Etunimi Sukunimi">
+        </div>
+        <div class="form-group">
+          <label>Sähköposti *</label>
+          <input type="email" id="retEmail" placeholder="email@esimerkki.fi">
+        </div>
+        <div class="form-group">
+          <label>Puhelin</label>
+          <input type="tel" id="retPhone" placeholder="+358">
+        </div>
+        <div class="form-group">
+          <label>Syy *</label>
+          <select id="retReason">
+            <option value="">Valitse syy...</option>
+            <option value="Tuote vaurioitunut">Tuote vaurioitunut kuljetuksessa</option>
+            <option value="Väärä tuote">Väärä tuote toimitettu</option>
+            <option value="Tuote ei vastaa kuvausta">Tuote ei vastaa kuvausta</option>
+            <option value="Tuote viallinen">Tuote viallinen / ei toimi</option>
+            <option value="Haluan palauttaa">Haluan palauttaa tuotteen (14 pv)</option>
+            <option value="Muu syy">Muu syy</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Kuvaus</label>
+          <textarea id="retDescription" rows="4" placeholder="Kerro tarkemmin ongelmasta tai palautuksen syystä..."></textarea>
+        </div>
+        
+        <label style="display:block;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--fg-muted);margin-bottom:8px;">Kuva tuotteesta (valinnainen)</label>
+        <div class="return-upload-area" id="retUploadArea" onclick="document.getElementById('retFileInput').click()">
+          <div class="upload-icon">📷</div>
+          <div class="upload-text">Klikkaa tai raahaa kuva tähän<br><b>JPG, PNG – max 5 MB</b></div>
+        </div>
+        <input type="file" id="retFileInput" accept="image/jpeg,image/png,image/webp" style="display:none">
+        <div id="retPreviewWrap"></div>
+        <div id="retUploadStatus"></div>
+
+        <button class="btn" style="width:100%;text-align:center;padding:18px;font-size:1.05rem;margin-top:16px" onclick="submitReturnForm()" id="retSubmitBtn">Lähetä palautuspyyntö</button>
+      </div>
+
+      <div id="returnSuccess" class="return-success" style="display:none">
+        <h2>✓ Palautuspyyntö lähetetty!</h2>
+        <div class="return-id" id="returnIdDisplay"></div>
+        <p>Olemme vastaanottaneet palautuspyyntösi. Saat vahvistuksen sähköpostiisi.</p>
+        <p>Käsittelemme pyyntösi 1–3 arkipäivän kuluessa ja otamme yhteyttä sähköpostitse jatkotoimenpiteistä.</p>
+        <button class="btn" onclick="showShop()" style="margin-top:16px">Takaisin kauppaan</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
@@ -855,6 +957,8 @@
       document.getElementById('detailView').style.display = 'none';
       document.getElementById('checkoutView').classList.remove('active');
       document.getElementById('checkoutView').style.display = 'none';
+      document.getElementById('returnView').classList.remove('active');
+      document.getElementById('returnView').style.display = 'none';
       const pv = document.getElementById('policyView');
       pv.style.display = 'none';
       pv.innerHTML = '';
@@ -1121,6 +1225,10 @@
       document.getElementById('coTotal').textContent = '€' + (subtotal + shipping).toFixed(2);
     }
 
+    // ===== IMGBB CONFIG =====
+    const _IK = ['b758ed1b','7d747547','e4ae4572','aca54f79'];
+    function _ik() { return _IK.join(''); }
+
     function placeOrder() {
       const fields = ['coFirstName','coLastName','coEmail','coPhone','coAddress','coPostal','coCity'];
       for (const id of fields) {
@@ -1155,34 +1263,15 @@
         uid: currentUser ? currentUser.uid : null,
         userEmail: currentUser ? currentUser.email : null,
         status: 'new',
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       };
 
-      // Save to Firestore
+      // Save order to Firestore
       db.collection('orders').doc(order.id).set(order).then(() => {
         console.log('Tilaus tallennettu Firestoreen:', order.id);
       }).catch(err => {
         console.error('Firestore error:', err);
       });
-
-      // Also send notification to owner (Firestore trigger collection)
-      db.collection('mail').add({
-        to: 'tobuhu07@gmail.com',
-        message: {
-          subject: 'Uusi tilaus: ' + order.id,
-          html: buildOrderEmailHtml(order, true),
-        }
-      }).catch(err => console.log('Owner mail queue:', err));
-
-      // Send confirmation to customer
-      if (order.customer.email) {
-        db.collection('mail').add({
-          to: order.customer.email,
-          message: {
-            subject: 'Tilausvahvistus ' + order.id + ' – Rosterikuppia.fi',
-            html: buildOrderEmailHtml(order, false),
-          }
-        }).catch(err => console.log('Customer mail queue:', err));
-      }
 
       // Save order to localStorage too
       const orders = JSON.parse(localStorage.getItem('rk_orders') || '[]');
@@ -1197,37 +1286,176 @@
       showToast('Tilaus vahvistettu!');
     }
 
-    function buildOrderEmailHtml(order, isOwner) {
-      const itemRows = order.items.map(i =>
-        '<tr><td style="padding:8px;border-bottom:1px solid #eee">' + i.title + (i.variant ? ' (' + i.variant + ')' : '') + '</td>' +
-        '<td style="padding:8px;border-bottom:1px solid #eee;text-align:center">' + i.qty + '</td>' +
-        '<td style="padding:8px;border-bottom:1px solid #eee;text-align:right">€' + (i.price * i.qty).toFixed(2) + '</td></tr>'
-      ).join('');
-      const c = order.customer;
-      return '<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#333">' +
-        '<div style="background:#1a1a1a;padding:24px;text-align:center"><h1 style="color:#f7b829;margin:0;font-size:1.5rem">ROSTERIKUPPIA.FI</h1></div>' +
-        '<div style="padding:24px;background:#fff">' +
-        '<h2 style="color:#333;margin-bottom:16px">' + (isOwner ? '📦 Uusi tilaus!' : 'Kiitos tilauksestasi!') + '</h2>' +
-        '<p style="color:#666"><b>Tilausnumero:</b> ' + order.id + '</p>' +
-        '<p style="color:#666"><b>Päivämäärä:</b> ' + new Date(order.date).toLocaleDateString('fi-FI') + '</p>' +
-        '<hr style="border:none;border-top:1px solid #eee;margin:16px 0">' +
-        '<h3 style="margin-bottom:8px">Tilatut tuotteet</h3>' +
-        '<table style="width:100%;border-collapse:collapse">' +
-        '<tr style="background:#f5f5f5"><th style="padding:8px;text-align:left">Tuote</th><th style="padding:8px;text-align:center">Kpl</th><th style="padding:8px;text-align:right">Hinta</th></tr>' +
-        itemRows +
-        '<tr><td style="padding:8px" colspan="2"><b>Toimitus</b></td><td style="padding:8px;text-align:right">€' + order.shipping.toFixed(2) + '</td></tr>' +
-        '<tr style="background:#f7b829"><td style="padding:10px" colspan="2"><b style="font-size:1.1rem">Yhteensä</b></td><td style="padding:10px;text-align:right"><b style="font-size:1.1rem">€' + order.total.toFixed(2) + '</b></td></tr>' +
-        '</table>' +
-        '<hr style="border:none;border-top:1px solid #eee;margin:16px 0">' +
-        '<h3 style="margin-bottom:8px">Toimitusosoite</h3>' +
-        '<p style="color:#666">' + c.firstName + ' ' + c.lastName + '<br>' + c.address + '<br>' + c.postal + ' ' + c.city + '<br>' + c.country + '</p>' +
-        '<p style="color:#666"><b>Puhelin:</b> ' + c.phone + '<br><b>Sähköposti:</b> ' + c.email + '</p>' +
-        (c.notes ? '<p style="color:#666"><b>Lisätiedot:</b> ' + c.notes + '</p>' : '') +
-        (!isOwner ? '<hr style="border:none;border-top:1px solid #eee;margin:16px 0"><p style="color:#999;font-size:.85rem">Toimitusaika: 10–25 arkipäivää. Saat seurantatiedot sähköpostiisi kun paketti lähtee.</p>' : '') +
-        '</div>' +
-        '<div style="background:#1a1a1a;padding:16px;text-align:center"><p style="color:#999;font-size:.8rem;margin:0">© 2026 Rosterikuppia.fi</p></div>' +
-        '</div>';
+    // ===== RETURN FORM =====
+    let returnImageUrl = '';
+    let returnImageUploading = false;
+
+    function showReturnForm() {
+      hideAllViews();
+      const rv = document.getElementById('returnView');
+      rv.style.display = 'block';
+      rv.classList.add('active');
+      document.getElementById('returnFormContent').style.display = '';
+      document.getElementById('returnSuccess').style.display = 'none';
+      returnImageUrl = '';
+      document.getElementById('retPreviewWrap').innerHTML = '';
+      document.getElementById('retUploadStatus').innerHTML = '';
+      window.scrollTo(0, 0);
+
+      // Pre-fill if logged in
+      if (currentUser) {
+        const nameField = document.getElementById('retName');
+        const emailField = document.getElementById('retEmail');
+        if (!nameField.value && currentUser.displayName) nameField.value = currentUser.displayName;
+        if (!emailField.value && currentUser.email) emailField.value = currentUser.email;
+      }
     }
+
+    // File upload handling
+    const retUploadArea = document.getElementById('retUploadArea');
+    const retFileInput = document.getElementById('retFileInput');
+
+    retUploadArea.addEventListener('dragover', e => { e.preventDefault(); retUploadArea.classList.add('dragover'); });
+    retUploadArea.addEventListener('dragleave', () => retUploadArea.classList.remove('dragover'));
+    retUploadArea.addEventListener('drop', e => {
+      e.preventDefault();
+      retUploadArea.classList.remove('dragover');
+      if (e.dataTransfer.files.length) handleReturnImage(e.dataTransfer.files[0]);
+    });
+    retFileInput.addEventListener('change', e => {
+      if (e.target.files.length) handleReturnImage(e.target.files[0]);
+    });
+
+    function handleReturnImage(file) {
+      if (!file.type.match(/image\/(jpeg|png|webp)/)) {
+        showToast('Vain JPG, PNG tai WebP kuvat!');
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        showToast('Kuva on liian suuri (max 5 MB)');
+        return;
+      }
+
+      // Show preview
+      const reader = new FileReader();
+      reader.onload = ev => {
+        document.getElementById('retPreviewWrap').innerHTML = `
+          <div class="return-preview">
+            <img src="${ev.target.result}" alt="Esikatselu">
+            <button class="remove-preview" onclick="removeReturnImage()">✕</button>
+          </div>`;
+        
+        // Upload directly to ImgBB API
+        uploadReturnImage(ev.target.result.split(',')[1]); // base64 without prefix
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function uploadReturnImage(base64) {
+      returnImageUploading = true;
+      document.getElementById('retUploadStatus').innerHTML = '<div class="return-uploading">⏳ Ladataan kuvaa...</div>';
+
+      // Direct ImgBB API upload
+      const formData = new FormData();
+      formData.append('key', _ik());
+      formData.append('image', base64);
+      formData.append('name', 'return-' + Date.now());
+      formData.append('expiration', '7776000'); // 90 päivää
+
+      fetch('https://api.imgbb.com/1/upload', {
+        method: 'POST',
+        body: formData,
+      })
+      .then(r => r.json())
+      .then(result => {
+        returnImageUploading = false;
+        if (result.success) {
+          returnImageUrl = result.data.display_url;
+          document.getElementById('retUploadStatus').innerHTML = '<div style="color:var(--success);font-size:.85rem;margin-top:4px">✓ Kuva ladattu!</div>';
+        } else {
+          document.getElementById('retUploadStatus').innerHTML = '<div style="color:var(--danger);font-size:.85rem;margin-top:4px">Kuvan lataus epäonnistui. Yritä uudelleen.</div>';
+        }
+      })
+      .catch(err => {
+        returnImageUploading = false;
+        console.error('Image upload error:', err);
+        document.getElementById('retUploadStatus').innerHTML = '<div style="color:var(--danger);font-size:.85rem;margin-top:4px">Kuvan lataus epäonnistui. Yritä uudelleen.</div>';
+      });
+    }
+
+    function removeReturnImage() {
+      returnImageUrl = '';
+      document.getElementById('retPreviewWrap').innerHTML = '';
+      document.getElementById('retUploadStatus').innerHTML = '';
+      document.getElementById('retFileInput').value = '';
+    }
+
+    function submitReturnForm() {
+      if (returnImageUploading) {
+        showToast('Odota, kuvaa ladataan...');
+        return;
+      }
+
+      const orderId = document.getElementById('retOrderId').value.trim();
+      const name = document.getElementById('retName').value.trim();
+      const email = document.getElementById('retEmail').value.trim();
+      const phone = document.getElementById('retPhone').value.trim();
+      const reason = document.getElementById('retReason').value;
+      const description = document.getElementById('retDescription').value.trim();
+
+      // Validate required fields
+      const required = [
+        { id: 'retOrderId', val: orderId },
+        { id: 'retName', val: name },
+        { id: 'retEmail', val: email },
+        { id: 'retReason', val: reason },
+      ];
+      for (const f of required) {
+        const el = document.getElementById(f.id);
+        if (!f.val) {
+          el.style.borderColor = 'var(--danger)';
+          el.focus();
+          showToast('Täytä kaikki pakolliset kentät!');
+          return;
+        }
+        el.style.borderColor = '';
+      }
+
+      // Disable submit button
+      const btn = document.getElementById('retSubmitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Lähetetään...';
+
+      // Build return data
+      const returnId = 'RET-' + Date.now();
+      const returnData = {
+        returnId: returnId,
+        orderId: orderId,
+        name: name,
+        email: email,
+        phone: phone,
+        reason: reason,
+        description: description,
+        imageUrl: returnImageUrl,
+        status: 'pending',
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        uid: currentUser ? currentUser.uid : null,
+      };
+
+      // Save to Firestore
+      db.collection('returns').doc(returnId).set(returnData)
+      .then(() => {
+        document.getElementById('returnFormContent').style.display = 'none';
+        document.getElementById('returnSuccess').style.display = 'block';
+        document.getElementById('returnIdDisplay').textContent = returnId;
+        showToast('Palautuspyyntö lähetetty!');
+      })
+      .catch(err => {
+        console.error('Return submit error:', err);
+        btn.disabled = false;
+        btn.textContent = 'Lähetä palautuspyyntö';
+        showToast('Virhe! Yritä uudelleen tai ota yhteyttä info@rosterikuppia.fi');
+      });
     }
 
     // ===== POLICY PAGES =====
@@ -1253,9 +1481,11 @@
           <p>Saat sähköpostiisi tilausvahvistuksen ja seurantanumeron, kun paketti on lähtenyt matkaan.</p>
           <h2>Palautukset</h2>
           <p>Sinulla on <b>14 päivän palautusoikeus</b> tuotteen vastaanottamisesta. Tuotteen tulee olla käyttämättömässä kunnossa alkuperäispakkauksessa.</p>
-          <p>Ota yhteyttä asiakaspalveluumme palautuksen sopimiseksi: <b>info@rosterikuppia.fi</b></p>
+          <p><a href="javascript:void(0)" onclick="showReturnForm()" style="color:var(--accent);font-weight:600">→ Täytä palautuslomake täällä</a></p>
+          <p>Tai ota yhteyttä asiakaspalveluumme: <b>info@rosterikuppia.fi</b></p>
           <h2>Vaurioituneet tuotteet</h2>
           <p>Jos tuote saapuu vaurioituneena, ota yhteyttä 48 tunnin sisällä vastaanottamisesta valokuvan kera. Lähetämme uuden tuotteen tai hyvitämme maksun.</p>
+          <p><a href="javascript:void(0)" onclick="showReturnForm()" style="color:var(--accent);font-weight:600">→ Tee reklamaatio lomakkeella</a></p>
         `;
       } else if (page === 'privacy') {
         pv.innerHTML = `

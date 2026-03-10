@@ -1,0 +1,30 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Orders: anyone can create (guest checkout supported), only owner reads via console
+    match /orders/{orderId} {
+      allow read: if request.auth != null && resource.data.uid == request.auth.uid;
+      allow create: if true;
+      allow update, delete: if false;
+    }
+
+    // Returns: anyone can create a return request
+    match /returns/{returnId} {
+      allow read: if false;
+      allow create: if true;
+      allow update, delete: if false;
+    }
+
+    // Mail collection: only Cloud Functions (admin SDK) should write here
+    match /mail/{mailId} {
+      allow read, write: if false;
+    }
+
+    // Rate limits: managed by Cloud Functions only
+    match /_ratelimits/{doc} {
+      allow read, write: if false;
+    }
+  }
+}
