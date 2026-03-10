@@ -221,7 +221,9 @@
     paypal.Buttons({
       style: { layout: 'vertical', color: 'gold', shape: 'rect', label: 'pay', height: 48 },
       createOrder: function(data, actions) {
-        if (!validateCart()) return actions.reject();
+        if (!validateCart()) {
+          return new Promise(function(resolve, reject) { reject('Validointi ep\u00e4onnistui'); });
+        }
         var sums = updateTotals();
         return actions.order.create({
           purchase_units: [{
@@ -233,14 +235,8 @@
                 item_total: { currency_code: 'EUR', value: sums.subtotal.toFixed(2) },
                 shipping: { currency_code: 'EUR', value: sums.shipping.toFixed(2) }
               }
-            },
-            shipping: {
-              name: { full_name: currentUser ? currentUser.displayName || '' : '' }
             }
-          }],
-          application_context: {
-            shipping_preference: 'GET_FROM_FILE'
-          }
+          }]
         });
       },
       onApprove: function(data, actions) {
@@ -260,6 +256,7 @@
       },
       onError: function(err) {
         console.error('PayPal error:', err);
+        if (err && String(err).indexOf('Validointi') !== -1) return;
         showToast('Maksuvirhe! Yrit\u00e4 uudelleen.');
       }
     }).render('#paypal-button-container');
