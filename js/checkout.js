@@ -244,7 +244,26 @@
           return new Promise(function(resolve, reject) { reject('Validointi ep\u00e4onnistui'); });
         }
         var sums = updateTotals();
+        // Prefill payer info from our form so guest checkout has data ready
+        var payerData = {
+          email_address: (document.getElementById('coEmail').value || '').trim(),
+          name: {
+            given_name: (document.getElementById('coFirstName').value || '').trim(),
+            surname: (document.getElementById('coLastName').value || '').trim()
+          },
+          address: {
+            address_line_1: (document.getElementById('coAddress').value || '').trim(),
+            postal_code: (document.getElementById('coPostal').value || '').trim(),
+            admin_area_2: (document.getElementById('coCity').value || '').trim(),
+            country_code: document.getElementById('coCountry').value || 'FI'
+          }
+        };
+        var phoneVal = (document.getElementById('coPhone').value || '').trim();
+        if (phoneVal) {
+          payerData.phone = { phone_type: 'MOBILE', phone_number: { national_number: phoneVal.replace(/[^0-9]/g, '').replace(/^358/, '') } };
+        }
         return actions.order.create({
+          payer: payerData,
           application_context: {
             shipping_preference: 'NO_SHIPPING',
             user_action: 'PAY_NOW'
