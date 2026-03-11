@@ -23,12 +23,14 @@
 
   function renderProduct() {
     var p = currentProduct;
+    var reviews = (typeof REVIEWS !== 'undefined') ? (REVIEWS[p.id] || []) : [];
+
     // Title
     document.getElementById('detailTitle').textContent = pTitle(p);
 
     // Rating
     document.getElementById('detailStars').innerHTML = renderStars(p.score);
-    var evalCount = p.evaluationCount || p.evaluateRate || '0';
+    var evalCount = reviews ? reviews.length : 0;
     document.getElementById('detailReviews').textContent = evalCount + ' arvostelua';
     document.getElementById('detailSales').textContent = '| ' + formatOrders(p.orders) + ' myyty';
 
@@ -95,12 +97,10 @@
     }
 
     // Reviews
-    renderReviews(p.id);
+    renderReviews(p.id, reviews);
   }
 
-  function renderReviews(productId) {
-    if (typeof REVIEWS === 'undefined') return;
-    var reviews = REVIEWS[productId];
+  function renderReviews(productId, reviews) {
     if (!reviews || !reviews.length) return;
 
     document.getElementById('reviewsSection').style.display = 'block';
@@ -131,10 +131,14 @@
       var imgs = '';
       if (r.images && r.images.length) {
         imgs = '<div class="review-images">' + r.images.map(function(src) {
-          return '<img src="' + src + '" alt="" loading="lazy" onclick="zoomImage(\'' + src + '\')" style="cursor:zoom-in" onerror="this.style.display=\'none\'">';
+          return '<img src="' + src + '" alt="" loading="lazy" data-zoom="' + src + '" onerror="this.style.display=\'none\'">';
         }).join('') + '</div>';
       }
       var flag = countryFlag(r.country);
+      var authorName = r.name;
+      if (!authorName || authorName.toLowerCase().indexOf('aliexpress') >= 0 || authorName.toLowerCase().indexOf('shopper') >= 0) {
+        authorName = 'Asiakas';
+      }
       return '<div class="review-card">' +
         '<div class="review-header">' +
         '<span class="review-stars">' + stars + '</span>' +
@@ -142,10 +146,16 @@
         '</div>' +
         '<p class="review-comment">' + r.comment + '</p>' +
         imgs +
-        '<div class="review-author">' + flag + ' ' + r.name + '</div>' +
+        '<div class="review-author">' + flag + ' ' + authorName + '</div>' +
         '</div>';
     }).join('');
     document.getElementById('reviewsList').innerHTML = listHtml;
+
+    // Event delegation for review image zoom
+    document.getElementById('reviewsList').addEventListener('click', function(e) {
+      var img = e.target.closest('img[data-zoom]');
+      if (img) zoomImage(img.dataset.zoom);
+    });
   }
 
   function updateDetailPrice(sale, orig) {
