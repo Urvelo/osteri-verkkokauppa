@@ -232,14 +232,21 @@ function openProduct(id) {
 }
 
 function zoomImage(src) {
-  var img = document.getElementById('zoomImg');
   var overlay = document.getElementById('zoomOverlay');
-  if (!img || !overlay) return;
-  img.onload = function() { overlay.classList.add('open'); };
-  img.onerror = function() { overlay.classList.add('open'); };
+  var img = document.getElementById('zoomImg');
+  if (!overlay || !img) {
+    // Fallback: create overlay if missing
+    overlay = document.createElement('div');
+    overlay.className = 'zoom-overlay open';
+    overlay.id = 'zoomOverlay';
+    overlay.onclick = function() { overlay.classList.remove('open'); };
+    img = document.createElement('img');
+    img.id = 'zoomImg';
+    overlay.appendChild(img);
+    document.body.appendChild(overlay);
+  }
   img.src = src;
-  // If already cached, onload may not fire
-  if (img.complete && img.naturalWidth) overlay.classList.add('open');
+  overlay.classList.add('open');
 }
 
 

@@ -68,8 +68,9 @@
       skus.forEach(function(s, i) {
         var oos = s.stock <= 0;
         var name = s.name || ('Vaihtoehto ' + (i + 1));
+        var imgThumb = s.image ? '<img src="' + s.image + '" alt="" style="width:28px;height:28px;object-fit:cover;border-radius:4px;margin-right:6px;vertical-align:middle;">' : '';
         opts += '<button class="variant-opt ' + (oos ? 'out-of-stock' : '') + '" data-idx="' + i + '" onclick="selectVariant(' + i + ')"' + (oos ? ' disabled' : '') + '>' +
-          name + ' \u2013 ' + shopPrice(s.price).toFixed(2).replace(/\.(\d{2})/, '<span class="cents">.$1</span>') + '</button>';
+          imgThumb + name + ' \u2013 ' + formatPrice(shopPrice(s.price)) + '</button>';
       });
       document.getElementById('variantOptions').innerHTML = opts;
       var first = skus.findIndex(function(s) { return s.stock > 0; });
@@ -106,7 +107,14 @@
       var descText = tempDiv.innerHTML.trim();
       if (descText && tempDiv.textContent.trim().length > 10) {
         descSection.style.display = 'block';
-        descContent.innerHTML = '<div class="desc-text">' + descText + '</div>';
+        // Normalize: strip all inline styles, fonts, colors from AliExpress HTML
+        var cleaned = descText
+          .replace(/style\s*=\s*"[^"]*"/gi, '')
+          .replace(/style\s*=\s*'[^']*'/gi, '')
+          .replace(/<font[^>]*>/gi, '').replace(/<\/font>/gi, '')
+          .replace(/<span[^>]*>/gi, '<span>').replace(/color\s*[:=][^;"']*/gi, '')
+          .replace(/font-size\s*:[^;"']*/gi, '').replace(/font-family\s*:[^;"']*/gi, '');
+        descContent.innerHTML = '<div class="desc-text">' + cleaned + '</div>';
       }
     }
 
