@@ -10,32 +10,39 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=21">
+  <link rel="stylesheet" href="../css/style.css?v=22">
 </head>
 <body>
 
   <main id="pageContent" class="return-page view-fade">
     <div class="container">
       <a class="detail-back" href="../">← Takaisin kauppaan</a>
-      <div class="return-form-container" id="returnFormContent">
+
+      <!-- Login required message -->
+      <div id="returnLoginRequired" style="text-align:center;padding:60px 20px;">
+        <h2 style="margin-bottom:12px">Kirjaudu sisään</h2>
+        <p style="color:var(--fg-muted);margin-bottom:24px">Palautus- ja reklamaatiolomake vaatii kirjautumisen Google-tilillä, jotta voimme hakea tilauksesi.</p>
+        <button class="btn" onclick="signInWithGoogle()" style="padding:14px 32px;font-size:1rem">🔑 Kirjaudu Google-tilillä</button>
+      </div>
+
+      <div class="return-form-container" id="returnFormContent" style="display:none">
         <h1>Palautus- ja reklamaatiolomake</h1>
-        <p class="subtitle">Täytä alla oleva lomake palauttaaksesi tuotteen tai tehdäksesi reklamaation. Käsittelemme pyyntösi 1–3 arkipäivän kuluessa.</p>
+        <p class="subtitle">Valitse tilaus, syy ja liitä kuva tuotteesta. Käsittelemme pyyntösi 1–3 arkipäivän kuluessa.</p>
 
         <div class="form-group">
-          <label>Tilausnumero *</label>
-          <input type="text" id="retOrderId" placeholder="Esim. RK-1234567890">
+          <label>Valitse tilaus *</label>
+          <select id="retOrderSelect">
+            <option value="">Ladataan tilauksiasi...</option>
+          </select>
         </div>
+        <div id="retOrderDetails" style="display:none;background:var(--bg-alt);border:1px solid var(--border);padding:16px;margin-bottom:20px;border-radius:8px;font-size:.9rem"></div>
         <div class="form-group">
           <label>Nimi *</label>
-          <input type="text" id="retName" placeholder="Etunimi Sukunimi">
+          <input type="text" id="retName" placeholder="Etunimi Sukunimi" readonly>
         </div>
         <div class="form-group">
           <label>Sähköposti *</label>
-          <input type="email" id="retEmail" placeholder="email@esimerkki.fi">
-        </div>
-        <div class="form-group">
-          <label>Puhelin</label>
-          <input type="tel" id="retPhone" placeholder="+358">
+          <input type="email" id="retEmail" placeholder="email@esimerkki.fi" readonly>
         </div>
         <div class="form-group">
           <label>Syy *</label>
@@ -54,7 +61,7 @@
           <textarea id="retDescription" rows="4" placeholder="Kerro tarkemmin ongelmasta tai palautuksen syystä..."></textarea>
         </div>
 
-        <label style="display:block;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--fg-muted);margin-bottom:8px;">Kuva tuotteesta (valinnainen)</label>
+        <label style="display:block;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--fg-muted);margin-bottom:8px;">Kuva tuotteesta * <span style="font-weight:400;text-transform:none;color:var(--danger)">(pakollinen)</span></label>
         <div class="return-upload-area" id="retUploadArea">
           <div class="upload-icon">📷</div>
           <div class="upload-text">Klikkaa tai raahaa kuva tähän<br><b>JPG, PNG, WebP – max 20 MB</b></div>
@@ -81,8 +88,8 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
   <script>var ROOT = '../'; var PAGE_ID = 'return';</script>
-  <script src="../products.js?v=21"></script>
-  <script src="../js/shared.js?v=21"></script>
-  <script src="../js/return.js?v=21"></script>
+  <script src="../products.js?v=22"></script>
+  <script src="../js/shared.js?v=22"></script>
+  <script src="../js/return.js?v=22"></script>
 </body>
 </html>

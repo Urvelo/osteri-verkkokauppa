@@ -2,6 +2,8 @@
 (function() {
   var returnImageUrl = '';
   var returnImageUploading = false;
+  var userOrders = [];
+  var selectedOrder = null;
 
   function initReturn() {
     var uploadArea = document.getElementById('retUploadArea');
@@ -20,15 +22,85 @@
       if (e.target.files.length) handleReturnImage(e.target.files[0]);
     });
 
-    // Pre-fill if logged in
+    // Order select change
+    var orderSelect = document.getElementById('retOrderSelect');
+    if (orderSelect) {
+      orderSelect.addEventListener('change', function() {
+        var orderId = this.value;
+        selectedOrder = userOrders.find(function(o) { return o.id === orderId; }) || null;
+        var details = document.getElementById('retOrderDetails');
+        if (selectedOrder && details) {
+          var itemsHtml = selectedOrder.items.map(function(item) {
+            return '<div style="display:flex;align-items:center;gap:10px;margin-top:8px">' +
+              (item.image ? '<img src="' + item.image + '" style="width:40px;height:40px;object-fit:cover;border-radius:4px" onerror="this.style.display=\'none\'">' : '') +
+              '<span>' + item.title + (item.variant ? ' – ' + item.variant : '') + ' x' + item.qty + '</span></div>';
+          }).join('');
+          details.innerHTML = '<div style="font-weight:600;margin-bottom:4px">' + selectedOrder.id + '</div>' +
+            '<div style="color:var(--fg-muted);font-size:.85rem">' + new Date(selectedOrder.date).toLocaleDateString('fi-FI') +
+            ' — ' + '\u20ac' + parseFloat(selectedOrder.total).toFixed(2) + '</div>' + itemsHtml;
+          details.style.display = 'block';
+        } else if (details) {
+          details.style.display = 'none';
+        }
+      });
+    }
+
+    // Require login
     auth.onAuthStateChanged(function(user) {
+      var loginMsg = document.getElementById('returnLoginRequired');
+      var formContent = document.getElementById('returnFormContent');
       if (user) {
+        // User logged in — show form, hide login
+        if (loginMsg) loginMsg.style.display = 'none';
+        if (formContent) formContent.style.display = 'block';
+
+        // Fill name & email from Google account
         var nameField = document.getElementById('retName');
         var emailField = document.getElementById('retEmail');
-        if (nameField && !nameField.value && user.displayName) nameField.value = user.displayName;
-        if (emailField && !emailField.value && user.email) emailField.value = user.email;
+        if (nameField) nameField.value = user.displayName || '';
+        if (emailField) emailField.value = user.email || '';
+
+        // Load user's orders from Firestore
+        loadUserOrders(user.uid);
+      } else {
+        // Not logged in — show login prompt, hide form
+        if (loginMsg) loginMsg.style.display = 'block';
+        if (formContent) formContent.style.display = 'none';
       }
     });
+  }
+
+  function loadUserOrders(uid) {
+    var orderSelect = document.getElementById('retOrderSelect');
+    if (!orderSelect) return;
+    orderSelect.innerHTML = '<option value="">Ladataan tilauksiasi...</option>';
+
+    db.collection('orders').where('uid', '==', uid).get()
+      .then(function(snapshot) {
+        userOrders = [];
+        snapshot.forEach(function(doc) {
+          userOrders.push(doc.data());
+        });
+        // Sort newest first
+        userOrders.sort(function(a, b) { return new Date(b.date) - new Date(a.date); });
+
+        if (userOrders.length === 0) {
+          orderSelect.innerHTML = '<option value="">Sinulla ei ole tilauksia</option>';
+          return;
+        }
+        var opts = '<option value="">Valitse tilaus...</option>';
+        userOrders.forEach(function(o) {
+          var dateStr = new Date(o.date).toLocaleDateString('fi-FI');
+          var itemNames = o.items.map(function(i) { return i.title; }).join(', ');
+          if (itemNames.length > 50) itemNames = itemNames.substring(0, 50) + '...';
+          opts += '<option value="' + o.id + '">' + o.id + ' — ' + dateStr + ' — ' + itemNames + '</option>';
+        });
+        orderSelect.innerHTML = opts;
+      })
+      .catch(function(err) {
+        console.error('Error loading orders:', err);
+        orderSelect.innerHTML = '<option value="">Tilausten lataus epäonnistui</option>';
+      });
   }
 
   function handleReturnImage(file) {
@@ -88,29 +160,36 @@
       showToast('Odota, kuvaa ladataan...');
       return;
     }
-    var orderId = document.getElementById('retOrderId').value.trim();
+
+    // Validate order selected
+    if (!selectedOrder) {
+      var sel = document.getElementById('retOrderSelect');
+      if (sel) sel.style.borderColor = 'var(--danger)';
+      showToast('Valitse tilaus!');
+      return;
+    }
+
     var name = document.getElementById('retName').value.trim();
     var email = document.getElementById('retEmail').value.trim();
-    var phone = document.getElementById('retPhone').value.trim();
     var reason = document.getElementById('retReason').value;
     var description = document.getElementById('retDescription').value.trim();
 
-    var required = [
-      { id: 'retOrderId', val: orderId },
-      { id: 'retName', val: name },
-      { id: 'retEmail', val: email },
-      { id: 'retReason', val: reason }
-    ];
-    for (var k = 0; k < required.length; k++) {
-      var el = document.getElementById(required[k].id);
-      if (!required[k].val) {
-        el.style.borderColor = 'var(--danger)';
-        el.focus();
-        showToast('Täytä kaikki pakolliset kentät!');
-        return;
-      }
-      el.style.borderColor = '';
+    // Validate reason
+    if (!reason) {
+      document.getElementById('retReason').style.borderColor = 'var(--danger)';
+      document.getElementById('retReason').focus();
+      showToast('Valitse palautuksen syy!');
+      return;
     }
+    document.getElementById('retReason').style.borderColor = '';
+
+    // Validate image (required)
+    if (!returnImageUrl) {
+      showToast('Liitä kuva tuotteesta! Kuva on pakollinen.');
+      document.getElementById('retUploadArea').style.borderColor = 'var(--danger)';
+      return;
+    }
+    document.getElementById('retUploadArea').style.borderColor = '';
 
     var btn = document.getElementById('retSubmitBtn');
     btn.disabled = true;
@@ -119,10 +198,11 @@
     var returnId = 'RET-' + Date.now();
     var returnData = {
       returnId: returnId,
-      orderId: orderId,
+      orderId: selectedOrder.id,
+      orderDate: selectedOrder.date,
+      items: selectedOrder.items,
       name: name,
       email: email,
-      phone: phone,
       reason: reason,
       description: description,
       imageUrl: returnImageUrl,
@@ -135,13 +215,12 @@
     .then(function() {
       var retEmail = new FormData();
       retEmail.append('Palautusnumero', returnId);
-      retEmail.append('Tilausnumero', orderId);
+      retEmail.append('Tilausnumero', selectedOrder.id);
       retEmail.append('Nimi', name);
       retEmail.append('Sahkoposti', email);
-      if (phone) retEmail.append('Puhelin', phone);
       retEmail.append('Syy', reason);
       if (description) retEmail.append('Kuvaus', description);
-      if (returnImageUrl) retEmail.append('Kuva', returnImageUrl);
+      retEmail.append('Kuva', returnImageUrl);
       retEmail.append('_subject', 'Palautuspyynto: ' + returnId + ' - ' + reason);
       retEmail.append('_template', 'table');
       retEmail.append('_captcha', 'false');
