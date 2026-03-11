@@ -488,4 +488,60 @@ function injectSharedUI() {
   updateCartCount();
 }
 
-document.addEventListener('DOMContentLoaded', injectSharedUI);
+/* ===== VISITOR ANALYTICS ===== */
+function trackVisit() {
+  var today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+  var key = 'rk_visit_' + today;
+  if (localStorage.getItem(key)) return; // already counted today
+  localStorage.setItem(key, '1');
+
+  // Clean old visit flags (keep only last 3 days)
+  for (var i = 0; i < localStorage.length; i++) {
+    var k = localStorage.key(i);
+    if (k && k.startsWith('rk_visit_') && k !== key) {
+      localStorage.removeItem(k);
+    }
+  }
+
+  // Get country from free IP geolocation API, then save to Firestore
+  fetch('https://ip-api.com/json/?fields=status,countryCode')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      var country = (data && data.status === 'success' && data.countryCode) ? data.countryCode : 'XX';
+      saveVisit(today, country);
+    })
+    .catch(function() {
+      saveVisit(today, 'XX');
+    });
+}
+
+function saveVisit(date, country) {
+  var docId = date; // one document per day: "2026-03-11"
+  var ref = db.collection('visits').doc(docId);
+  ref.get().then(function(doc) {
+    if (doc.exists) {
+      var d = doc.data();
+      var countries = d.countries || {};
+      countries[country] = (countries[country] || 0) + 1;
+      ref.update({
+        count: (d.count || 0) + 1,
+        countries: countries
+      });
+    } else {
+      var countries = {};
+      countries[country] = 1;
+      ref.set({
+        date: date,
+        count: 1,
+        countries: countries
+      });
+    }
+  }).catch(function(e) {
+    console.warn('Visit tracking error:', e);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  injectSharedUI();
+  trackVisit();
+});

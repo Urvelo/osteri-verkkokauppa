@@ -17,6 +17,14 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
+    // Visits: anonymous write (analytics), read only from admin/functions
+    match /visits/{date} {
+      allow read: if request.auth != null;
+      allow create: if true;
+      allow update: if true;
+      allow delete: if false;
+    }
+
     // Mail collection: only Cloud Functions (admin SDK) should write here
     match /mail/{mailId} {
       allow read, write: if false;
