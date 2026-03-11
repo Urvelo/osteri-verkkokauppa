@@ -99,7 +99,13 @@ function signInWithGoogle() {
 
 /* ===== PRICE HELPERS ===== */
 function shopPrice(raw) {
-  return Math.ceil(parseFloat(raw) * MARKUP * 100 - 1) / 100;
+  var base = parseFloat(raw) * MARKUP;
+  var whole = Math.floor(base);
+  var cents = base - whole;
+  // Round to nearest nice ending: .55, .95, .99
+  if (cents < 0.40) return whole + 0.55;
+  if (cents < 0.75) return whole + 0.95;
+  return whole + 0.99;
 }
 function renderStars(score) {
   var s = parseFloat(score) || 0;
@@ -224,7 +230,12 @@ function openProduct(id) {
 function zoomImage(src) {
   var img = document.getElementById('zoomImg');
   var overlay = document.getElementById('zoomOverlay');
-  if (img && overlay) { img.src = src; overlay.classList.add('open'); }
+  if (!img || !overlay) return;
+  img.onload = function() { overlay.classList.add('open'); };
+  img.onerror = function() { overlay.classList.add('open'); };
+  img.src = src;
+  // If already cached, onload may not fire
+  if (img.complete && img.naturalWidth) overlay.classList.add('open');
 }
 
 
