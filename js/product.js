@@ -18,7 +18,7 @@
     }
     renderProduct();
     // Update page title
-    document.title = pTitle(currentProduct) + ' – Rosterikuppia.fi';
+    document.title = pTitle(currentProduct) + ' – Erät.fi';
   }
 
   function renderProduct() {

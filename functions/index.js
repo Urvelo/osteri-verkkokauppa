@@ -14,8 +14,8 @@ const OWNER_EMAIL = process.env.OWNER_EMAIL || "";
 // ===== CORS helper =====
 const ALLOWED_ORIGINS = [
   "https://urvelo.github.io",
-  "https://rosterikuppia.fi",
-  "https://www.rosterikuppia.fi",
+  "https://ERÄT.FI",
+  "https://www.ERÄT.FI",
   "http://localhost:8080",
   "http://127.0.0.1:8080",
 ];
@@ -216,7 +216,7 @@ exports.placeOrder = functions.https.onRequest(async (req, res) => {
       await db.collection("mail").add({
         to: order.customer.email,
         message: {
-          subject: `Tilausvahvistus ${order.id} – Rosterikuppia.fi`,
+          subject: `Tilausvahvistus ${order.id} – ERÄT.FI`,
           html: buildOrderEmailHtml(order, false),
         },
       });
@@ -232,7 +232,7 @@ exports.placeOrder = functions.https.onRequest(async (req, res) => {
 // ===== Email builders =====
 function buildReturnEmailHtml(data, isOwner) {
   return `<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#333">
-    <div style="background:#1a1a1a;padding:24px;text-align:center"><h1 style="color:#f7b829;margin:0;font-size:1.5rem">ROSTERIKUPPIA.FI</h1></div>
+    <div style="background:#1a1a1a;padding:24px;text-align:center"><h1 style="color:#f7b829;margin:0;font-size:1.5rem">ERÄT.FI</h1></div>
     <div style="padding:24px;background:#fff">
       <h2 style="color:#333">${isOwner ? "📦 Uusi palautuspyyntö" : "Palautuspyyntösi on vastaanotettu"}</h2>
       <p><b>Palautusnumero:</b> ${data.returnId}</p>
@@ -245,7 +245,7 @@ function buildReturnEmailHtml(data, isOwner) {
       ${data.imageUrl ? `<p><b>Kuva:</b><br><img src="${data.imageUrl}" style="max-width:400px;margin-top:8px" alt="Tuotekuva"></p>` : ""}
       ${!isOwner ? '<hr style="border:none;border-top:1px solid #eee;margin:16px 0"><p style="color:#999;font-size:.85rem">Käsittelemme palautuspyyntösi 1–3 arkipäivän kuluessa. Otamme yhteyttä sähköpostitse.</p>' : ""}
     </div>
-    <div style="background:#1a1a1a;padding:16px;text-align:center"><p style="color:#999;font-size:.8rem;margin:0">© 2026 Rosterikuppia.fi</p></div>
+    <div style="background:#1a1a1a;padding:16px;text-align:center"><p style="color:#999;font-size:.8rem;margin:0">© 2026 ERÄT.FI</p></div>
   </div>`;
 }
 
@@ -260,7 +260,7 @@ function buildOrderEmailHtml(order, isOwner) {
     .join("");
   const c = order.customer;
   return `<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#333">
-    <div style="background:#1a1a1a;padding:24px;text-align:center"><h1 style="color:#f7b829;margin:0;font-size:1.5rem">ROSTERIKUPPIA.FI</h1></div>
+    <div style="background:#1a1a1a;padding:24px;text-align:center"><h1 style="color:#f7b829;margin:0;font-size:1.5rem">ERÄT.FI</h1></div>
     <div style="padding:24px;background:#fff">
       <h2 style="color:#333">${isOwner ? "📦 Uusi tilaus!" : "Kiitos tilauksestasi!"}</h2>
       <p style="color:#666"><b>Tilausnumero:</b> ${order.id}</p>
@@ -280,6 +280,6 @@ function buildOrderEmailHtml(order, isOwner) {
       ${c.notes ? `<p style="color:#666"><b>Lisätiedot:</b> ${c.notes}</p>` : ""}
       ${!isOwner ? '<hr style="border:none;border-top:1px solid #eee;margin:16px 0"><p style="color:#999;font-size:.85rem">Toimitusaika: 10–25 arkipäivää. Saat seurantatiedot sähköpostiisi kun paketti lähtee.</p>' : ""}
     </div>
-    <div style="background:#1a1a1a;padding:16px;text-align:center"><p style="color:#999;font-size:.8rem;margin:0">© 2026 Rosterikuppia.fi</p></div>
+    <div style="background:#1a1a1a;padding:16px;text-align:center"><p style="color:#999;font-size:.8rem;margin:0">© 2026 ERÄT.FI</p></div>
   </div>`;
 }

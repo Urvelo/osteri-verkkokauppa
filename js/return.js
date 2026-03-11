@@ -237,7 +237,7 @@
       console.error('Return submit error:', err);
       btn.disabled = false;
       btn.textContent = 'Lähetä palautuspyyntö';
-      showToast('Virhe! Yritä uudelleen tai ota yhteyttä info@rosterikuppia.fi');
+      showToast('Virhe! Yritä uudelleen tai ota yhteyttä info@erät.fi');
     });
   };
 

@@ -1,5 +1,5 @@
 /* ===================================================================
-   ROSTERIKUPPIA.FI – Shared JavaScript
+   ERÄT.FI – Shared JavaScript
    Firebase, Auth, Cart, UI Components, Receipts, Helpers
    =================================================================== */
 
@@ -258,7 +258,7 @@ function buildReceiptHTML(order) {
       '</td><td class="right">' + item.qty + '</td><td class="right">\u20ac' + item.price.toFixed(2) +
       '</td><td class="right">\u20ac' + (item.price * item.qty).toFixed(2) + '</td></tr>';
   });
-  var html = '<div class="receipt-header"><h1>ROSTERIKUPPIA.FI</h1><p>Kuitti / Tilausvahvistus</p></div>' +
+  var html = '<div class="receipt-header"><h1>ERÄT.FI</h1><p>Kuitti / Tilausvahvistus</p></div>' +
     '<div class="receipt-meta"><div><b>Tilausnumero:</b> ' + order.id + '<br><b>P\u00e4iv\u00e4m\u00e4\u00e4r\u00e4:</b> ' + date + '</div>' +
     '<div><b>Asiakas:</b> ' + (c.firstName || '') + ' ' + (c.lastName || '') +
     '<br><b>S\u00e4hk\u00f6posti:</b> ' + (c.email || '') + '<br><b>Puhelin:</b> ' + (c.phone || '') + '</div></div>' +
@@ -271,7 +271,7 @@ function buildReceiptHTML(order) {
     '<div class="row"><span>Toimitus:</span><span>\u20ac' + (order.shipping || 0).toFixed(2) + '</span></div>' +
     '<div class="row grand"><span>Yhteens\u00e4:</span><span>\u20ac' + (order.total || 0).toFixed(2) + '</span></div></div>' +
     '<div class="receipt-footer"><p>Kiitos tilauksestasi! \ud83d\ude4f</p><p>Toimitusaika: ' + DELIVERY_DAYS + ' arkip\u00e4iv\u00e4\u00e4</p>' +
-    '<p style="margin-top:8px">\u00a9 2026 Rosterikuppia.fi</p></div>' +
+    '<p style="margin-top:8px">\u00a9 2026 ERÄT.FI</p></div>' +
     '<div class="receipt-actions">' +
     '<button class="btn btn--sm" onclick="downloadReceiptPDF(\'' + order.id + '\')">\ud83d\udce5 Lataa PDF</button>' +
     '<button class="btn btn--sm btn--outline" onclick="closeReceipt()">Sulje</button></div>';
@@ -316,7 +316,7 @@ function generatePDF(order) {
   doc.rect(0, 0, w, 35, 'F');
   doc.setFontSize(22);
   doc.setTextColor(247, 184, 41);
-  doc.text('ROSTERIKUPPIA.FI', w / 2, 18, { align: 'center' });
+  doc.text('ERÄT.FI', w / 2, 18, { align: 'center' });
   doc.setFontSize(9);
   doc.setTextColor(200, 200, 200);
   doc.text('Kuitti / Tilausvahvistus', w / 2, 28, { align: 'center' });
@@ -406,7 +406,7 @@ function generatePDF(order) {
   doc.setFont(undefined, 'normal');
   doc.text('Kiitos tilauksestasi! Toimitusaika: ' + DELIVERY_DAYS + ' arkipaivaa.', w / 2, y, { align: 'center' });
   y += 5;
-  doc.text('(c) 2026 Rosterikuppia.fi', w / 2, y, { align: 'center' });
+  doc.text('(c) 2026 ERÄT.FI', w / 2, y, { align: 'center' });
 
   doc.save('kuitti_' + order.id + '.pdf');
   showToast('PDF-kuitti ladattu!');
@@ -419,7 +419,7 @@ var GOOGLE_SVG = '<svg viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 
 function injectSharedUI() {
   // Header
   var headerHTML = '<header><div class="container header-inner">' +
-    '<a class="logo" href="' + ROOT + '"><img src="' + ROOT + 'logo.png" alt="Rosterikuppia" class="logo-img"></a>' +
+    '<a class="logo" href="' + ROOT + '"><img src="' + ROOT + 'logo.png" alt="Erät.fi" class="logo-img"></a>' +
     '<nav>' +
     '<a href="' + ROOT + '">Tuotteet</a>' +
     '<a href="' + ROOT + 'tili/">Tilini</a>' +
@@ -462,14 +462,14 @@ function injectSharedUI() {
 
   // Footer
   var footerHTML = '<footer><div class="container">' +
-    '<p style="margin-bottom:12px;"><img src="' + ROOT + 'logo.png" alt="Rosterikuppia.fi" style="height:36px;width:auto;"></p>' +
+    '<p style="margin-bottom:12px;"><img src="' + ROOT + 'logo.png" alt="Erät.fi" style="height:36px;width:auto;"></p>' +
     '<p>Suomalainen verkkokauppa \u2013 kestävät metallikupit retkeilyyn ja eräilyyn.</p>' +
     '<p style="margin-top:16px;">' +
     '<a href="' + ROOT + 'tiedot/toimitus.html" style="margin:0 12px;">Toimitus &amp; palautukset</a> \u2022 ' +
     '<a href="' + ROOT + 'tiedot/tietosuoja.html" style="margin:0 12px;">Tietosuoja</a> \u2022 ' +
     '<a href="' + ROOT + 'tiedot/yhteyta.html" style="margin:0 12px;">Ota yhteytt\u00e4</a></p>' +
     '<p style="margin-top:20px;font-size:.7rem;color:#444;"><a href="' + ROOT + 'palautus/" style="color:#555">Palautuslomake</a></p>' +
-    '<p style="margin-top:12px;font-size:.7rem;color:#444;">\u00a9 2026 Rosterikuppia.fi \u2013 Kaikki oikeudet pid\u00e4tet\u00e4\u00e4n. Y-tunnus: Tulossa</p>' +
+    '<p style="margin-top:12px;font-size:.7rem;color:#444;">\u00a9 2026 Erät.fi \u2013 Kaikki oikeudet pid\u00e4tet\u00e4\u00e4n. Y-tunnus: Tulossa</p>' +
     '</div></footer>';
 
   // Inject header at top

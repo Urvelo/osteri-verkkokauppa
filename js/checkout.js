@@ -263,7 +263,7 @@
             user_action: 'PAY_NOW'
           },
           purchase_units: [{
-            description: 'Rosterikuppia.fi tilaus',
+            description: 'Erät.fi tilaus',
             amount: {
               currency_code: 'EUR',
               value: sums.total.toFixed(2),
