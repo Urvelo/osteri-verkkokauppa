@@ -517,7 +517,7 @@ function trackVisit() {
 
 function saveVisit(date, country) {
   var docId = date; // one document per day: "2026-03-11"
-  var ref = db.collection('visits').doc(docId);
+  var ref = db.collection('analytics').doc(docId);
   ref.get().then(function(doc) {
     if (doc.exists) {
       var d = doc.data();
