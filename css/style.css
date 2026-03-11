@@ -24,7 +24,8 @@ h1,h2,h3,h4 { font-family: var(--font); font-weight: 700; text-transform: upperc
 /* HEADER */
 header { background: rgba(0,0,0,.85); position: fixed; width: 100%; z-index: 200; backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
 .header-inner { display: flex; justify-content: space-between; align-items: center; padding: 14px var(--pad); }
-.logo { font-size: 1.5rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); text-decoration: none; cursor: pointer; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
+.logo { display: flex; align-items: center; text-decoration: none; cursor: pointer; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
+.logo-img { height: 40px; width: auto; display: block; }
 nav { display: flex; align-items: center; gap: 6px; }
 nav a { color: var(--fg); text-decoration: none; margin-left: 24px; font-weight: 600; text-transform: uppercase; font-size: .85rem; letter-spacing: .05em; transition: color .15s; cursor: pointer; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
 nav a:hover { color: var(--accent); }
@@ -362,7 +363,7 @@ footer a:hover { color: var(--accent); }
   .stat-num { font-size: 1.4rem; }
   .stat-label { font-size: .7rem; }
   nav a:not(.cart-btn) { display: none; }
-  .logo { font-size: 1.2rem; }
+  .logo-img { height: 32px; }
   .header-inner { padding: 10px var(--pad); }
   .hero { min-height: 60vh; }
   .hero h1 { font-size: 1.8rem; }

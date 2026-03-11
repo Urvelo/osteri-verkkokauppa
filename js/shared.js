@@ -419,7 +419,7 @@ var GOOGLE_SVG = '<svg viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 
 function injectSharedUI() {
   // Header
   var headerHTML = '<header><div class="container header-inner">' +
-    '<a class="logo" href="' + ROOT + '">Rosterikuppia</a>' +
+    '<a class="logo" href="' + ROOT + '"><img src="' + ROOT + 'logo.png" alt="Rosterikuppia" class="logo-img"></a>' +
     '<nav>' +
     '<a href="' + ROOT + '">Tuotteet</a>' +
     '<a href="' + ROOT + 'tili/">Tilini</a>' +
@@ -462,7 +462,7 @@ function injectSharedUI() {
 
   // Footer
   var footerHTML = '<footer><div class="container">' +
-    '<p style="font-size:1.1rem;color:var(--accent);font-weight:700;margin-bottom:12px;">ROSTERIKUPPIA.FI</p>' +
+    '<p style="margin-bottom:12px;"><img src="' + ROOT + 'logo.png" alt="Rosterikuppia.fi" style="height:36px;width:auto;"></p>' +
     '<p>Suomalainen verkkokauppa \u2013 kestävät metallikupit retkeilyyn ja eräilyyn.</p>' +
     '<p style="margin-top:16px;">' +
     '<a href="' + ROOT + 'tiedot/toimitus.html" style="margin:0 12px;">Toimitus &amp; palautukset</a> \u2022 ' +
