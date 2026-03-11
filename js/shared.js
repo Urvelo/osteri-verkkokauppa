@@ -474,13 +474,21 @@ function injectSharedUI() {
   // Footer
   var footerHTML = '<footer><div class="container">' +
     '<p style="margin-bottom:12px;"><img src="' + ROOT + 'logo.png" alt="Erät.fi" style="height:36px;width:auto;"></p>' +
-    '<p>Suomalainen verkkokauppa \u2013 kestävät metallikupit retkeilyyn ja eräilyyn.</p>' +
+    '<p>Laadukkaita tarvikkeita er\u00e4ilyyn ja retkeilyyn.</p>' +
     '<p style="margin-top:16px;">' +
     '<a href="' + ROOT + 'tiedot/toimitus.html" style="margin:0 12px;">Toimitus &amp; palautukset</a> \u2022 ' +
     '<a href="' + ROOT + 'tiedot/tietosuoja.html" style="margin:0 12px;">Tietosuoja</a> \u2022 ' +
     '<a href="' + ROOT + 'tiedot/yhteyta.html" style="margin:0 12px;">Ota yhteytt\u00e4</a></p>' +
-    '<p style="margin-top:20px;font-size:.7rem;color:#444;"><a href="' + ROOT + 'palautus/" style="color:#555">Palautuslomake</a></p>' +
-    '<p style="margin-top:12px;font-size:.7rem;color:#444;">\u00a9 2026 Erät.fi \u2013 Kaikki oikeudet pid\u00e4tet\u00e4\u00e4n. Y-tunnus: Tulossa</p>' +
+    '<div style="display:flex;gap:16px;justify-content:center;margin-top:16px;font-size:1.2rem;">' +
+    '<a href="#" target="_blank" title="Instagram" style="color:var(--fg-muted);text-decoration:none;">📷</a>' +
+    '<a href="#" target="_blank" title="TikTok" style="color:var(--fg-muted);text-decoration:none;">🎵</a>' +
+    '<a href="#" target="_blank" title="Facebook" style="color:var(--fg-muted);text-decoration:none;">👍</a>' +
+    '<a href="#" target="_blank" title="YouTube" style="color:var(--fg-muted);text-decoration:none;">▶️</a>' +
+    '</div>' +
+    '<p style="margin-top:16px;font-size:.7rem;color:#444;">' +
+    '<a href="' + ROOT + 'palautus/" style="color:#555">Palautuslomake</a> \u2022 ' +
+    '<a href="' + ROOT + 'tiedot/tietoja.html" style="color:#555">Tietoja</a></p>' +
+    '<p style="margin-top:8px;font-size:.7rem;color:#444;">\u00a9 2026 Erät.fi \u2013 Kaikki oikeudet pid\u00e4tet\u00e4\u00e4n.</p>' +
     '</div></footer>';
 
   // Inject header at top
