@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fi">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <!-- Security Headers -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://cdn.jsdelivr.net https://www.paypal.com https://*.paypal.com https://*.paypalobjects.com https://apis.google.com https://*.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https: data: blob:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://safenote.co https://formsubmit.co https://feedback.aliexpress.com http://ip-api.com https://*.paypal.com https://*.paypalobjects.com; frame-src https://www.paypal.com https://*.paypal.com https://www.sandbox.paypal.com https://*.firebaseapp.com https://accounts.google.com https://*.google.com;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://cdn.jsdelivr.net https://www.paypal.com https://*.paypal.com https://*.paypalobjects.com https://apis.google.com https://*.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https: data: blob:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://safenote.co https://formsubmit.co https://feedback.aliexpress.com https://*.paypal.com https://*.paypalobjects.com; frame-src https://www.paypal.com https://*.paypal.com https://www.sandbox.paypal.com https://*.firebaseapp.com https://accounts.google.com https://*.google.com;">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>Kassa – ERÄT.FI</title>
+  <title>Kassa â€“ ERÃ„T.FI</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
 
   <main id="pageContent" class="checkout-page view-fade">
     <div class="container">
-      <a class="detail-back" href="../">← Takaisin kauppaan</a>
+      <a class="detail-back" href="../">â† Takaisin kauppaan</a>
       <div id="checkoutContent">
         <div class="checkout-layout">
           <div class="checkout-form">
@@ -25,7 +25,7 @@
               <div class="form-group"><label>Etunimi *</label><input type="text" id="coFirstName" required placeholder="Etunimi"></div>
               <div class="form-group"><label>Sukunimi *</label><input type="text" id="coLastName" required placeholder="Sukunimi"></div>
             </div>
-            <div class="form-group"><label>Sähköposti *</label><input type="email" id="coEmail" required placeholder="nimi@esimerkki.fi"></div>
+            <div class="form-group"><label>SÃ¤hkÃ¶posti *</label><input type="email" id="coEmail" required placeholder="nimi@esimerkki.fi"></div>
             <div class="form-group"><label>Puhelin</label><input type="tel" id="coPhone" placeholder="+358 40 1234567"></div>
             <div class="form-group"><label>Osoite *</label><input type="text" id="coAddress" required placeholder="Katuosoite"></div>
             <div class="form-row">
@@ -45,26 +45,26 @@
                 <option value="OTHER">Muu maa</option>
               </select>
             </div>
-            <div class="form-group"><label>Lisätiedot (valinnainen)</label><textarea id="coNotes" rows="2" placeholder="Esim. ovikoodi, toimitusohje..."></textarea></div>
+            <div class="form-group"><label>LisÃ¤tiedot (valinnainen)</label><textarea id="coNotes" rows="2" placeholder="Esim. ovikoodi, toimitusohje..."></textarea></div>
             <h3 style="margin-top:20px">Maksu</h3>
-            <p style="font-size:.85rem;color:var(--fg-muted);margin:4px 0 8px">PayPal-tilin omistajat: kirjaudu ja vahvista maksu — ei tarvitse syöttää osoitetta uudelleen.<br>Voit myös maksaa pankki- tai luottokortilla.</p>
+            <p style="font-size:.85rem;color:var(--fg-muted);margin:4px 0 8px">PayPal-tilin omistajat: kirjaudu ja vahvista maksu â€” ei tarvitse syÃ¶ttÃ¤Ã¤ osoitetta uudelleen.<br>Voit myÃ¶s maksaa pankki- tai luottokortilla.</p>
             <div id="paypal-button-container"></div>
           </div>
           <div class="checkout-summary">
             <h3>Tilauksesi</h3>
             <div class="checkout-items" id="checkoutItems"></div>
             <div class="checkout-totals">
-              <div class="checkout-totals-row"><span>Tuotteet</span><span id="coSubtotal">€0.00</span></div>
-              <div class="checkout-totals-row"><span>Toimitus</span><span id="coShipping">€4.90</span></div>
-              <div class="checkout-totals-row total"><span>Yhteensä</span><span class="price" id="coTotal">€0.00</span></div>
+              <div class="checkout-totals-row"><span>Tuotteet</span><span id="coSubtotal">â‚¬0.00</span></div>
+              <div class="checkout-totals-row"><span>Toimitus</span><span id="coShipping">â‚¬4.90</span></div>
+              <div class="checkout-totals-row total"><span>YhteensÃ¤</span><span class="price" id="coTotal">â‚¬0.00</span></div>
             </div>
             <div class="checkout-notice">
-              <b>📦 Toimitusaika:</b> 10–25 arkipäivää<br>
-              <b>🚚 Toimitusmaksut:</b> Riippuvat kohdemaasta<br>
-              <b>↩️ Palautusoikeus:</b> 14 päivää<br>
-              <b>� Maksu:</b> PayPal — maksu ennen tilauksen vahvistusta<br>
-              <b>📧 Vahvistus:</b> Tilausvahvistus sähköpostiisi<br>
-              <span style="font-size:.8rem;color:var(--fg-muted);margin-top:4px;display:inline-block">Tuotteen palautuskustannus: €8.99</span>
+              <b>ðŸ“¦ Toimitusaika:</b> 10â€“25 arkipÃ¤ivÃ¤Ã¤<br>
+              <b>ðŸšš Toimitusmaksut:</b> Riippuvat kohdemaasta<br>
+              <b>â†©ï¸ Palautusoikeus:</b> 14 pÃ¤ivÃ¤Ã¤<br>
+              <b>ï¿½ Maksu:</b> PayPal â€” maksu ennen tilauksen vahvistusta<br>
+              <b>ðŸ“§ Vahvistus:</b> Tilausvahvistus sÃ¤hkÃ¶postiisi<br>
+              <span style="font-size:.8rem;color:var(--fg-muted);margin-top:4px;display:inline-block">Tuotteen palautuskustannus: â‚¬8.99</span>
             </div>
           </div>
         </div>
@@ -81,8 +81,10 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
   <script>var ROOT = '../'; var PAGE_ID = '';</script>
-  <script src="../products.js?v=31"></script>
-  <script src="../js/shared.js?v=31"></script>
-  <script src="../js/checkout.js?v=31"></script>
+  <script src="../products.js?v=32"></script>
+  <script src="../js/shared.js?v=32"></script>
+  <script src="../js/checkout.js?v=32"></script>
 </body>
 </html>
+
+

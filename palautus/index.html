@@ -1,33 +1,33 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fi">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <!-- Security Headers -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://cdn.jsdelivr.net https://www.paypal.com https://*.paypal.com https://*.paypalobjects.com https://apis.google.com https://*.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https: data: blob:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://safenote.co https://formsubmit.co https://feedback.aliexpress.com http://ip-api.com https://*.paypal.com https://*.paypalobjects.com; frame-src https://www.paypal.com https://*.paypal.com https://www.sandbox.paypal.com https://*.firebaseapp.com https://accounts.google.com https://*.google.com;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://cdn.jsdelivr.net https://www.paypal.com https://*.paypal.com https://*.paypalobjects.com https://apis.google.com https://*.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https: data: blob:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://safenote.co https://formsubmit.co https://feedback.aliexpress.com https://*.paypal.com https://*.paypalobjects.com; frame-src https://www.paypal.com https://*.paypal.com https://www.sandbox.paypal.com https://*.firebaseapp.com https://accounts.google.com https://*.google.com;">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>Palautus – ERÄT.FI</title>
+  <title>Palautus â€“ ERÃ„T.FI</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=31">
+  <link rel="stylesheet" href="../css/style.css?v=32">
 </head>
 <body>
 
   <main id="pageContent" class="return-page view-fade">
     <div class="container">
-      <a class="detail-back" href="../">← Takaisin kauppaan</a>
+      <a class="detail-back" href="../">â† Takaisin kauppaan</a>
 
       <!-- Login required message -->
       <div id="returnLoginRequired" style="text-align:center;padding:60px 20px;">
-        <h2 style="margin-bottom:12px">Kirjaudu sisään</h2>
-        <p style="color:var(--fg-muted);margin-bottom:24px">Palautus- ja reklamaatiolomake vaatii kirjautumisen Google-tilillä, jotta voimme hakea tilauksesi.</p>
-        <button class="btn" onclick="signInWithGoogle()" style="padding:14px 32px;font-size:1rem">🔑 Kirjaudu Google-tilillä</button>
+        <h2 style="margin-bottom:12px">Kirjaudu sisÃ¤Ã¤n</h2>
+        <p style="color:var(--fg-muted);margin-bottom:24px">Palautus- ja reklamaatiolomake vaatii kirjautumisen Google-tilillÃ¤, jotta voimme hakea tilauksesi.</p>
+        <button class="btn" onclick="signInWithGoogle()" style="padding:14px 32px;font-size:1rem">ðŸ”‘ Kirjaudu Google-tilillÃ¤</button>
       </div>
 
       <div class="return-form-container" id="returnFormContent" style="display:none">
         <h1>Palautus- ja reklamaatiolomake</h1>
-        <p class="subtitle">Valitse tilaus, syy ja liitä kuva tuotteesta. Käsittelemme pyyntösi 1–3 arkipäivän kuluessa.</p>
+        <p class="subtitle">Valitse tilaus, syy ja liitÃ¤ kuva tuotteesta. KÃ¤sittelemme pyyntÃ¶si 1â€“3 arkipÃ¤ivÃ¤n kuluessa.</p>
 
         <div class="form-group">
           <label>Valitse tilaus *</label>
@@ -41,7 +41,7 @@
           <input type="text" id="retName" placeholder="Etunimi Sukunimi" readonly>
         </div>
         <div class="form-group">
-          <label>Sähköposti *</label>
+          <label>SÃ¤hkÃ¶posti *</label>
           <input type="email" id="retEmail" placeholder="email@esimerkki.fi" readonly>
         </div>
         <div class="form-group">
@@ -49,7 +49,7 @@
           <select id="retReason">
             <option value="">Valitse syy...</option>
             <option value="Tuote vaurioitunut">Tuote vaurioitunut kuljetuksessa</option>
-            <option value="Väärä tuote">Väärä tuote toimitettu</option>
+            <option value="VÃ¤Ã¤rÃ¤ tuote">VÃ¤Ã¤rÃ¤ tuote toimitettu</option>
             <option value="Tuote ei vastaa kuvausta">Tuote ei vastaa kuvausta</option>
             <option value="Tuote viallinen">Tuote viallinen / ei toimi</option>
             <option value="Haluan palauttaa">Haluan palauttaa tuotteen (14 pv)</option>
@@ -58,26 +58,26 @@
         </div>
         <div class="form-group">
           <label>Kuvaus</label>
-          <textarea id="retDescription" rows="4" placeholder="Kerro tarkemmin ongelmasta tai palautuksen syystä..."></textarea>
+          <textarea id="retDescription" rows="4" placeholder="Kerro tarkemmin ongelmasta tai palautuksen syystÃ¤..."></textarea>
         </div>
 
         <label style="display:block;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--fg-muted);margin-bottom:8px;">Kuva tuotteesta * <span style="font-weight:400;text-transform:none;color:var(--danger)">(pakollinen)</span></label>
         <div class="return-upload-area" id="retUploadArea">
-          <div class="upload-icon">📷</div>
-          <div class="upload-text">Klikkaa tai raahaa kuva tähän<br><b>JPG, PNG, WebP – max 20 MB</b></div>
+          <div class="upload-icon">ðŸ“·</div>
+          <div class="upload-text">Klikkaa tai raahaa kuva tÃ¤hÃ¤n<br><b>JPG, PNG, WebP â€“ max 20 MB</b></div>
         </div>
         <input type="file" id="retFileInput" accept="image/jpeg,image/png,image/webp" style="display:none">
         <div id="retPreviewWrap"></div>
         <div id="retUploadStatus"></div>
 
-        <button class="btn" style="width:100%;text-align:center;padding:18px;font-size:1.05rem;margin-top:16px" onclick="submitReturnForm()" id="retSubmitBtn">Lähetä palautuspyyntö</button>
+        <button class="btn" style="width:100%;text-align:center;padding:18px;font-size:1.05rem;margin-top:16px" onclick="submitReturnForm()" id="retSubmitBtn">LÃ¤hetÃ¤ palautuspyyntÃ¶</button>
       </div>
 
       <div id="returnSuccess" class="return-success" style="display:none">
-        <h2>✓ Palautuspyyntö lähetetty!</h2>
+        <h2>âœ“ PalautuspyyntÃ¶ lÃ¤hetetty!</h2>
         <div class="return-id" id="returnIdDisplay"></div>
-        <p>Olemme vastaanottaneet palautuspyyntösi. Saat vahvistuksen sähköpostiisi.</p>
-        <p>Käsittelemme pyyntösi 1–3 arkipäivän kuluessa ja otamme yhteyttä sähköpostitse jatkotoimenpiteistä.</p>
+        <p>Olemme vastaanottaneet palautuspyyntÃ¶si. Saat vahvistuksen sÃ¤hkÃ¶postiisi.</p>
+        <p>KÃ¤sittelemme pyyntÃ¶si 1â€“3 arkipÃ¤ivÃ¤n kuluessa ja otamme yhteyttÃ¤ sÃ¤hkÃ¶postitse jatkotoimenpiteistÃ¤.</p>
         <a class="btn" href="../" style="margin-top:16px">Takaisin kauppaan</a>
       </div>
     </div>
@@ -88,8 +88,10 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
   <script>var ROOT = '../'; var PAGE_ID = 'return';</script>
-  <script src="../products.js?v=31"></script>
-  <script src="../js/shared.js?v=31"></script>
-  <script src="../js/return.js?v=31"></script>
+  <script src="../products.js?v=32"></script>
+  <script src="../js/shared.js?v=32"></script>
+  <script src="../js/return.js?v=32"></script>
 </body>
 </html>
+
+

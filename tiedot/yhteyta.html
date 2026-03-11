@@ -1,46 +1,46 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fi">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <!-- Security Headers -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://cdn.jsdelivr.net https://www.paypal.com https://*.paypal.com https://*.paypalobjects.com https://apis.google.com https://*.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https: data: blob:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://safenote.co https://formsubmit.co https://feedback.aliexpress.com http://ip-api.com https://*.paypal.com https://*.paypalobjects.com; frame-src https://www.paypal.com https://*.paypal.com https://www.sandbox.paypal.com https://*.firebaseapp.com https://accounts.google.com https://*.google.com;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://cdn.jsdelivr.net https://www.paypal.com https://*.paypal.com https://*.paypalobjects.com https://apis.google.com https://*.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https: data: blob:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://safenote.co https://formsubmit.co https://feedback.aliexpress.com https://*.paypal.com https://*.paypalobjects.com; frame-src https://www.paypal.com https://*.paypal.com https://www.sandbox.paypal.com https://*.firebaseapp.com https://accounts.google.com https://*.google.com;">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>Ota yhteyttä – ERÄT.FI</title>
+  <title>Ota yhteyttÃ¤ â€“ ERÃ„T.FI</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=31">
+  <link rel="stylesheet" href="../css/style.css?v=32">
 </head>
 <body>
 
   <main id="pageContent" class="info-page view-fade">
     <div class="container">
-      <a class="detail-back" href="../">← Takaisin kauppaan</a>
+      <a class="detail-back" href="../">â† Takaisin kauppaan</a>
 
-      <h1>Ota yhteyttä</h1>
-      <p class="subtitle">Autamme mielellämme! Vastaamme viesteihin 1–3 arkipäivän kuluessa.</p>
+      <h1>Ota yhteyttÃ¤</h1>
+      <p class="subtitle">Autamme mielellÃ¤mme! Vastaamme viesteihin 1â€“3 arkipÃ¤ivÃ¤n kuluessa.</p>
 
       <div class="info-section">
-        <h2>📧 Sähköposti</h2>
+        <h2>ðŸ“§ SÃ¤hkÃ¶posti</h2>
         <p>Yleiset kysymykset ja asiakaspalvelu:</p>
         <p style="font-size:1.1rem;font-weight:600;"><a href="mailto:sovelluksenkehittaja@gmail.com">sovelluksenkehittaja@gmail.com</a></p>
       </div>
 
       <div class="info-section">
-        <h2>📋 Palautukset ja reklamaatiot</h2>
-        <p>Käytä palautuslomakettamme, niin käsittelemme pyyntösi mahdollisimman nopeasti:</p>
-        <a class="btn btn--sm" href="../palautus/" style="margin-top:8px">📦 Palautuslomake</a>
+        <h2>ðŸ“‹ Palautukset ja reklamaatiot</h2>
+        <p>KÃ¤ytÃ¤ palautuslomakettamme, niin kÃ¤sittelemme pyyntÃ¶si mahdollisimman nopeasti:</p>
+        <a class="btn btn--sm" href="../palautus/" style="margin-top:8px">ðŸ“¦ Palautuslomake</a>
       </div>
 
       <div class="info-section">
-        <h2>💬 Yhteydenottolomake</h2>
+        <h2>ðŸ’¬ Yhteydenottolomake</h2>
         <div class="form-group">
           <label>Nimi *</label>
           <input type="text" id="contactName" placeholder="Nimesi">
         </div>
         <div class="form-group">
-          <label>Sähköposti *</label>
+          <label>SÃ¤hkÃ¶posti *</label>
           <input type="email" id="contactEmail" placeholder="email@esimerkki.fi">
         </div>
         <div class="form-group">
@@ -51,29 +51,29 @@
             <option value="Tuotteet">Tuotetta koskeva kysymys</option>
             <option value="Toimitus">Toimitusta koskeva kysymys</option>
             <option value="Palautus">Palautus / reklamaatio</option>
-            <option value="Yhteistyö">Yhteistyöehdotus</option>
+            <option value="YhteistyÃ¶">YhteistyÃ¶ehdotus</option>
             <option value="Muu">Muu asia</option>
           </select>
         </div>
         <div class="form-group">
           <label>Viesti *</label>
-          <textarea id="contactMessage" rows="5" placeholder="Kirjoita viestisi tähän..."></textarea>
+          <textarea id="contactMessage" rows="5" placeholder="Kirjoita viestisi tÃ¤hÃ¤n..."></textarea>
         </div>
-        <button class="btn" onclick="submitContact()" id="contactBtn" style="width:100%;text-align:center;padding:16px;">Lähetä viesti</button>
+        <button class="btn" onclick="submitContact()" id="contactBtn" style="width:100%;text-align:center;padding:16px;">LÃ¤hetÃ¤ viesti</button>
       </div>
 
       <div id="contactSuccess" style="display:none;text-align:center;padding:40px 0;">
-        <h2>✓ Viesti lähetetty!</h2>
+        <h2>âœ“ Viesti lÃ¤hetetty!</h2>
         <p>Kiitos yhteydenotostasi. Vastaamme mahdollisimman pian.</p>
         <a class="btn" href="../" style="margin-top:16px">Takaisin kauppaan</a>
       </div>
 
       <div class="info-section">
-        <h2>ℹ️ Yritystiedot</h2>
-        <p><b>Erät.fi</b><br>
+        <h2>â„¹ï¸ Yritystiedot</h2>
+        <p><b>ErÃ¤t.fi</b><br>
         Suomalainen verkkokauppa<br>
         Y-tunnus: Tulossa<br>
-        Sähköposti: sovelluksenkehittaja@gmail.com</p>
+        SÃ¤hkÃ¶posti: sovelluksenkehittaja@gmail.com</p>
       </div>
     </div>
   </main>
@@ -83,8 +83,8 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
   <script>var ROOT = '../'; var PAGE_ID = '';</script>
-  <script src="../products.js?v=31"></script>
-  <script src="../js/shared.js?v=31"></script>
+  <script src="../products.js?v=32"></script>
+  <script src="../js/shared.js?v=32"></script>
   <script>
     function submitContact() {
       var name = document.getElementById('contactName').value.trim();
@@ -93,12 +93,12 @@
       var message = document.getElementById('contactMessage').value.trim();
 
       if (!name || !email || !message) {
-        showToast('Täytä kaikki pakolliset kentät!');
+        showToast('TÃ¤ytÃ¤ kaikki pakolliset kentÃ¤t!');
         return;
       }
       var btn = document.getElementById('contactBtn');
       btn.disabled = true;
-      btn.textContent = 'Lähetetään...';
+      btn.textContent = 'LÃ¤hetetÃ¤Ã¤n...';
 
       var fd = new FormData();
       fd.append('Nimi', name);
@@ -126,11 +126,11 @@
         }
         document.querySelector('.info-section:has(#contactName)') && document.querySelectorAll('.info-section').forEach(function(el, i) { if (i === 2) el.style.display = 'none'; });
         document.getElementById('contactSuccess').style.display = 'block';
-        showToast('Viesti lähetetty!');
+        showToast('Viesti lÃ¤hetetty!');
       }).catch(function() {
         btn.disabled = false;
-        btn.textContent = 'Lähetä viesti';
-        showToast('Virhe! Yritä myöhemmin uudelleen.');
+        btn.textContent = 'LÃ¤hetÃ¤ viesti';
+        showToast('Virhe! YritÃ¤ myÃ¶hemmin uudelleen.');
       });
     }
 
@@ -148,3 +148,5 @@
   </script>
 </body>
 </html>
+
+
