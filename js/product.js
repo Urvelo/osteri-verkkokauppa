@@ -35,15 +35,23 @@
     // Price
     updateDetailPrice(shopPrice(p.salePrice), shopPrice(p.originalPrice));
 
-    // Gallery
+    // Gallery – filter out broken images
     var imgs = (p.images && p.images.length) ? p.images : [p.image];
     var mainImg = document.getElementById('mainImage');
     mainImg.src = imgs[0];
+    mainImg.onerror = function() {
+      this.onerror = null;
+      this.style.display = 'none';
+      var fallback = document.createElement('div');
+      fallback.className = 'gallery-fallback';
+      fallback.textContent = pTitle(p);
+      this.parentNode.appendChild(fallback);
+    };
     mainImg.onclick = function() { zoomImage(imgs[0]); };
     var thumbs = '';
     imgs.forEach(function(img, i) {
-      thumbs += '<div class="gallery-thumb ' + (i === 0 ? 'active' : '') + '" onclick="selectThumb(this, \'' + img + '\')">' +
-        '<img src="' + img + '" alt=""></div>';
+      thumbs += '<div class="gallery-thumb ' + (i === 0 ? 'active' : '') + '" onclick="selectThumb(this, \'' + img + '\')">'
+        + '<img src="' + img + '" alt="" onerror="this.parentNode.style.display=\'none\'"></div>';
     });
     document.getElementById('galleryThumbs').innerHTML = thumbs;
 
@@ -82,7 +90,7 @@
     if (descImgs.length > 0) {
       descSection.style.display = 'block';
       descContainer.innerHTML = descImgs.map(function(src) {
-        return '<img src="' + src + '" alt="Tuotekuva" loading="lazy" onclick="zoomImage(\'' + src + '\')" style="cursor:zoom-in">';
+        return '<img src="' + src + '" alt="Tuotekuva" loading="lazy" onclick="zoomImage(\'' + src + '\')" style="cursor:zoom-in" onerror="this.style.display=\'none\'">';
       }).join('');
     }
 
@@ -123,7 +131,7 @@
       var imgs = '';
       if (r.images && r.images.length) {
         imgs = '<div class="review-images">' + r.images.map(function(src) {
-          return '<img src="' + src + '" alt="" loading="lazy" onclick="zoomImage(\'' + src + '\')" style="cursor:zoom-in">';
+          return '<img src="' + src + '" alt="" loading="lazy" onclick="zoomImage(\'' + src + '\')" style="cursor:zoom-in" onerror="this.style.display=\'none\'">';
         }).join('') + '</div>';
       }
       var flag = countryFlag(r.country);
@@ -182,7 +190,11 @@
       updateDetailPrice(shopPrice(selectedSku.price), shopPrice(selectedSku.originalPrice || currentProduct.originalPrice));
       updateStockInfo(selectedSku.stock);
       if (selectedSku.image) {
-        document.getElementById('mainImage').src = selectedSku.image;
+        var mi = document.getElementById('mainImage');
+        mi.style.display = '';
+        var oldFb = mi.parentNode.querySelector('.gallery-fallback');
+        if (oldFb) oldFb.remove();
+        mi.src = selectedSku.image;
       }
       // Reset qty if exceeds new stock
       if (qty > selectedSku.stock && selectedSku.stock > 0) {

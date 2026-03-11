@@ -37,7 +37,7 @@
     cart.forEach(function(item) {
       var shortTitle = item.title.length > 40 ? item.title.substring(0, 38) + '\u2026' : item.title;
       html += '<div class="checkout-item">' +
-        '<img src="' + item.image + '" alt="">' +
+        '<img src="' + item.image + '" alt="" onerror="this.style.display=\'none\'">' +
         '<div class="checkout-item-info">' +
         '<div class="checkout-item-title">' + shortTitle + '</div>' +
         '<div class="checkout-item-meta">' + (item.variant ? item.variant + ' \u00b7 ' : '') + item.qty + ' kpl</div>' +

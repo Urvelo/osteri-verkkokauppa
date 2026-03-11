@@ -3,6 +3,21 @@
    Firebase, Auth, Cart, UI Components, Receipts, Helpers
    =================================================================== */
 
+// Global: hide any broken image across all pages
+document.addEventListener('error', function(e) {
+  if (e.target.tagName === 'IMG') {
+    e.target.style.display = 'none';
+    // For product cards: show text fallback
+    var wrap = e.target.closest('.product-image-wrap');
+    if (wrap && !wrap.querySelector('.product-image-fallback')) {
+      var fb = document.createElement('div');
+      fb.className = 'product-image-fallback';
+      fb.textContent = e.target.alt || 'Tuote';
+      wrap.appendChild(fb);
+    }
+  }
+}, true);
+
 // ROOT is set by each page before loading this script
 if (typeof ROOT === 'undefined') var ROOT = '';
 if (typeof PAGE_ID === 'undefined') var PAGE_ID = '';
@@ -148,7 +163,7 @@ function renderCart() {
   cart.forEach(function(item, i) {
     var stock = getStockForCartItem(item);
     html += '<div class="cart-item">' +
-      '<img class="cart-item-img" src="' + item.image + '" alt="">' +
+      '<img class="cart-item-img" src="' + item.image + '" alt="" onerror="this.style.display=\'none\'">' +
       '<div class="cart-item-info">' +
       '<div class="cart-item-title">' + item.title + '</div>' +
       (item.variant ? '<div class="cart-item-variant">' + item.variant + '</div>' : '') +

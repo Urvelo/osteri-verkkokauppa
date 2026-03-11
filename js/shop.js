@@ -63,7 +63,7 @@
       html += '<div class="product-card" onclick="openProduct(\'' + p.id + '\')">' +
         '<div class="product-image-wrap">' +
         '<img src="' + p.image + '" alt="' + pTitle(p) + '" class="product-image" loading="lazy" ' +
-        'onerror="this.onerror=null;this.src=\'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22><rect fill=%22%23242424%22 width=%22200%22 height=%22200%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%23666%22 font-size=%2216%22 text-anchor=%22middle%22 dy=%22.3em%22>Kuva</text></svg>\'">' +
+        'onerror="this.onerror=null;this.style.display=\'none\';var f=document.createElement(\'div\');f.className=\'product-image-fallback\';f.textContent=this.alt;this.parentNode.appendChild(f);">' +
         (disc >= 15 ? '<span class="product-badge">-' + disc + '%</span>' : '') +
         stockLabel +
         '</div>' +
