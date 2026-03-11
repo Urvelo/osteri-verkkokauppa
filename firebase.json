@@ -1,4 +1,29 @@
 {
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      ".firebaserc",
+      ".git",
+      ".github",
+      "functions",
+      "node_modules",
+      "scripts",
+      "firestore.rules",
+      "*.log"
+    ],
+    "headers": [
+      {
+        "source": "**/*.@(js|css)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=3600"
+          }
+        ]
+      }
+    ]
+  },
   "functions": [
     {
       "source": "functions",
