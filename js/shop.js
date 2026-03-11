@@ -64,7 +64,6 @@
         '<div class="product-image-wrap">' +
         '<img src="' + p.image + '" alt="' + pTitle(p) + '" class="product-image" loading="lazy" ' +
         'onerror="this.onerror=null;this.style.display=\'none\';var f=document.createElement(\'div\');f.className=\'product-image-fallback\';f.textContent=this.alt;this.parentNode.appendChild(f);">' +
-        (disc >= 15 ? '<span class="product-badge">-' + disc + '%</span>' : '') +
         stockLabel +
         '</div>' +
         '<div class="product-info">' +
@@ -75,8 +74,6 @@
         '</div>' +
         '<div class="product-price-row">' +
         '<span class="product-price">\u20ac' + sp.toFixed(2) + '</span>' +
-        (op > sp ? '<span class="product-orig-price">\u20ac' + op.toFixed(2) + '</span>' : '') +
-        (disc >= 10 ? '<span class="product-discount">-' + disc + '%</span>' : '') +
         '</div></div>' +
         '<div class="product-card-btn">Katso tuote \u2192</div></div>';
     }

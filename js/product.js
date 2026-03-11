@@ -37,10 +37,10 @@
     // Price
     updateDetailPrice(shopPrice(p.salePrice), shopPrice(p.originalPrice));
 
-// Gallery – combine product images + description images
+// Gallery – pick up to 5 good images (product images first, then description images)
     var imgs = (p.images && p.images.length) ? p.images : [p.image];
     var descImgs = p.descriptionImages || [];
-    var allImgs = imgs.concat(descImgs);
+    var allImgs = imgs.concat(descImgs).slice(0, 5);
     var mainImg = document.getElementById('mainImage');
     mainImg.src = allImgs[0];
     mainImg.onerror = function() {
@@ -174,18 +174,9 @@
 
   function updateDetailPrice(sale, orig) {
     document.getElementById('detailPrice').textContent = '\u20ac' + parseFloat(sale).toFixed(2);
-    var origEl = document.getElementById('detailOrigPrice');
-    var discEl = document.getElementById('detailDiscount');
-    if (orig > sale) {
-      origEl.textContent = '\u20ac' + parseFloat(orig).toFixed(2);
-      origEl.style.display = 'inline';
-      var d = getDiscount(sale, orig);
-      if (d >= 5) { discEl.textContent = '-' + d + '%'; discEl.style.display = 'inline-block'; }
-      else discEl.style.display = 'none';
-    } else {
-      origEl.style.display = 'none';
-      discEl.style.display = 'none';
-    }
+    // Hide original price & discount – not shown
+    document.getElementById('detailOrigPrice').style.display = 'none';
+    document.getElementById('detailDiscount').style.display = 'none';
   }
 
   function updateStockInfo(stock) {
