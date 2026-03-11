@@ -526,9 +526,9 @@ footer a:hover { color: var(--accent); }
 .cookie-inner { max-width: var(--max-w); margin: 0 auto; padding: 20px var(--pad); display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
 .cookie-inner p { flex: 1; min-width: 200px; font-size: .85rem; line-height: 1.5; color: var(--fg-muted); }
 .cookie-inner p a { color: var(--accent); text-decoration: underline; }
-.cookie-buttons { display: flex; gap: 10px; flex-shrink: 0; }
-.cookie-accept { padding: 10px 24px !important; font-size: .85rem !important; }
-.cookie-decline { padding: 10px 18px !important; font-size: .8rem !important; color: var(--fg-muted) !important; border-color: var(--border) !important; }
+.cookie-buttons { display: flex; gap: 10px; flex-shrink: 0; align-items: center; }
+.cookie-accept { padding: 12px 28px !important; font-size: .9rem !important; font-weight: 700 !important; letter-spacing: .03em; }
+.cookie-decline { padding: 0 !important; font-size: .7rem !important; color: #555 !important; border: none !important; background: none !important; text-decoration: underline; opacity: .6; cursor: pointer; }
 @media (max-width: 600px) {
   .cookie-inner { flex-direction: column; text-align: center; padding: 16px; gap: 12px; }
   .cookie-buttons { width: 100%; justify-content: center; }
