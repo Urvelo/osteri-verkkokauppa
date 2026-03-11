@@ -119,6 +119,10 @@ function formatOrders(n) {
 function getDiscount(sale, orig) {
   return orig > sale ? Math.round((1 - sale / orig) * 100) : 0;
 }
+function formatPrice(price) {
+  var parts = price.toFixed(2).split('.');
+  return parts[0] + '<span class="cents">.' + parts[1] + '</span>';
+}
 function pTitle(p) { return p.title_fi || p.title; }
 
 /* ===== CART ===== */

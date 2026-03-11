@@ -73,7 +73,7 @@
         '<span>' + formatOrders(p.orders) + ' myyty</span>' +
         '</div>' +
         '<div class="product-price-row">' +
-        '<span class="product-price">\u20ac' + sp.toFixed(2) + '</span>' +
+        '<span class="product-price">' + formatPrice(sp) + '</span>' +
         '</div></div>' +
         '<div class="product-card-btn">Katso tuote \u2192</div></div>';
     }

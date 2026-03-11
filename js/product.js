@@ -69,7 +69,7 @@
         var oos = s.stock <= 0;
         var name = s.name || ('Vaihtoehto ' + (i + 1));
         opts += '<button class="variant-opt ' + (oos ? 'out-of-stock' : '') + '" data-idx="' + i + '" onclick="selectVariant(' + i + ')"' + (oos ? ' disabled' : '') + '>' +
-          name + ' \u2013 \u20ac' + shopPrice(s.price).toFixed(2) + '</button>';
+          name + ' \u2013 ' + shopPrice(s.price).toFixed(2).replace(/\.(\d{2})/, '<span class="cents">.$1</span>') + '</button>';
       });
       document.getElementById('variantOptions').innerHTML = opts;
       var first = skus.findIndex(function(s) { return s.stock > 0; });
@@ -173,7 +173,7 @@
   }
 
   function updateDetailPrice(sale, orig) {
-    document.getElementById('detailPrice').textContent = '\u20ac' + parseFloat(sale).toFixed(2);
+    document.getElementById('detailPrice').innerHTML = formatPrice(parseFloat(sale));
     // Hide original price & discount – not shown
     document.getElementById('detailOrigPrice').style.display = 'none';
     document.getElementById('detailDiscount').style.display = 'none';

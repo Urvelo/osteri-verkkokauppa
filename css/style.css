@@ -78,6 +78,7 @@ select.filter-select { padding: 9px 14px; background: var(--card-bg); border: 1p
 .stars { color: var(--accent); letter-spacing: 1px; }
 .product-price-row { margin-top: auto; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
 .product-price { font-size: 1.3rem; font-weight: 800; color: var(--accent); }
+.cents { font-size: 0.75em; font-weight: 600; }
 .product-orig-price { font-size: .85rem; color: var(--fg-muted); text-decoration: line-through; }
 .product-discount { font-size: .75rem; font-weight: 700; color: var(--danger); background: rgba(229,57,53,.15); padding: 2px 6px; }
 .product-card-btn { display: block; text-align: center; padding: 10px; background: transparent; border-top: 1px solid var(--border); color: var(--accent); font-weight: 700; font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; transition: all .15s; -webkit-user-select: none; user-select: none; }
