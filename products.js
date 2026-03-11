@@ -1,4 +1,4 @@
-﻿const PRODUCTS = [
+const PRODUCTS = [
   {
     "id": "1005007433246294",
     "title": "500ML Temperature Display Thermos Cup Stainless Steel Divided Thermos Bottle Outdoor Vacuum Insulated Cup Father's Day Gift",
@@ -101,7 +101,7 @@
     ],
     "evaluationCount": "3871",
     "salesCount": "10000+",
-    "title_fi": "LÃ¤mpÃ¶tilÃ¤nÃ¤ytÃ¶llinen termospullo 500ml  ruostumaton terÃ¤s"
+    "title_fi": "Lämpötilänäytöllinen termospullo 500ml  ruostumaton teräs"
   },
   {
     "id": "1005007406737898",
@@ -233,7 +233,7 @@
     ],
     "evaluationCount": "2978",
     "salesCount": "10000+",
-    "title_fi": "Urheilujuomapullo 1L  vuotamaton, vÃ¤rikÃ¤s"
+    "title_fi": "Urheilujuomapullo 1L  vuotamaton, värikäs"
   },
   {
     "id": "1005007264395061",
@@ -512,7 +512,7 @@
     ],
     "evaluationCount": "982",
     "salesCount": "5000+",
-    "title_fi": "Ruostumaton terÃ¤skulho 12kpl  maalaukseen ja sekoitukseen"
+    "title_fi": "Ruostumaton teräskulho 12kpl  maalaukseen ja sekoitukseen"
   },
   {
     "id": "1005009013514690",
@@ -535,7 +535,7 @@
     "score": "4.7",
     "evaluateRate": "94.0",
     "categoryId": "15,200000920,200353143,200355145",
-    "description": "<p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">â€¢ Stainless Steel Material :Crafted from high-quality stainless steel, these milk jugs are durable, rust-resistant, and perfect for long-term use.</span></p><p><br/><br/><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">â€¢ Versatile Capacity Options :Available in 150ml, 350ml, 600ml sizes, these milk jugs can accommodate various brewing needs, from a single serving to a group gathering.</span></p><p><br/><br/><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">â€¢ Frothing Pitcher Design :Designed as a frothing pitcher, it helps to create a rich, creamy froth for your coffee, latte, or other beverages, enhancing the taste and texture.</span></p><p><br/><br/><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">â€¢ Fashionable Craft :With its fashionable stainless steel design, this milk jug adds a stylish touch to your coffee routine, making it not only a functional tool but also a fashion accessory.</span></p><p><br/><br/><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">â€¢ Easy to Clean :The smooth surface of the stainless steel material makes these milk jugs easy to clean, ensuring hygiene and longevity.</span></p><p><br/><br/><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">â€¢ Origin : Mainland China</span></p><p><br/></p><p><br/><br/><br/><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">Features:</span></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">Made of high quality stainless steel, rustproof ï¼† durable</span></p><p><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">Used to heat and froth milk, great for lattes, macchiatos or cappuccinos</span></p><p><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">150 ml, 350 ml, 600 ml,  different capacity to meet your different need</span></p><p><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">Dripless spout is designed for precise pours and won&#x27;t make a mess of the counter top</span></p><p><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">Ergonomic handle not only comfortable to grip but also easy to wash in the dishwasher</span></p><p><br/></p><p><br/><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">Specification:</span></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">Capacity 10ml: caliber 4.8cm, height 5.5cm, bottom diameter 5cm</span></p><p><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">Capacity 350ml : caliber 6.5cm, height 9.3cm, bottom diameter 7.5cm</span></p><p><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">Capacity 600ml: caliber 7.6cm, height 11cm, bottom diameter 9cmCapacity 1000ml: caliber 9cm, height 14cm, bottom diameter 10.5cm</span></p><p><br/></p><p><br/><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">packing list:</span></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">1*Milk Jugs</span></p><p><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">Remind:</span></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">Due to manual measurement, there may be errors in the dimensionsand weight. Please understand.</span></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">Colors may have color differences due to factors such as light, saturation, and pixels. We apologize for any inconvenience caused.</span></p><p><img width=\"890\" height=\"890\" src=\"https://ae01.alicdn.com/kf/Scf9f5994670d47a798f2d3e3c13dd5101.jpg\" slate-data-type=\"image\"/><img width=\"889\" height=\"889\" src=\"https://ae01.alicdn.com/kf/Sbe5c6ce6c4434925adbec048e18b22e4Y.jpg\" slate-data-type=\"image\"/><img width=\"890\" height=\"890\" src=\"https://ae01.alicdn.com/kf/S660f63384baf4628a1b59673c9666138M.jpg\" slate-data-type=\"image\"/><img width=\"891\" height=\"891\" src=\"https://ae01.alicdn.com/kf/S19adc56f248d4f76ac36120c52a106f9A.jpg\" slate-data-type=\"image\"/></p><p><img width=\"894\" height=\"894\" src=\"https://ae01.alicdn.com/kf/S07f9d73ac9c04853afa06ab83d8f2100j.jpg\" slate-data-type=\"image\"/><img width=\"892\" height=\"892\" src=\"https://ae01.alicdn.com/kf/S5481761acf394c11ad999dfa9c5cedd05.jpg\" slate-data-type=\"image\"/><img width=\"892\" height=\"892\" src=\"https://ae01.alicdn.com/kf/S8e99277e8370434da2a3171fac7a2aa5n.jpg\" slate-data-type=\"image\"/><img width=\"893\" heig",
+    "description": "<p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">• Stainless Steel Material :Crafted from high-quality stainless steel, these milk jugs are durable, rust-resistant, and perfect for long-term use.</span></p><p><br/><br/><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">• Versatile Capacity Options :Available in 150ml, 350ml, 600ml sizes, these milk jugs can accommodate various brewing needs, from a single serving to a group gathering.</span></p><p><br/><br/><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">• Frothing Pitcher Design :Designed as a frothing pitcher, it helps to create a rich, creamy froth for your coffee, latte, or other beverages, enhancing the taste and texture.</span></p><p><br/><br/><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">• Fashionable Craft :With its fashionable stainless steel design, this milk jug adds a stylish touch to your coffee routine, making it not only a functional tool but also a fashion accessory.</span></p><p><br/><br/><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">• Easy to Clean :The smooth surface of the stainless steel material makes these milk jugs easy to clean, ensuring hygiene and longevity.</span></p><p><br/><br/><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">• Origin : Mainland China</span></p><p><br/></p><p><br/><br/><br/><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">Features:</span></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">Made of high quality stainless steel, rustproof ï¼† durable</span></p><p><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">Used to heat and froth milk, great for lattes, macchiatos or cappuccinos</span></p><p><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">150 ml, 350 ml, 600 ml,  different capacity to meet your different need</span></p><p><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">Dripless spout is designed for precise pours and won&#x27;t make a mess of the counter top</span></p><p><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">Ergonomic handle not only comfortable to grip but also easy to wash in the dishwasher</span></p><p><br/></p><p><br/><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">Specification:</span></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">Capacity 10ml: caliber 4.8cm, height 5.5cm, bottom diameter 5cm</span></p><p><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">Capacity 350ml : caliber 6.5cm, height 9.3cm, bottom diameter 7.5cm</span></p><p><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">Capacity 600ml: caliber 7.6cm, height 11cm, bottom diameter 9cmCapacity 1000ml: caliber 9cm, height 14cm, bottom diameter 10.5cm</span></p><p><br/></p><p><br/><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">packing list:</span></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">1*Milk Jugs</span></p><p><br/></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">Remind:</span></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">Due to manual measurement, there may be errors in the dimensionsand weight. Please understand.</span></p><p><span style=\"font-size:18px;font-family:&quot;times new roman&quot;, times, serif\">Colors may have color differences due to factors such as light, saturation, and pixels. We apologize for any inconvenience caused.</span></p><p><img width=\"890\" height=\"890\" src=\"https://ae01.alicdn.com/kf/Scf9f5994670d47a798f2d3e3c13dd5101.jpg\" slate-data-type=\"image\"/><img width=\"889\" height=\"889\" src=\"https://ae01.alicdn.com/kf/Sbe5c6ce6c4434925adbec048e18b22e4Y.jpg\" slate-data-type=\"image\"/><img width=\"890\" height=\"890\" src=\"https://ae01.alicdn.com/kf/S660f63384baf4628a1b59673c9666138M.jpg\" slate-data-type=\"image\"/><img width=\"891\" height=\"891\" src=\"https://ae01.alicdn.com/kf/S19adc56f248d4f76ac36120c52a106f9A.jpg\" slate-data-type=\"image\"/></p><p><img width=\"894\" height=\"894\" src=\"https://ae01.alicdn.com/kf/S07f9d73ac9c04853afa06ab83d8f2100j.jpg\" slate-data-type=\"image\"/><img width=\"892\" height=\"892\" src=\"https://ae01.alicdn.com/kf/S5481761acf394c11ad999dfa9c5cedd05.jpg\" slate-data-type=\"image\"/><img width=\"892\" height=\"892\" src=\"https://ae01.alicdn.com/kf/S8e99277e8370434da2a3171fac7a2aa5n.jpg\" slate-data-type=\"image\"/><img width=\"893\" heig",
     "descriptionImages": [
       "https://ae01.alicdn.com/kf/Scf9f5994670d47a798f2d3e3c13dd5101.jpg",
       "https://ae01.alicdn.com/kf/Sbe5c6ce6c4434925adbec048e18b22e4Y.jpg",
@@ -574,7 +574,7 @@
     ],
     "evaluationCount": "826",
     "salesCount": "5000+",
-    "title_fi": "Maidonvaahdotin kannu 150600ml  ruostumaton terÃ¤s"
+    "title_fi": "Maidonvaahdotin kannu 150600ml  ruostumaton teräs"
   },
   {
     "id": "1005006925998657",
@@ -843,7 +843,7 @@
     ],
     "evaluationCount": "2018",
     "salesCount": "5000+",
-    "title_fi": "Dolce Gusto -kahvisuodatinkupit 3kpl  uudelleenkÃ¤ytettÃ¤vÃ¤t"
+    "title_fi": "Dolce Gusto -kahvisuodatinkupit 3kpl  uudelleenkäytettävät"
   },
   {
     "id": "1005006277807357",
@@ -987,7 +987,7 @@
     ],
     "evaluationCount": "2327",
     "salesCount": "5000+",
-    "title_fi": "Automuki termos 380/510ml  vuotamaton, ruostumaton terÃ¤s"
+    "title_fi": "Automuki termos 380/510ml  vuotamaton, ruostumaton teräs"
   },
   {
     "id": "1005006721088217",
@@ -1043,7 +1043,7 @@
     ],
     "evaluationCount": "2774",
     "salesCount": "5000+",
-    "title_fi": "PyÃ¶rÃ¤n juomapullo 750ml  urheiluun ja retkeilyyn"
+    "title_fi": "Pyörän juomapullo 750ml  urheiluun ja retkeilyyn"
   },
   {
     "id": "1005008234228012",
@@ -1084,7 +1084,7 @@
     ],
     "evaluationCount": "2187",
     "salesCount": "5000+",
-    "title_fi": "TerÃ¤spillit silikonikÃ¤rjellÃ¤ 2kpl  Stanley-mukiin"
+    "title_fi": "Teräspillit silikonikärjellä 2kpl  Stanley-mukiin"
   },
   {
     "id": "1005006739422364",
@@ -1148,7 +1148,7 @@
     ],
     "evaluationCount": "2470",
     "salesCount": "5000+",
-    "title_fi": "NeliÃ¶ lasimuki kannella ja pillillÃ¤ 1kpl  kahviin ja teehen"
+    "title_fi": "Neliö lasimuki kannella ja pillillä 1kpl  kahviin ja teehen"
   },
   {
     "id": "1005006451933326",
@@ -1308,7 +1308,7 @@
     ],
     "evaluationCount": "3973",
     "salesCount": "5000+",
-    "title_fi": "Kissan ruokakuppi vinolla reunalla 15kpl  ruostumaton terÃ¤s"
+    "title_fi": "Kissan ruokakuppi vinolla reunalla 15kpl  ruostumaton teräs"
   },
   {
     "id": "1005006724908323",
@@ -1394,7 +1394,7 @@
     ],
     "evaluationCount": "1995",
     "salesCount": "4000+",
-    "title_fi": "Ruokatermos 630/1000ml  eristetty keittokuppi, terÃ¤s"
+    "title_fi": "Ruokatermos 630/1000ml  eristetty keittokuppi, teräs"
   },
   {
     "id": "1005006010452671",
@@ -1466,7 +1466,7 @@
     ],
     "evaluationCount": "2530",
     "salesCount": "4000+",
-    "title_fi": "Retki-shottilasit 4/6kpl  ruostumaton terÃ¤s, kotelolla"
+    "title_fi": "Retki-shottilasit 4/6kpl  ruostumaton teräs, kotelolla"
   },
   {
     "id": "1005006422944276",
@@ -1551,7 +1551,7 @@
     ],
     "evaluationCount": "1637",
     "salesCount": "4000+",
-    "title_fi": "TerÃ¤ksinen juomapullo 5001000ml  urheiluun"
+    "title_fi": "Teräksinen juomapullo 5001000ml  urheiluun"
   },
   {
     "id": "1005007264415814",
@@ -1791,7 +1791,7 @@
     ],
     "evaluationCount": "1355",
     "salesCount": "4000+",
-    "title_fi": "Cartoon-vesipullo 700ml  BPA-vapaa, kestÃ¤vÃ¤"
+    "title_fi": "Cartoon-vesipullo 700ml  BPA-vapaa, kestävä"
   },
   {
     "id": "1005007481818011",
@@ -1870,7 +1870,7 @@
     ],
     "evaluationCount": "1619",
     "salesCount": "4000+",
-    "title_fi": "Raidallinen lasikahvimuki 600ml  kannella ja pillillÃ¤"
+    "title_fi": "Raidallinen lasikahvimuki 600ml  kannella ja pillillä"
   },
   {
     "id": "1005006922425825",
@@ -1934,7 +1934,7 @@
     ],
     "evaluationCount": "1590",
     "salesCount": "4000+",
-    "title_fi": "Tuplasei lasi kahvikuppi 150350ml  lÃ¤mmÃ¶nkestÃ¤vÃ¤"
+    "title_fi": "Tuplasei lasi kahvikuppi 150350ml  lämmönkestävä"
   },
   {
     "id": "1005008796124357",
@@ -2130,7 +2130,7 @@
     ],
     "evaluationCount": "616",
     "salesCount": "4000+",
-    "title_fi": "Stanley-tarvikesetti 8 osaa  silikonipÃ¤Ã¤llysteet 30/40oz"
+    "title_fi": "Stanley-tarvikesetti 8 osaa  silikonipäällysteet 30/40oz"
   },
   {
     "id": "1005007989133428",
@@ -2360,7 +2360,7 @@
     ],
     "evaluationCount": "1505",
     "salesCount": "3000+",
-    "title_fi": "LED-termospullo 500ml1L  lÃ¤mpÃ¶tilÃ¤nÃ¤yttÃ¶, SUS304"
+    "title_fi": "LED-termospullo 500ml1L  lämpötilänäyttö, SUS304"
   },
   {
     "id": "1005006775876263",
@@ -2432,7 +2432,7 @@
     ],
     "evaluationCount": "3866",
     "salesCount": "3000+",
-    "title_fi": "Vesipullo 2L  pillikorkilla, aika-merkinnÃ¤llÃ¤"
+    "title_fi": "Vesipullo 2L  pillikorkilla, aika-merkinnällä"
   },
   {
     "id": "1005007928878040",
@@ -2527,7 +2527,7 @@
     ],
     "evaluationCount": "1256",
     "salesCount": "3000+",
-    "title_fi": "Mini terÃ¤stermos 230ml  taskumalli, 316-terÃ¤s"
+    "title_fi": "Mini terästermos 230ml  taskumalli, 316-teräs"
   },
   {
     "id": "1005006782010244",
@@ -2853,7 +2853,7 @@
     ],
     "evaluationCount": "3402",
     "salesCount": "3000+",
-    "title_fi": "Ulkoilutermos 304-terÃ¤s  pillikorkilla, kuuma/kylmÃ¤"
+    "title_fi": "Ulkoilutermos 304-teräs  pillikorkilla, kuuma/kylmä"
   },
   {
     "id": "1005007253784926",
@@ -3004,7 +3004,7 @@
     ],
     "evaluationCount": "832",
     "salesCount": "3000+",
-    "title_fi": "Kuppiteline seinÃ¤lle  organisointiteline kupeille"
+    "title_fi": "Kuppiteline seinälle  organisointiteline kupeille"
   },
   {
     "id": "1005010510364368",
@@ -3118,7 +3118,7 @@
     ],
     "evaluationCount": "1811",
     "salesCount": "3000+",
-    "title_fi": "Teleskooppinen terÃ¤smuki  taittuva retki- ja matkamuki"
+    "title_fi": "Teleskooppinen teräsmuki  taittuva retki- ja matkamuki"
   },
   {
     "id": "1005007299707043",
@@ -3394,7 +3394,7 @@
     "score": "4.7",
     "evaluateRate": "94.2",
     "categoryId": "15,200000920,1521,100003291",
-    "description": "<div class=\"detailmodule_html\"><div class=\"detail-desc-decorate-richtext\"><div class=\"ai-description\"><div class=\"origin-part box-sizing\"><p style=\"font-family:&quot;Open Sans&quot;, sans-serif;font-size:14px;font-weight:400;letter-spacing:normal;line-height:inherit;text-align:start;white-space:normal;color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);margin:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;box-sizing:border-box\" align=\"start\"><span style=\"background-color:rgb(255, 255, 255)\"><strong>â€¢ 300ml Capacity :</strong></span><span style=\"background-color:rgb(255, 255, 255)\">This stainless steel travel mug offers a generous 300ml capacity, perfect for keeping your beverages hot or cold during long journeys.</span></p><p><br/></p><p style=\"font-family:&quot;Open Sans&quot;, sans-serif;font-size:14px;font-weight:400;letter-spacing:normal;line-height:inherit;text-align:start;white-space:normal;color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);margin:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;box-sizing:border-box\" align=\"start\"><span style=\"background-color:rgb(255, 255, 255)\"><strong>â€¢ Insulation Performance :</strong></span><span style=\"background-color:rgb(255, 255, 255)\">With its impressive thermal insulation performance of 12-24 hours, this mug ensures your drinks stay at the ideal temperature for hours.</span></p><p><br/></p><p style=\"font-family:&quot;Open Sans&quot;, sans-serif;font-size:14px;font-weight:400;letter-spacing:normal;line-height:inherit;text-align:start;white-space:normal;color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);margin:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;box-sizing:border-box\" align=\"start\"><span style=\"background-color:rgb(255, 255, 255)\"><strong>â€¢ Durable Stainless Steel :</strong></span><span style=\"background-color:rgb(255, 255, 255)\">Constructed from robust stainless steel, this mug is designed to withstand the rigors of daily use, making it ideal for camping and outdoor adventures.</span></p><p><br/></p><p style=\"font-family:&quot;Open Sans&quot;, sans-serif;font-size:14px;font-weight:400;letter-spacing:normal;line-height:inherit;text-align:start;white-space:normal;color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);margin:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;box-sizing:border-box\" align=\"start\"><span style=\"background-color:rgb(255, 255, 255)\"><strong>â€¢ Leak-Proof Design :</strong></span><span style=\"background-color:rgb(255, 255, 255)\">The sealed lid and straw make this mug leak-proof, perfect for traveling or hiking without the worry of spills.</span></p><p><br/></p><p style=\"font-family:&quot;Open Sans&quot;, sans-serif;font-size:14px;font-weight:400;letter-spacing:normal;line-height:inherit;text-align:start;white-space:normal;color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);margin:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;box-sizing:border-box\" align=\"start\"><span style=\"background-color:rgb(255, 255, 255)\"><strong>â€¢ Convenient Portability :</strong></span><span style=\"background-color:rgb(255, 255, 255)\">Its compact and lightweight design makes it easy to carry around, making it a must-have for any traveler.</span></p><p><br/></p><p style=\"font-family:&quot;Open Sans&quot;, sans-serif;font-size:14px;font-weight:400;letter-spacing:normal;line-height:inherit;text-align:start;white-space:normal;color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);margin:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;box-sizing:border-box\" align=\"start\"><span style=\"background-color:rgb(255, 255, 255)\"><strong>â€¢ Easy Cleaning :</strong></span><span style=\"background-color:rgb(255, 255, 255)\">The inner glass liner makes this mug easy to clean, ensuring you can always enjoy your favorite beverages on the go.</span></p><p><br/></p></div></div><h1><strong>Product description</strong></h1><h2><strong>Features:</strong></h2><p><span style=\"font-size:16px\">The simple and atmospheric insulated cup is different from traditional insulated cups in that it has a round and smooth appearance. The cup body is delicate, and the bottom design is placed more smoothly. The 300ML capacity is just right, making it very suitable for travel, fitness, work, and school carrying</span></p><h2><strong>Specification:</strong></h2><p><span style=\"font-size:16px\">Color: Black/Silver/Green/Rose Gold<br/>Material:Stainless steel<br/>Package: op",
+    "description": "<div class=\"detailmodule_html\"><div class=\"detail-desc-decorate-richtext\"><div class=\"ai-description\"><div class=\"origin-part box-sizing\"><p style=\"font-family:&quot;Open Sans&quot;, sans-serif;font-size:14px;font-weight:400;letter-spacing:normal;line-height:inherit;text-align:start;white-space:normal;color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);margin:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;box-sizing:border-box\" align=\"start\"><span style=\"background-color:rgb(255, 255, 255)\"><strong>• 300ml Capacity :</strong></span><span style=\"background-color:rgb(255, 255, 255)\">This stainless steel travel mug offers a generous 300ml capacity, perfect for keeping your beverages hot or cold during long journeys.</span></p><p><br/></p><p style=\"font-family:&quot;Open Sans&quot;, sans-serif;font-size:14px;font-weight:400;letter-spacing:normal;line-height:inherit;text-align:start;white-space:normal;color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);margin:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;box-sizing:border-box\" align=\"start\"><span style=\"background-color:rgb(255, 255, 255)\"><strong>• Insulation Performance :</strong></span><span style=\"background-color:rgb(255, 255, 255)\">With its impressive thermal insulation performance of 12-24 hours, this mug ensures your drinks stay at the ideal temperature for hours.</span></p><p><br/></p><p style=\"font-family:&quot;Open Sans&quot;, sans-serif;font-size:14px;font-weight:400;letter-spacing:normal;line-height:inherit;text-align:start;white-space:normal;color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);margin:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;box-sizing:border-box\" align=\"start\"><span style=\"background-color:rgb(255, 255, 255)\"><strong>• Durable Stainless Steel :</strong></span><span style=\"background-color:rgb(255, 255, 255)\">Constructed from robust stainless steel, this mug is designed to withstand the rigors of daily use, making it ideal for camping and outdoor adventures.</span></p><p><br/></p><p style=\"font-family:&quot;Open Sans&quot;, sans-serif;font-size:14px;font-weight:400;letter-spacing:normal;line-height:inherit;text-align:start;white-space:normal;color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);margin:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;box-sizing:border-box\" align=\"start\"><span style=\"background-color:rgb(255, 255, 255)\"><strong>• Leak-Proof Design :</strong></span><span style=\"background-color:rgb(255, 255, 255)\">The sealed lid and straw make this mug leak-proof, perfect for traveling or hiking without the worry of spills.</span></p><p><br/></p><p style=\"font-family:&quot;Open Sans&quot;, sans-serif;font-size:14px;font-weight:400;letter-spacing:normal;line-height:inherit;text-align:start;white-space:normal;color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);margin:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;box-sizing:border-box\" align=\"start\"><span style=\"background-color:rgb(255, 255, 255)\"><strong>• Convenient Portability :</strong></span><span style=\"background-color:rgb(255, 255, 255)\">Its compact and lightweight design makes it easy to carry around, making it a must-have for any traveler.</span></p><p><br/></p><p style=\"font-family:&quot;Open Sans&quot;, sans-serif;font-size:14px;font-weight:400;letter-spacing:normal;line-height:inherit;text-align:start;white-space:normal;color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);margin:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;box-sizing:border-box\" align=\"start\"><span style=\"background-color:rgb(255, 255, 255)\"><strong>• Easy Cleaning :</strong></span><span style=\"background-color:rgb(255, 255, 255)\">The inner glass liner makes this mug easy to clean, ensuring you can always enjoy your favorite beverages on the go.</span></p><p><br/></p></div></div><h1><strong>Product description</strong></h1><h2><strong>Features:</strong></h2><p><span style=\"font-size:16px\">The simple and atmospheric insulated cup is different from traditional insulated cups in that it has a round and smooth appearance. The cup body is delicate, and the bottom design is placed more smoothly. The 300ML capacity is just right, making it very suitable for travel, fitness, work, and school carrying</span></p><h2><strong>Specification:</strong></h2><p><span style=\"font-size:16px\">Color: Black/Silver/Green/Rose Gold<br/>Material:Stainless steel<br/>Package: op",
     "descriptionImages": [
       "https://ae01.alicdn.com/kf/Sca34adf53ae74bb99bfad69aa749ee6df.jpg",
       "https://ae01.alicdn.com/kf/S926c39daaeed4612ac22ca185900b5dcB.jpg",
@@ -3441,7 +3441,7 @@
     ],
     "evaluationCount": "1509",
     "salesCount": "2000+",
-    "title_fi": "Eristetty matkamuki 300ml  kuuma/kylmÃ¤, retkeilyyn"
+    "title_fi": "Eristetty matkamuki 300ml  kuuma/kylmä, retkeilyyn"
   },
   {
     "id": "1005006182883003",
@@ -3504,7 +3504,7 @@
     ],
     "evaluationCount": "1077",
     "salesCount": "2000+",
-    "title_fi": "Kaapiston koukkuripustin  kuppiripustin keittiÃ¶Ã¶n"
+    "title_fi": "Kaapiston koukkuripustin  kuppiripustin keittiöön"
   },
   {
     "id": "1005007419171225",
@@ -3559,7 +3559,7 @@
     ],
     "evaluationCount": "656",
     "salesCount": "2000+",
-    "title_fi": "TerÃ¤sjuomapullo 1000ml  urheiluun ja retkeilyyn"
+    "title_fi": "Teräsjuomapullo 1000ml  urheiluun ja retkeilyyn"
   },
   {
     "id": "1005007126224403",
@@ -3582,7 +3582,7 @@
     "score": "4.7",
     "evaluateRate": "93.1",
     "categoryId": "15,200000920,1521,100003291",
-    "description": "<div class=\"detailmodule_html\"><div class=\"detail-desc-decorate-richtext\"><div class=\"ai-description\"><div class=\"origin-part box-sizing\"><p style=\"font-family:&quot;Open Sans&quot;, sans-serif;font-size:14px;font-weight:400;letter-spacing:normal;line-height:inherit;text-align:start;white-space:normal;color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);margin:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;box-sizing:border-box\" align=\"start\"><span style=\"background-color:rgb(255, 255, 255)\"><strong>â€¢ Stainless Steel Construction :</strong></span><span style=\"background-color:rgb(255, 255, 255)\">Crafted from high-quality stainless steel, this insulated cup offers superior durability and resistance to rust and corrosion, ensuring long-lasting use.</span></p><p><br/></p><p style=\"font-family:&quot;Open Sans&quot;, sans-serif;font-size:14px;font-weight:400;letter-spacing:normal;line-height:inherit;text-align:start;white-space:normal;color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);margin:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;box-sizing:border-box\" align=\"start\"><span style=\"background-color:rgb(255, 255, 255)\"><strong>â€¢ Intelligent Car Mounted Design :</strong></span><span style=\"background-color:rgb(255, 255, 255)\">Designed with a smart car mounted feature, this cup allows for hands-free drinking and operation, enhancing your driving experience.</span></p><p><br/></p><p style=\"font-family:&quot;Open Sans&quot;, sans-serif;font-size:14px;font-weight:400;letter-spacing:normal;line-height:inherit;text-align:start;white-space:normal;color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);margin:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;box-sizing:border-box\" align=\"start\"><span style=\"background-color:rgb(255, 255, 255)\"><strong>â€¢ Intelligent Water Cup :</strong></span><span style=\"background-color:rgb(255, 255, 255)\">This cup is not just a drinking tool, but an intelligent water cup that monitors temperature and provides real-time data, making it a perfect accessory for coffee or water lovers.</span></p><p><br/></p><p style=\"font-family:&quot;Open Sans&quot;, sans-serif;font-size:14px;font-weight:400;letter-spacing:normal;line-height:inherit;text-align:start;white-space:normal;color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);margin:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;box-sizing:border-box\" align=\"start\"><span style=\"background-color:rgb(255, 255, 255)\"><strong>â€¢ Gift Drinking Tool :</strong></span><span style=\"background-color:rgb(255, 255, 255)\">With its stylish design and practicality, this cup makes an ideal gift for women, whether for everyday use or as a special treat.</span></p><p><br/></p><p style=\"font-family:&quot;Open Sans&quot;, sans-serif;font-size:14px;font-weight:400;letter-spacing:normal;line-height:inherit;text-align:start;white-space:normal;color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);margin:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;box-sizing:border-box\" align=\"start\"><span style=\"background-color:rgb(255, 255, 255)\"><strong>â€¢ Vacuum Flask &amp; Thermos :</strong></span><span style=\"background-color:rgb(255, 255, 255)\">As a vacuum flask and thermos, it keeps your beverage at the desired temperature for extended periods, making it perfect for travel or outdoor activities.</span></p><p><br/></p><p style=\"font-family:&quot;Open Sans&quot;, sans-serif;font-size:14px;font-weight:400;letter-spacing:normal;line-height:inherit;text-align:start;white-space:normal;color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);margin:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;box-sizing:border-box\" align=\"start\"><span style=\"background-color:rgb(255, 255, 255)\"><strong>â€¢ Origin :</strong></span><span style=\"background-color:rgb(255, 255, 255)\"> Mainland China</span></p><p><br/></p></div></div><p style=\"font-family:Inter, &quot;Open Sans&quot;, sans-serif;font-size:medium;font-weight:400;letter-spacing:normal;line-height:1.1;text-align:start;white-space:normal;color:rgb(34, 34, 34);background-color:rgb(255, 255, 255);border:0px;margin:0px 0px 16px;margin-bottom:16px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;max-width:100%;box-sizing:inherit\" align=\"start\"><span style=\"font-size:20px;font-family:inherit\"><span style=\"font-family:inherit\"><strong>Features:",
+    "description": "<div class=\"detailmodule_html\"><div class=\"detail-desc-decorate-richtext\"><div class=\"ai-description\"><div class=\"origin-part box-sizing\"><p style=\"font-family:&quot;Open Sans&quot;, sans-serif;font-size:14px;font-weight:400;letter-spacing:normal;line-height:inherit;text-align:start;white-space:normal;color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);margin:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;box-sizing:border-box\" align=\"start\"><span style=\"background-color:rgb(255, 255, 255)\"><strong>• Stainless Steel Construction :</strong></span><span style=\"background-color:rgb(255, 255, 255)\">Crafted from high-quality stainless steel, this insulated cup offers superior durability and resistance to rust and corrosion, ensuring long-lasting use.</span></p><p><br/></p><p style=\"font-family:&quot;Open Sans&quot;, sans-serif;font-size:14px;font-weight:400;letter-spacing:normal;line-height:inherit;text-align:start;white-space:normal;color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);margin:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;box-sizing:border-box\" align=\"start\"><span style=\"background-color:rgb(255, 255, 255)\"><strong>• Intelligent Car Mounted Design :</strong></span><span style=\"background-color:rgb(255, 255, 255)\">Designed with a smart car mounted feature, this cup allows for hands-free drinking and operation, enhancing your driving experience.</span></p><p><br/></p><p style=\"font-family:&quot;Open Sans&quot;, sans-serif;font-size:14px;font-weight:400;letter-spacing:normal;line-height:inherit;text-align:start;white-space:normal;color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);margin:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;box-sizing:border-box\" align=\"start\"><span style=\"background-color:rgb(255, 255, 255)\"><strong>• Intelligent Water Cup :</strong></span><span style=\"background-color:rgb(255, 255, 255)\">This cup is not just a drinking tool, but an intelligent water cup that monitors temperature and provides real-time data, making it a perfect accessory for coffee or water lovers.</span></p><p><br/></p><p style=\"font-family:&quot;Open Sans&quot;, sans-serif;font-size:14px;font-weight:400;letter-spacing:normal;line-height:inherit;text-align:start;white-space:normal;color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);margin:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;box-sizing:border-box\" align=\"start\"><span style=\"background-color:rgb(255, 255, 255)\"><strong>• Gift Drinking Tool :</strong></span><span style=\"background-color:rgb(255, 255, 255)\">With its stylish design and practicality, this cup makes an ideal gift for women, whether for everyday use or as a special treat.</span></p><p><br/></p><p style=\"font-family:&quot;Open Sans&quot;, sans-serif;font-size:14px;font-weight:400;letter-spacing:normal;line-height:inherit;text-align:start;white-space:normal;color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);margin:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;box-sizing:border-box\" align=\"start\"><span style=\"background-color:rgb(255, 255, 255)\"><strong>• Vacuum Flask &amp; Thermos :</strong></span><span style=\"background-color:rgb(255, 255, 255)\">As a vacuum flask and thermos, it keeps your beverage at the desired temperature for extended periods, making it perfect for travel or outdoor activities.</span></p><p><br/></p><p style=\"font-family:&quot;Open Sans&quot;, sans-serif;font-size:14px;font-weight:400;letter-spacing:normal;line-height:inherit;text-align:start;white-space:normal;color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);margin:0px;margin-bottom:0px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;box-sizing:border-box\" align=\"start\"><span style=\"background-color:rgb(255, 255, 255)\"><strong>• Origin :</strong></span><span style=\"background-color:rgb(255, 255, 255)\"> Mainland China</span></p><p><br/></p></div></div><p style=\"font-family:Inter, &quot;Open Sans&quot;, sans-serif;font-size:medium;font-weight:400;letter-spacing:normal;line-height:1.1;text-align:start;white-space:normal;color:rgb(34, 34, 34);background-color:rgb(255, 255, 255);border:0px;margin:0px 0px 16px;margin-bottom:16px;margin-top:0px;margin-left:0px;margin-right:0px;padding:0px;padding-bottom:0px;padding-top:0px;padding-left:0px;padding-right:0px;max-width:100%;box-sizing:inherit\" align=\"start\"><span style=\"font-size:20px;font-family:inherit\"><span style=\"font-family:inherit\"><strong>Features:",
     "descriptionImages": [
       "https://ae01.alicdn.com/kf/S0a604bd92cb34a74bb4b37c0e27af042V.jpg",
       "https://ae01.alicdn.com/kf/S684c72c533da4ef5a7e553c4126a9ea1d.jpg",
@@ -3606,7 +3606,7 @@
     ],
     "evaluationCount": "588",
     "salesCount": "2000+",
-    "title_fi": "Ã„lytermoskuppi lÃ¤mpÃ¶tilÃ¤nÃ¤ytÃ¶llÃ¤  autoon ja toimistoon"
+    "title_fi": "Älytermoskuppi lämpötilänäytöllä  autoon ja toimistoon"
   },
   {
     "id": "1005008488809784",
@@ -4034,7 +4034,7 @@
     ],
     "evaluationCount": "612",
     "salesCount": "2000+",
-    "title_fi": "Retkikuppi 250700ml  taittuva kahva, ruostumaton terÃ¤s"
+    "title_fi": "Retkikuppi 250700ml  taittuva kahva, ruostumaton teräs"
   },
   {
     "id": "1005010285567258",
@@ -4184,7 +4184,7 @@
     "score": "4.7",
     "evaluateRate": "",
     "categoryId": "200002211",
-    "description": "<div class=\"detailmodule_image\"><img src=\"https://ae01.alicdn.com/kf/H2a6a8d10db754e2084dfadd60e1458ebn.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ><img src=\"https://ae01.alicdn.com/kf/Hcbe49c956fe742aab0e4c37be9eed706v.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ></div>\r\n<div class=\"detailmodule_text\"><p  style=\"\">Mini taza para acampar de 50ML, taza de vino para exteriores de acero inoxidable, taza de pinta ligera apilable, portÃ¡til para senderismo, pesca, escalada\nCaracterÃ­sticas:\n1. ConstrucciÃ³n de acero inoxidable de primera calidad: Nuestra mini taza de camping estÃ¡ hecha de acero inoxidable 304 de alta calidad, lo que garantiza durabilidad y resistencia a la corrosiÃ³n. La robusta construcciÃ³n garantiza un uso duradero, por lo que es una opciÃ³n fiable para actividades al aire libre como camping, senderismo y picnics.\n2. DiseÃ±o elegante y elegante: con su superficie avanzada pintada con aerosol, nuestra copa de vino al aire libre cuenta con un acabado suave y brillante. La exquisita artesanÃ­a mejora su atractivo estÃ©tico, convirtiÃ©ndolo en un accesorio de moda para cualquier ocasiÃ³n. Disfrute saboreando su bebida favorita con estilo con esta taza visualmente atractiva y llamativa.\n3. Ahorro de espacio y portÃ¡til: El exclusivo diseÃ±o apilable permite que nuestra taza de cerveza de viaje se anide cÃ³modamente, minimizando el espacio de almacenamiento y facilitando su transporte. Ya sea que estÃ© de mochilero, de viaje o simplemente de viaje, esta taza compacta y ligera ofrece portabilidad sin complicaciones, lo que garantiza que pueda disfrutar de una bebida refrescante donde quiera que estÃ©.\n4. Logotipo grabado: La mini taza de cafÃ© presenta un logotipo meticulosamente grabado con lÃ¡ser, que muestra patrones intrincados y delicados. Este toque personalizado agrega un toque de elegancia y singularidad a su taza, haciendo que se destaque entre la multitud. Disfrute del orgullo de tener una taza grabada a medida que refleje su estilo y personalidad individuales.\n5. Variedad de colores para una fÃ¡cil diferenciaciÃ³n: ofrecemos una gama de colores de tazas de pinta livianas para elegir, lo que permite que cada persona tenga su propia taza distintiva. Esto elimina la confusiÃ³n de mezclar tazas durante reuniones o eventos. Disfrute de la comodidad y la simplicidad de identificar fÃ¡cilmente su taza, lo que garantiza una experiencia de bebida higiÃ©nica y agradable para todos los involucrados.\nEspecificaciÃ³n:\nOrigen: China continental\nMaterial: acero inoxidable 304\nCapacidad: 50ml\nTamaÃ±o: 50mm/1.97in * 40mm/1.57in * 32mm/1.26in\nEspesor de pared: 0,45mm\nColor: verde militar, negro, gris, blanco, caqui\nPeso neto: 16,5g\nCaracterÃ­sticas: acero inoxidable 304, almacenamiento apilable, variedad de colores opcionales.\n\nNota:\nDebido a los diferentes monitores y efectos de luz, el color real del artÃ­culo puede ser ligeramente diferente del color que se muestra en las imÃ¡genes. Â¡Gracias!\nPermita una desviaciÃ³n de mediciÃ³n de 1-2cm debido a la mediciÃ³n manual.\n\n</p></div>\r\n<div class=\"detailmodule_image\"><img src=\"https://ae01.alicdn.com/kf/Hc50ec76e121c4f61bec8be030a2b995dm.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ></div>\r\n<div class=\"detailmodule_text\"><p  style=\"\">1x mini taza de camping</p></div>\r\n<div class=\"detailmodule_image\"><img src=\"https://ae01.alicdn.com/kf/H352da80cbd2e4e0c8090cea371d7d014q.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ></div>\r\n<div class=\"detailmodule_image\"><img src=\"https://ae01.alicdn.com/kf/Sbcfbb45352294a92902baae92ed9ddc2o.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ><img src=\"https://ae01.alicdn.com/kf/S3cd463e58edc43a0ad83bb69bf9597b0U.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ><img src=\"https://ae01.alicdn.com/kf/Sf9ad5333f9b64896b4c7baeddd10483fF.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ><img src=\"https://ae01.alicdn.com/kf/Sdd05578eb65f4296abfe68a24847f6684.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ><img src=\"https://ae01.alicdn.com/kf/Se38e2d16ea3e453a9646fc1995f42e8fV.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ><img src=\"https://ae01.alicdn.com/kf/Sfacf65fb497741899baa6170884133a43.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ><img src=\"https://ae01.alicdn.com/kf/S922acbbfa1134c59ae591d626fd89ac1Y.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ><img src=\"https://ae01.alicdn.com/kf/S04acc862665745e392bb57ef50936803v.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ><img src=\"https://ae01.alicdn.com/kf/Sac5352d1d95c461395adef537447ba2aJ.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ><img src=\"https://ae01.alicdn.com/kf/S2542ba473fcb435d84c8f9b3f8d87b30z.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ></div>\r\n<div class",
+    "description": "<div class=\"detailmodule_image\"><img src=\"https://ae01.alicdn.com/kf/H2a6a8d10db754e2084dfadd60e1458ebn.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ><img src=\"https://ae01.alicdn.com/kf/Hcbe49c956fe742aab0e4c37be9eed706v.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ></div>\r\n<div class=\"detailmodule_text\"><p  style=\"\">Mini taza para acampar de 50ML, taza de vino para exteriores de acero inoxidable, taza de pinta ligera apilable, portátil para senderismo, pesca, escalada\nCaracterísticas:\n1. Construcción de acero inoxidable de primera calidad: Nuestra mini taza de camping está hecha de acero inoxidable 304 de alta calidad, lo que garantiza durabilidad y resistencia a la corrosión. La robusta construcción garantiza un uso duradero, por lo que es una opción fiable para actividades al aire libre como camping, senderismo y picnics.\n2. Diseño elegante y elegante: con su superficie avanzada pintada con aerosol, nuestra copa de vino al aire libre cuenta con un acabado suave y brillante. La exquisita artesanía mejora su atractivo estético, convirtiéndolo en un accesorio de moda para cualquier ocasión. Disfrute saboreando su bebida favorita con estilo con esta taza visualmente atractiva y llamativa.\n3. Ahorro de espacio y portátil: El exclusivo diseño apilable permite que nuestra taza de cerveza de viaje se anide cómodamente, minimizando el espacio de almacenamiento y facilitando su transporte. Ya sea que esté de mochilero, de viaje o simplemente de viaje, esta taza compacta y ligera ofrece portabilidad sin complicaciones, lo que garantiza que pueda disfrutar de una bebida refrescante donde quiera que esté.\n4. Logotipo grabado: La mini taza de café presenta un logotipo meticulosamente grabado con láser, que muestra patrones intrincados y delicados. Este toque personalizado agrega un toque de elegancia y singularidad a su taza, haciendo que se destaque entre la multitud. Disfrute del orgullo de tener una taza grabada a medida que refleje su estilo y personalidad individuales.\n5. Variedad de colores para una fácil diferenciación: ofrecemos una gama de colores de tazas de pinta livianas para elegir, lo que permite que cada persona tenga su propia taza distintiva. Esto elimina la confusión de mezclar tazas durante reuniones o eventos. Disfrute de la comodidad y la simplicidad de identificar fácilmente su taza, lo que garantiza una experiencia de bebida higiénica y agradable para todos los involucrados.\nEspecificación:\nOrigen: China continental\nMaterial: acero inoxidable 304\nCapacidad: 50ml\nTamaño: 50mm/1.97in * 40mm/1.57in * 32mm/1.26in\nEspesor de pared: 0,45mm\nColor: verde militar, negro, gris, blanco, caqui\nPeso neto: 16,5g\nCaracterísticas: acero inoxidable 304, almacenamiento apilable, variedad de colores opcionales.\n\nNota:\nDebido a los diferentes monitores y efectos de luz, el color real del artículo puede ser ligeramente diferente del color que se muestra en las imágenes. Â¡Gracias!\nPermita una desviación de medición de 1-2cm debido a la medición manual.\n\n</p></div>\r\n<div class=\"detailmodule_image\"><img src=\"https://ae01.alicdn.com/kf/Hc50ec76e121c4f61bec8be030a2b995dm.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ></div>\r\n<div class=\"detailmodule_text\"><p  style=\"\">1x mini taza de camping</p></div>\r\n<div class=\"detailmodule_image\"><img src=\"https://ae01.alicdn.com/kf/H352da80cbd2e4e0c8090cea371d7d014q.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ></div>\r\n<div class=\"detailmodule_image\"><img src=\"https://ae01.alicdn.com/kf/Sbcfbb45352294a92902baae92ed9ddc2o.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ><img src=\"https://ae01.alicdn.com/kf/S3cd463e58edc43a0ad83bb69bf9597b0U.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ><img src=\"https://ae01.alicdn.com/kf/Sf9ad5333f9b64896b4c7baeddd10483fF.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ><img src=\"https://ae01.alicdn.com/kf/Sdd05578eb65f4296abfe68a24847f6684.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ><img src=\"https://ae01.alicdn.com/kf/Se38e2d16ea3e453a9646fc1995f42e8fV.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ><img src=\"https://ae01.alicdn.com/kf/Sfacf65fb497741899baa6170884133a43.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ><img src=\"https://ae01.alicdn.com/kf/S922acbbfa1134c59ae591d626fd89ac1Y.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ><img src=\"https://ae01.alicdn.com/kf/S04acc862665745e392bb57ef50936803v.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ><img src=\"https://ae01.alicdn.com/kf/Sac5352d1d95c461395adef537447ba2aJ.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ><img src=\"https://ae01.alicdn.com/kf/S2542ba473fcb435d84c8f9b3f8d87b30z.jpg\"  class=\"detail-desc-decorate-image\"  style=\"margin-bottom: 10px;\" ></div>\r\n<div class",
     "descriptionImages": [
       "https://ae01.alicdn.com/kf/H2a6a8d10db754e2084dfadd60e1458ebn.jpg",
       "https://ae01.alicdn.com/kf/Hcbe49c956fe742aab0e4c37be9eed706v.jpg",
@@ -4564,7 +4564,7 @@
     ],
     "evaluationCount": "0",
     "salesCount": "1",
-    "title_fi": "Retkimuki Nature Hike 304-terÃ¤s  piknik ja ulkoilu"
+    "title_fi": "Retkimuki Nature Hike 304-teräs  piknik ja ulkoilu"
   },
   {
     "id": "1005007474262880",
@@ -4662,6 +4662,6 @@
     ],
     "evaluationCount": "0",
     "salesCount": "0",
-    "title_fi": "CAMPINGMOON terÃ¤smuki  musta titaanipinnoite, pinottava"
+    "title_fi": "CAMPINGMOON teräsmuki  musta titaanipinnoite, pinottava"
   }
 ];

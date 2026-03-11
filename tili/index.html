@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fi">
 <head>
   <meta charset="utf-8">
@@ -6,7 +6,7 @@
   <!-- Security Headers -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://cdn.jsdelivr.net https://www.paypal.com https://*.paypal.com https://*.paypalobjects.com https://apis.google.com https://*.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https: data: blob:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://safenote.co https://formsubmit.co https://feedback.aliexpress.com https://*.paypal.com https://*.paypalobjects.com; frame-src https://www.paypal.com https://*.paypal.com https://www.sandbox.paypal.com https://*.firebaseapp.com https://accounts.google.com https://*.google.com;">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>Oma tili â€“ ERÃ„T.FI</title>
+  <title>Oma tili – ERÄT.FI</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -22,15 +22,15 @@
       <div id="accountLoggedIn" style="display:none">
         <div class="account-header">
           <img class="account-avatar" id="accountAvatar" src="" alt="" style="display:none">
-          <div class="account-avatar-placeholder" id="accountAvatarPlaceholder">ðŸ‘¤</div>
+          <div class="account-avatar-placeholder" id="accountAvatarPlaceholder">👤</div>
           <div class="account-info">
-            <h2 id="accountName">â€“</h2>
-            <p id="accountEmail">â€“</p>
+            <h2 id="accountName">–</h2>
+            <p id="accountEmail">–</p>
           </div>
         </div>
         <div class="account-stats">
           <div class="account-stat"><div class="num" id="accOrderCount">0</div><div class="label">Tilauksia</div></div>
-          <div class="account-stat"><div class="num" id="accMember">â€“</div><div class="label">JÃ¤sen</div></div>
+          <div class="account-stat"><div class="num" id="accMember">–</div><div class="label">Jäsen</div></div>
         </div>
         <div class="account-actions">
           <button class="btn btn--sm btn--outline" onclick="auth.signOut();showToast('Kirjauduit ulos');window.location.href=ROOT;">Kirjaudu ulos</button>
@@ -41,8 +41,8 @@
 
       <!-- Logged out view -->
       <div id="accountLoggedOut" class="login-prompt">
-        <h2>Kirjaudu sisÃ¤Ã¤n</h2>
-        <p>Kirjaudu Google-tilillÃ¤si nÃ¤hdÃ¤ksesi tilaushistoriasi ja kuitit.</p>
+        <h2>Kirjaudu sisään</h2>
+        <p>Kirjaudu Google-tililläsi nähdäksesi tilaushistoriasi ja kuitit.</p>
         <button class="google-btn" onclick="signInWithGoogle()" style="max-width:360px;margin:0 auto"></button>
       </div>
     </div>

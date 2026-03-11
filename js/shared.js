@@ -33,7 +33,7 @@ const SHIPPING_RATES = {
 /* ===== FIREBASE ===== */
 const firebaseConfig = {
   apiKey: "AIzaSyDS9JDIppAP_qu_F0f0wkinQgLBDptJgQE",
-  authDomain: "xn--ert-rla.fi",
+  authDomain: "rosterii.firebaseapp.com",
   projectId: "rosterii",
   storageBucket: "rosterii.firebasestorage.app",
   messagingSenderId: "800162908964",
