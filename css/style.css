@@ -519,3 +519,17 @@ footer a:hover { color: var(--accent); }
 /* PAYPAL */
 #paypal-button-container { min-height: 50px; margin-top: 16px; }
 #paypal-button-container .paypal-buttons { max-width: 100%; }
+
+/* COOKIE CONSENT */
+.cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999; background: rgba(26,26,26,.97); border-top: 2px solid var(--accent); backdrop-filter: blur(12px); transform: translateY(100%); transition: transform .35s ease; }
+.cookie-banner.open { transform: translateY(0); }
+.cookie-inner { max-width: var(--max-w); margin: 0 auto; padding: 20px var(--pad); display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.cookie-inner p { flex: 1; min-width: 200px; font-size: .85rem; line-height: 1.5; color: var(--fg-muted); }
+.cookie-inner p a { color: var(--accent); text-decoration: underline; }
+.cookie-buttons { display: flex; gap: 10px; flex-shrink: 0; }
+.cookie-accept { padding: 10px 24px !important; font-size: .85rem !important; }
+.cookie-decline { padding: 10px 18px !important; font-size: .8rem !important; color: var(--fg-muted) !important; border-color: var(--border) !important; }
+@media (max-width: 600px) {
+  .cookie-inner { flex-direction: column; text-align: center; padding: 16px; gap: 12px; }
+  .cookie-buttons { width: 100%; justify-content: center; }
+}

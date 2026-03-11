@@ -488,6 +488,51 @@ function injectSharedUI() {
   updateCartCount();
 }
 
+/* ===== COOKIE CONSENT ===== */
+function hasConsent() {
+  return localStorage.getItem('rk_cookies') === 'accepted';
+}
+
+function showCookieBanner() {
+  if (localStorage.getItem('rk_cookies')) return; // already answered
+  var banner = document.createElement('div');
+  banner.id = 'cookieBanner';
+  banner.className = 'cookie-banner';
+  banner.innerHTML =
+    '<div class="cookie-inner">' +
+    '<p>\ud83c\udf6a Käytämme evästeitä kävijämäärän ja maakohtaisen tilastoinnin seurantaan. ' +
+    'Evästeet auttavat meitä parantamaan palveluamme. ' +
+    '<a href="' + ROOT + 'tiedot/tietosuoja.html">Lue lisää</a></p>' +
+    '<div class="cookie-buttons">' +
+    '<button class="btn cookie-accept" onclick="acceptCookies()">Hyväksy</button>' +
+    '<button class="btn btn--outline cookie-decline" onclick="declineCookies()">Hylkää</button>' +
+    '</div></div>';
+  document.body.appendChild(banner);
+  // Animate in
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() { banner.classList.add('open'); });
+  });
+}
+
+function acceptCookies() {
+  localStorage.setItem('rk_cookies', 'accepted');
+  closeCookieBanner();
+  trackVisit(); // start tracking now
+}
+
+function declineCookies() {
+  localStorage.setItem('rk_cookies', 'declined');
+  closeCookieBanner();
+}
+
+function closeCookieBanner() {
+  var b = document.getElementById('cookieBanner');
+  if (b) {
+    b.classList.remove('open');
+    setTimeout(function() { b.remove(); }, 400);
+  }
+}
+
 /* ===== VISITOR ANALYTICS ===== */
 function trackVisit() {
   var today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
@@ -543,5 +588,6 @@ function saveVisit(date, country) {
 
 document.addEventListener('DOMContentLoaded', function() {
   injectSharedUI();
-  trackVisit();
+  showCookieBanner();
+  if (hasConsent()) trackVisit();
 });
