@@ -82,13 +82,6 @@
     document.getElementById('loadMoreWrap').style.display = visibleCount < filtered.length ? 'block' : 'none';
   }
 
-  function updateStats() {
-    var prices = PRODUCTS.map(function(p) { return shopPrice(p.salePrice); });
-    var minPrice = Math.min.apply(null, prices);
-    document.getElementById('stat-products').textContent = PRODUCTS.length;
-    document.getElementById('stat-min').textContent = '\u20ac' + minPrice.toFixed(2);
-  }
-
   // Expose functions globally
   window.setFilter = function(f) {
     currentFilter = f;
@@ -106,7 +99,6 @@
 
   document.addEventListener('DOMContentLoaded', function() {
     window.setFilter('all');
-    updateStats();
     renderProducts();
 
     var searchInput = document.getElementById('searchInput');
