@@ -127,8 +127,11 @@ select.filter-select { padding: 9px 14px; background: var(--card-bg); border: 1p
 .detail-shipping-row span:first-child { font-size: 1.1rem; }
 .desc-section { margin-top: 48px; border-top: 1px solid var(--border); padding-top: 32px; }
 .desc-section h2 { font-size: 1.4rem; margin-bottom: 24px; }
-.desc-images { display: flex; flex-direction: column; gap: 8px; max-width: 800px; }
-.desc-images img { width: 100%; height: auto; display: block; }
+.desc-images { max-width: 800px; }
+.desc-text { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; }
+.desc-text ul { list-style: disc; padding-left: 20px; margin: 12px 0; }
+.desc-text li { margin-bottom: 8px; }
+.desc-text div { margin-bottom: 6px; }
 
 /* IMAGE FALLBACKS */
 .product-image-fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; padding: 16px; font-size: .85rem; font-weight: 600; color: var(--fg-muted); background: var(--card-bg); line-height: 1.3; }

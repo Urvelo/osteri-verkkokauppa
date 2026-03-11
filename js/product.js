@@ -37,10 +37,12 @@
     // Price
     updateDetailPrice(shopPrice(p.salePrice), shopPrice(p.originalPrice));
 
-    // Gallery – filter out broken images
+// Gallery – combine product images + description images
     var imgs = (p.images && p.images.length) ? p.images : [p.image];
+    var descImgs = p.descriptionImages || [];
+    var allImgs = imgs.concat(descImgs);
     var mainImg = document.getElementById('mainImage');
-    mainImg.src = imgs[0];
+    mainImg.src = allImgs[0];
     mainImg.onerror = function() {
       this.onerror = null;
       this.style.display = 'none';
@@ -49,9 +51,9 @@
       fallback.textContent = pTitle(p);
       this.parentNode.appendChild(fallback);
     };
-    mainImg.onclick = function() { zoomImage(imgs[0]); };
+    mainImg.onclick = function() { zoomImage(allImgs[0]); };
     var thumbs = '';
-    imgs.forEach(function(img, i) {
+    allImgs.forEach(function(img, i) {
       thumbs += '<div class="gallery-thumb ' + (i === 0 ? 'active' : '') + '" onclick="selectThumb(this, \'' + img + '\')">'
         + '<img src="' + img + '" alt="" onerror="this.parentNode.style.display=\'none\'"></div>';
     });
@@ -85,15 +87,27 @@
     qty = 1;
     document.getElementById('qtyVal').value = 1;
 
-    // Description images
-    var descImgs = p.descriptionImages || [];
-    var descContainer = document.getElementById('descImages');
+    // Product description text (parsed from HTML, images stripped)
     var descSection = document.getElementById('descSection');
-    if (descImgs.length > 0) {
-      descSection.style.display = 'block';
-      descContainer.innerHTML = descImgs.map(function(src) {
-        return '<img src="' + src + '" alt="Tuotekuva" loading="lazy" onclick="zoomImage(\'' + src + '\')" style="cursor:zoom-in" onerror="this.style.display=\'none\'">';
-      }).join('');
+    var descContent = document.getElementById('descImages');
+    var rawDesc = p.description || '';
+    if (rawDesc) {
+      // Parse HTML, strip images, extract text content
+      var tempDiv = document.createElement('div');
+      tempDiv.innerHTML = rawDesc;
+      // Remove all img elements
+      var descImgEls = tempDiv.querySelectorAll('img');
+      for (var di = 0; di < descImgEls.length; di++) {
+        var parent = descImgEls[di].parentNode;
+        parent.removeChild(descImgEls[di]);
+        // Remove empty wrapper divs
+        if (parent.tagName === 'DIV' && !parent.textContent.trim()) parent.parentNode.removeChild(parent);
+      }
+      var descText = tempDiv.innerHTML.trim();
+      if (descText && tempDiv.textContent.trim().length > 10) {
+        descSection.style.display = 'block';
+        descContent.innerHTML = '<div class="desc-text">' + descText + '</div>';
+      }
     }
 
     // Reviews
