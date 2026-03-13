@@ -1,18 +1,35 @@
 {
   "hosting": {
-    "public": ".",
+    "public": "frontend",
     "ignore": [
       "firebase.json",
       ".firebaserc",
-      ".git",
-      ".github",
-      "functions",
-      "node_modules",
-      "scripts",
-      "firestore.rules",
-      "*.log"
+      ".git/**",
+      ".github/**",
+      ".firebase/**",
+      "node_modules/**",
+      "**/*.log"
+    ],
+    "rewrites": [
+      {
+        "source": "/api/createCheckoutSession",
+        "function": "createCheckoutSession"
+      },
+      {
+        "source": "/admin/**",
+        "destination": "/admin/index.html"
+      }
     ],
     "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Content-Security-Policy",
+            "value": "default-src 'self'; script-src https://js.stripe.com 'self' 'unsafe-inline' https://www.gstatic.com https://cdn.jsdelivr.net https://www.paypal.com https://*.paypal.com https://*.paypalobjects.com https://apis.google.com https://*.google.com https://www.googletagmanager.com https://unpkg.com https://d3js.org; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https: data: blob:; font-src 'self' https://fonts.gstatic.com data:; connect-src https://region1.google-analytics.com https://api.stripe.com 'self' https://*.googleapis.com https://*.firebaseio.com https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://safenote.co https://formsubmit.co https://feedback.aliexpress.com https://*.paypal.com https://*.paypalobjects.com https://www.gstatic.com https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://api.country.is https://cdn.jsdelivr.net https://*.supabase.co https://libmjqruagyogsgnumjy.supabase.co https://api-sg.aliexpress.com https://reviews-proxy.tobuhu07.workers.dev; frame-src https://js.stripe.com https://www.paypal.com https://*.paypal.com https://www.sandbox.paypal.com https://*.firebaseapp.com https://accounts.google.com https://*.google.com https://xn--ert-rla.fi;"
+          }
+        ]
+      },
       {
         "source": "**/*.@(js|css)",
         "headers": [
@@ -21,19 +38,34 @@
             "value": "public, max-age=3600"
           }
         ]
+      },
+      {
+        "source": "/admin/**",
+        "headers": [
+          {
+            "key": "X-Robots-Tag",
+            "value": "noindex, nofollow"
+          },
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          }
+        ]
       }
     ]
   },
   "functions": [
     {
-      "source": "functions",
+      "source": "backend/firebase-functions",
       "codebase": "default",
       "ignore": [
         "node_modules",
         ".git",
         "firebase-debug.log",
         "firebase-debug.*.log",
-        "*.local"
+        "*.local",
+        "products.js",
+        "reviews.js"
       ]
     }
   ],

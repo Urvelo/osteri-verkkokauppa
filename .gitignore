@@ -1,11 +1,18 @@
 # Dependencies
 node_modules/
 functions/node_modules/
+admin-src/node_modules/
 
 # Firebase secrets (NEVER commit these)
 functions/.env
 functions/.env.local
+backend/firebase-functions/.env
+backend/firebase-functions/.env.local
 .runtimeconfig.json
+
+# Admin secrets
+admin-src/.env
+admin-src/.env.local
 
 # Firebase debug logs
 firebase-debug.log
@@ -21,6 +28,22 @@ Thumbs.db
 .vscode/
 .idea/
 
-# API cache
-scripts/.cache/
-scripts/token.json
+# API cache and tokens
+automation/.cache/
+automation/token.json
+
+# Sensitive local scripts (contain credentials)
+automation/migrate_to_supabase.py
+automation/setup_supabase.py
+automation/get_token.py
+automation/tuotehallinta.py
+automation/_*.py
+
+# Temp utility scripts
+check_mojibake.py
+fix_all_mojibake.py
+fix_nbsp.py
+
+# Old static data (replaced by Supabase)
+products.js
+reviews.js

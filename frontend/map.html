@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=8, user-scalable=yes">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0d1117; width: 100vw; height: 100vh; overflow: hidden; font-family: sans-serif; touch-action: none; }
+svg { display: block; cursor: grab; }
+svg.dragging { cursor: grabbing; }
+#loading { color: #666; text-align: center; padding: 40px 20px; font-size: 14px; }
+#legend {
+  position: absolute;
+  bottom: 12px; left: 12px;
+  display: flex; gap: 8px; align-items: center;
+  font-size: 11px; color: #aaa;
+  pointer-events: none;
+}
+#legend-bar {
+  width: 80px; height: 10px;
+  background: linear-gradient(to right, #1e3a5f, #f7b829);
+  border-radius: 3px;
+}
+#tooltip {
+  position: absolute;
+  background: rgba(0,0,0,.85);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .15s;
+  white-space: nowrap;
+  z-index: 10;
+}
+#resetBtn {
+  position: absolute;
+  top: 10px; right: 10px;
+  background: rgba(255,255,255,.12);
+  color: #ddd;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+#resetBtn:active { background: rgba(255,255,255,.22); }
+</style>
+</head>
+<body>
+<div id="loading">Ladataan kartta...</div>
+<div id="tooltip"></div>
+<div id="legend"><span>vähän</span><div id="legend-bar"></div><span>paljon</span></div>
+<button id="resetBtn" onclick="resetZoom()">⟳ Koko kartta</button>
+
+<script src="https://unpkg.com/d3@7/dist/d3.min.js"></script>
+<script src="https://unpkg.com/topojson-client@3/dist/topojson-client.min.js"></script>
+<script>
+// ISO 3166-1 numeric → alpha-2 mapping (major countries)
+var N2A = {
+  4:"AF",8:"AL",12:"DZ",24:"AO",32:"AR",36:"AU",40:"AT",50:"BD",56:"BE",
+  64:"BT",68:"BO",76:"BR",100:"BG",116:"KH",120:"CM",124:"CA",144:"LK",
+  152:"CL",156:"CN",158:"TW",170:"CO",188:"CR",191:"HR",192:"CU",203:"CZ",
+  208:"DK",218:"EC",818:"EG",231:"ET",233:"EE",246:"FI",250:"FR",276:"DE",
+  288:"GH",300:"GR",320:"GT",332:"HT",340:"HN",344:"HK",348:"HU",356:"IN",
+  360:"ID",364:"IR",368:"IQ",372:"IE",376:"IL",380:"IT",392:"JP",398:"KZ",
+  400:"JO",404:"KE",410:"KR",414:"KW",418:"LA",422:"LB",428:"LV",440:"LT",
+  442:"LU",458:"MY",484:"MX",504:"MA",508:"MZ",524:"NP",528:"NL",554:"NZ",
+  566:"NG",578:"NO",586:"PK",591:"PA",604:"PE",608:"PH",616:"PL",620:"PT",
+  630:"PR",634:"QA",642:"RO",643:"RU",682:"SA",686:"SN",703:"SK",705:"SI",
+  706:"SO",710:"ZA",716:"ZW",724:"ES",752:"SE",756:"CH",764:"TH",784:"AE",
+  792:"TR",804:"UA",826:"GB",840:"US",858:"UY",862:"VE",887:"YE",
+  894:"ZM",704:"VN",196:"CY"
+};
+
+// ISO 3166-1 alpha-2 -> short display name
+var NAMES = {
+  AF:"Afghanistan",AL:"Albania",DZ:"Algeria",AO:"Angola",AR:"Argentina",AU:"Australia",AT:"Austria",
+  BD:"Bangladesh",BE:"Belgium",BT:"Bhutan",BO:"Bolivia",BR:"Brazil",BG:"Bulgaria",KH:"Cambodia",
+  CM:"Cameroon",CA:"Canada",LK:"Sri Lanka",CL:"Chile",CN:"China",TW:"Taiwan",CO:"Colombia",
+  CR:"Costa Rica",HR:"Croatia",CU:"Cuba",CZ:"Czechia",DK:"Denmark",EC:"Ecuador",EG:"Egypt",
+  ET:"Ethiopia",EE:"Estonia",FI:"Finland",FR:"France",DE:"Germany",GH:"Ghana",GR:"Greece",
+  GT:"Guatemala",HT:"Haiti",HN:"Honduras",HK:"Hong Kong",HU:"Hungary",IN:"India",ID:"Indonesia",
+  IR:"Iran",IQ:"Iraq",IE:"Ireland",IL:"Israel",IT:"Italy",JP:"Japan",KZ:"Kazakhstan",JO:"Jordan",
+  KE:"Kenya",KR:"S. Korea",KW:"Kuwait",LA:"Laos",LB:"Lebanon",LV:"Latvia",LT:"Lithuania",
+  LU:"Luxembourg",MY:"Malaysia",MX:"Mexico",MA:"Morocco",MZ:"Mozambique",NP:"Nepal",NL:"Netherlands",
+  NZ:"New Zealand",NG:"Nigeria",NO:"Norway",PK:"Pakistan",PA:"Panama",PE:"Peru",PH:"Philippines",
+  PL:"Poland",PT:"Portugal",QA:"Qatar",RO:"Romania",RU:"Russia",SA:"Saudi Arabia",SN:"Senegal",
+  SK:"Slovakia",SI:"Slovenia",SO:"Somalia",ZA:"S. Africa",ZW:"Zimbabwe",ES:"Spain",SE:"Sweden",
+  CH:"Switzerland",TH:"Thailand",AE:"UAE",TR:"Turkey",UA:"Ukraine",GB:"UK",US:"USA",UY:"Uruguay",
+  VE:"Venezuela",YE:"Yemen",ZM:"Zambia",VN:"Vietnam",CY:"Cyprus",PR:"Puerto Rico"
+};
+
+function flag(code) {
+  if (!code || code.length !== 2) return '';
+  return String.fromCodePoint(
+    0x1F1E6 + code.charCodeAt(0) - 65,
+    0x1F1E6 + code.charCodeAt(1) - 65
+  );
+}
+
+var countryData = {};
+var colorScale = null;
+var paths = null;
+var labelsG = null;
+var svg, mapG, zoom, initialTransform;
+
+function init() {
+  var w = window.innerWidth, h = window.innerHeight;
+  var projection = d3.geoNaturalEarth1().scale(w / 6.3).translate([w / 2, h / 2]);
+  var pathFn = d3.geoPath().projection(projection);
+
+  svg = d3.select("body").append("svg")
+    .attr("width", w).attr("height", h);
+
+  // Ocean background (outside zoom group so it stays fixed)
+  svg.append("rect").attr("width", w).attr("height", h).attr("fill", "#0d1117");
+
+  // All zoomable content in one group
+  mapG = svg.append("g").attr("id", "mapG");
+
+  // Graticule
+  mapG.append("path")
+    .datum(d3.geoGraticule()())
+    .attr("d", pathFn)
+    .attr("fill", "none").attr("stroke", "#131d2a").attr("stroke-width", 0.5);
+
+  colorScale = d3.scaleSequential()
+    .interpolator(d3.interpolate("#1e3a5f", "#f7b829"));
+
+  // Set up D3 zoom (scroll wheel + pinch + drag)
+  zoom = d3.zoom()
+    .scaleExtent([1, 12])
+    .on("start", function() { svg.classed("dragging", true); })
+    .on("zoom", function(event) {
+      mapG.attr("transform", event.transform);
+      // Scale labels inversely so text stays readable at all zoom levels
+      if (labelsG) {
+        var k = event.transform.k;
+        labelsG.selectAll("text")
+          .attr("font-size", function() {
+            // At k=1: hidden; k=2: tiny; k=4+: full size 11px (corrected for zoom scale)
+            return Math.min(11, Math.max(5, 11 / k)) + "px";
+          })
+          .attr("opacity", function() {
+            return k < 4 ? 0 : Math.min(1, (k - 4) / 2);
+          });
+      }
+      // Hide tooltip on pan/zoom
+      document.getElementById('tooltip').style.opacity = 0;
+    })
+    .on("end", function() { svg.classed("dragging", false); });
+
+  svg.call(zoom);
+
+  // Disable double-tap zoom on the SVG so our reset works cleanly
+  svg.on("dblclick.zoom", null);
+  // Double-tap / double-click to reset
+  svg.on("dblclick", function() { resetZoom(); });
+
+  initialTransform = d3.zoomIdentity;
+
+  d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json")
+    .then(function(world) {
+      document.getElementById('loading').remove();
+      var countries = topojson.feature(world, world.objects.countries);
+
+      // Track drag vs tap to avoid tooltip on pan
+      var dragMoved = false;
+
+      paths = mapG.selectAll("path.country")
+        .data(countries.features)
+        .enter().append("path")
+        .attr("class", "country")
+        .attr("d", pathFn)
+        .attr("fill", "#1c2333")
+        .attr("stroke", "#0d1117").attr("stroke-width", 0.4)
+        .on("mousemove", function(event, d) {
+          if (!dragMoved) showTip(event, d);
+        })
+        .on("mouseleave", function() {
+          document.getElementById('tooltip').style.opacity = 0;
+        })
+        .on("touchstart", function(event, d) {
+          dragMoved = false;
+          // single-finger tap → show tooltip; multi-finger → zoom
+          if (event.touches.length === 1) showTip(event, d);
+        }, { passive: true });
+
+      // Track whether we're dragging so tooltip doesn't flash
+      svg.on("mousedown.drag", function() { dragMoved = false; })
+         .on("mousemove.drag", function(event) {
+            if (event.buttons) dragMoved = true;
+         });
+
+      applyColors();
+
+      // Add country name labels (hidden until zoomed in)
+      labelsG = mapG.append("g").attr("id", "labels").attr("pointer-events", "none");
+      countries.features.forEach(function(d) {
+        var a2 = N2A[+d.id];
+        if (!a2) return;
+        var name = NAMES[a2] || a2;
+        try {
+          var centroid = pathFn.centroid(d);
+          if (!centroid || isNaN(centroid[0]) || isNaN(centroid[1])) return;
+          labelsG.append("text")
+            .attr("x", centroid[0])
+            .attr("y", centroid[1])
+            .attr("text-anchor", "middle")
+            .attr("dominant-baseline", "central")
+            .attr("fill", "#ffffff")
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "0px")
+            .attr("opacity", 0)
+            .attr("data-a2", a2)
+            .text(name);
+        } catch(e) {}
+      });
+    });
+}
+
+function showTip(event, d) {
+  var a2 = N2A[+d.id];
+  var count = a2 ? (countryData[a2] || 0) : 0;
+  if (!a2 && count === 0) return;
+  var displayName = a2 ? ((NAMES[a2] || a2)) : d.id;
+  var t = document.getElementById('tooltip');
+  t.innerHTML = (a2 ? flag(a2) + '\u00a0' : '') + displayName + (count > 0 ? ':  ' + count + ' kävijää' : '');
+  var x = event.touches ? event.touches[0].clientX : event.clientX;
+  var y = event.touches ? event.touches[0].clientY : event.clientY;
+  t.style.left = Math.min(x + 12, window.innerWidth - 160) + 'px';
+  t.style.top = Math.max(y - 30, 4) + 'px';
+  t.style.opacity = 1;
+}
+
+function applyColors() {
+  if (!paths || !colorScale) return;
+  var values = Object.values(countryData);
+  var maxV = Math.max(1, d3.max(values) || 1);
+  colorScale.domain([0, maxV]);
+  paths.attr("fill", function(d) {
+    var a2 = N2A[+d.id];
+    var count = a2 ? (countryData[a2] || 0) : 0;
+    return count > 0 ? colorScale(count) : "#1c2333";
+  });
+  // Update label colors: white for visited countries, dim for others
+  if (labelsG) {
+    labelsG.selectAll("text").attr("fill", function() {
+      var a2 = d3.select(this).attr("data-a2");
+      return (countryData[a2] || 0) > 0 ? "#ffffff" : "#4a5568";
+    }).attr("stroke", function() {
+      var a2 = d3.select(this).attr("data-a2");
+      return (countryData[a2] || 0) > 0 ? "#0d1117" : "none";
+    }).attr("stroke-width", "0.3px")
+      .attr("paint-order", "stroke");
+  }
+}
+
+function resetZoom() {
+  svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
+}
+
+// Called from Android WebView
+window.updateData = function(json) {
+  try { countryData = JSON.parse(json); } catch(e) { return; }
+  applyColors();
+};
+
+// Token protection — only allow access with correct token
+(function() {
+  var token = new URLSearchParams(window.location.search).get('token');
+  if (token !== 'RosteriMap2026') {
+    document.body.innerHTML = '';
+    document.body.style.background = '#0d1117';
+    return;
+  }
+  init();
+})();
+</script>
+</body>
+</html>

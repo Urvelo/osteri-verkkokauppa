@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /kassa/
+Disallow: /tili/
+Disallow: /palautus/
+
+Sitemap: https://xn--ert-rla.fi/sitemap.xml

@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <!-- Security Headers -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://cdn.jsdelivr.net https://www.paypal.com https://*.paypal.com https://*.paypalobjects.com https://apis.google.com https://*.google.com https://js.stripe.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https: data: blob:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://safenote.co https://formsubmit.co https://feedback.aliexpress.com https://*.paypal.com https://*.paypalobjects.com https://www.gstatic.com https://api.stripe.com https://*.stripe.com; frame-src https://www.paypal.com https://*.paypal.com https://www.sandbox.paypal.com https://*.firebaseapp.com https://accounts.google.com https://*.google.com https://xn--ert-rla.fi https://*.stripe.com;">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Kassa – ERÄT.FI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <main id="pageContent" class="checkout-page view-fade">
+    <div class="container">
+      <a class="detail-back" href="../">â† Takaisin kauppaan</a>
+      <div id="checkoutContent">
+        <div class="checkout-layout">
+          <div class="checkout-form">
+            <h2>Toimitus- ja yhteystiedot</h2>
+            <div class="form-row">
+              <div class="form-group"><label>Etunimi *</label><input type="text" id="coFirstName" required placeholder="Etunimi"></div>
+              <div class="form-group"><label>Sukunimi *</label><input type="text" id="coLastName" required placeholder="Sukunimi"></div>
+            </div>
+            <div class="form-group"><label>Sähköposti *</label><input type="email" id="coEmail" required placeholder="nimi@esimerkki.fi"></div>
+            <div class="form-group"><label>Puhelin</label><input type="tel" id="coPhone" placeholder="+358 40 1234567"></div>
+            <div class="form-group"><label>Osoite *</label><input type="text" id="coAddress" required placeholder="Katuosoite"></div>
+            <div class="form-row">
+              <div class="form-group"><label>Postinumero *</label><input type="text" id="coPostal" required placeholder="00100"></div>
+              <div class="form-group"><label>Kaupunki *</label><input type="text" id="coCity" required placeholder="Helsinki"></div>
+            </div>
+            <div class="form-group"><label>Toimitusmaa *</label>
+              <select id="coCountry" onchange="updateShipping()">
+                <option value="FI" selected>Suomi</option>
+                <option value="SE">Ruotsi</option>
+                <option value="NO">Norja</option>
+                <option value="DK">Tanska</option>
+                <option value="EE">Viro</option>
+                <option value="LV">Latvia</option>
+                <option value="LT">Liettua</option>
+                <option value="DE">Saksa</option>
+                <option value="OTHER">Muu maa</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Lisätiedot (valinnainen)</label><textarea id="coNotes" rows="2" placeholder="Esim. ovikoodi, toimitusohje..."></textarea></div>
+            <h3 style="margin-top:20px">Maksu</h3>
+            <p style="font-size:.85rem;color:var(--fg-muted);margin:4px 0 8px">PayPal-tilin omistajat: kirjaudu ja vahvista maksu — ei tarvitse syöttää osoitetta uudelleen.<br>Voit myös maksaa pankki- tai luottokortilla.</p>
+            <div id="paypal-button-container"></div>
+            <div style="text-align:center;padding:10px 0;color:var(--fg-muted);font-size:.85rem;letter-spacing:.05em">— tai —</div>
+            <button id="stripeCheckoutBtn" type="button" style="width:100%;padding:14px;background:#635bff;color:#fff;border:none;border-radius:6px;font-size:1rem;font-weight:700;cursor:pointer;letter-spacing:.02em;">💳 Maksa kortilla / Verkkopankilla (Stripe)</button>
+          </div>
+          <div class="checkout-summary">
+            <h3>Tilauksesi</h3>
+            <div class="checkout-items" id="checkoutItems"></div>
+            
+              <div class='discount-section' style='margin-bottom: 20px; padding: 15px; background: #f3f4f6; border-radius:8px; border:1px solid #e2e8f0;'>
+                <div class='discount-input-group' style='display:flex; gap:10px;'>
+                  <input type='text' id='discountCode' placeholder='Alennuskoodi' style='flex:1; padding:10px; border:1px solid #ccd0d5; border-radius:4px; background:#e9eaec;' />
+                  <button id='applyDiscountBtn' type='button' style='padding: 10px 15px; background: #000; color: #fff; border: none; border-radius: 4px; cursor: pointer;'>Käytä</button>
+                </div>
+                <div id='discountMessage' class='discount-message' style='margin-top:10px; font-size:14px;'></div>
+              </div>
+              <div class='checkout-totals'>
+              <div class="checkout-totals-row"><span>Tuotteet</span><span id="coSubtotal">€0.00</span></div>
+              <div class="checkout-totals-row"><span>Toimitus</span><span id="coShipping">€4.90</span></div>
+              <div class="checkout-totals-row total"><span>Yhteensä</span><span class="price" id="coTotal">€0.00</span></div>
+            </div>
+            <div class="checkout-notice">
+              <b>📦 Toimitusaika:</b> 10–25 arkipäivää<br>
+              <b>🚚 Toimitusmaksut:</b> Riippuvat kohdemaasta<br>
+              <b>↩️ Palautusoikeus:</b> 14 päivää<br>
+              <b>💳 Maksu:</b> PayPal tai Stripe (kortti/verkkopankki) — maksu ennen tilauksen vahvistusta<br>
+              <b>📧 Vahvistus:</b> Tilausvahvistus sähköpostiisi<br>
+              <span style="font-size:.8rem;color:var(--fg-muted);margin-top:4px;display:inline-block">Tuotteen palautuskustannus: €8.99</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="orderSuccess" class="order-success" style="display:none"></div>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>emailjs.init('bhV_g9f3a3XzG8U3k');</script>
+  <script src="https://www.paypal.com/sdk/js?client-id=AT1ORhSWgy8qutzm70lR55UsH7XAQkpCDCEWgbDiE8JLqnGmsdLHpaLRLIHrwE4QVt86awqZrGv5UlQB&currency=EUR&disable-funding=credit&intent=capture" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script>var ROOT = '../'; var PAGE_ID = '';</script>
+  <script src="../products.js?v=33"></script>
+  <script src="../js/shared.js?v=33"></script>
+  <script src="../js/checkout.js?v=33"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <!-- Security Headers -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Toimitus ja palautukset – ERÄT.FI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css?v=33">
+</head>
+<body>
+
+  <main id="pageContent" class="info-page view-fade">
+    <div class="container">
+      <a class="detail-back" href="../"> Takaisin kauppaan</a>
+
+      <h1>Toimitus &amp; palautukset</h1>
+
+      <div class="info-section">
+        <h2>📦 Toimitustiedot</h2>
+        <p>Tuotteet toimitetaan suoraan valmistajalta sinulle. Toimitusaika on <b>10–25 arkipäivää</b> tilauksesta.</p>
+        <table class="info-table">
+          <thead>
+            <tr><th>Maa</th><th>Toimituskulut</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>🇫🇮 Suomi</td><td>€4,90</td></tr>
+            <tr><td>🇸🇪 Ruotsi</td><td>€6,90</td></tr>
+            <tr><td>🇳🇴 Norja</td><td>€7,90</td></tr>
+            <tr><td>🇩🇰 Tanska</td><td>€6,90</td></tr>
+            <tr><td>🇩🇪 Saksa</td><td>€5,90</td></tr>
+            <tr><td>🇪🇪 Viro / 🇱🇹 Liettua / 🇱🇻 Latvia</td><td>€5,90</td></tr>
+            <tr><td>Muut maat</td><td>€9,90</td></tr>
+          </tbody>
+        </table>
+        <p>Saat sähköpostiisi tilausvahvistuksen sekä seurantatiedot kun paketti on lähetetty.</p>
+      </div>
+
+      <div class="info-section">
+        <h2>🔄 Palautukset (14 päivää)</h2>
+        <p>Sinulla on etämyynnin mukainen <b>14 päivän palautusoikeus</b> tuotteen vastaanottamisesta. Tuote on palautettava käyttämättömänä ja alkuperäisessä pakkauksessa.</p>
+        <h3>Näin palautat tuotteen:</h3>
+        <ol>
+          <li>Täytä <a href="../palautus/">palautuslomake</a></li>
+          <li>Odota vahvistus sähköpostiisi (1–3 arkipäivää)</li>
+          <li>Pakkaa tuote huolellisesti alkuperäiseen pakkaukseen</li>
+          <li>Lähetä paketti saamiesi ohjeiden mukaisesti</li>
+        </ol>
+        <p>Hyvitämme tuotteen hinnan alkuperäisellä maksutavalla 5–10 arkipäivän kuluessa palautuksen käsittelystä.</p>
+        <p><b>Huom:</b> Palautuksen postikulut ovat asiakkaan vastuulla, ellei palautus johdu virheestämme (väärä tuote, vaurioitunut tuote).</p>
+      </div>
+
+      <div class="info-section">
+        <h2> Reklamaatiot</h2>
+        <p>Jos tuote on vaurioitunut kuljetuksessa tai se ei vastaa kuvausta, sinulla on oikeus reklamaatioon.</p>
+        <ol>
+          <li>Ota valokuva vauriosta / ongelmasta</li>
+          <li>Täytä <a href="../palautus/">palautus- ja reklamaatiolomake</a></li>
+          <li>Liitä kuva lomakkeeseen</li>
+          <li>Käsittelemme reklamaation ja otamme yhteyttä jatkotoimenpiteistä</li>
+        </ol>
+        <p>Reklamaatiotapauksissa korvaamme tuotteen tai hyvitämme sen hinnan täysimääräisesti.</p>
+      </div>
+
+      <div class="info-section">
+        <h2> Usein kysyttyä</h2>
+        <dl class="faq-list">
+          <dt>Kuinka kauan toimitus kestää?</dt>
+          <dd>Toimitusaika on 10–25 arkipäivää tilauksesta. Saat sähköpostiin seurantatiedot, kun pakettisi on lähetetty.</dd>
+
+          <dt>Voinko peruuttaa tilaukseni?</dt>
+          <dd>Tilauksen voi peruuttaa ennen lähettämistä ottamalla yhteyttä asiakaspalveluumme. Kun tilaus on lähetetty, sovelletaan palautuskäytäntöä.</dd>
+
+          <dt>Mitä jos tuotteeni katoaa kuljetuksessa?</dt>
+          <dd>Jos tuote ei saavu 35 arkipäivän kuluessa, ota yhteyttä niin selvitämme asian ja järjestämme korvauksen.</dd>
+
+          <dt>Minkälainen on palautusosoite?</dt>
+          <dd>Saat tarkan palautusosoitteen palautuspyynnön hyväksymisen jälkeen sähköpostiisi.</dd>
+        </dl>
+      </div>
+
+      <div style="text-align:center;margin:32px 0;">
+        <a class="btn" href="../palautus/">📋 Täytä palautuslomake</a>
+      </div>
+    </div>
+  </main>
+
+
+  <!-- Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script>var ROOT = '../'; var PAGE_ID = '';</script>
+  <script src="../js/supabase-data.js?v=34"></script>
+  <script src="../js/shared.js?v=33"></script>
+</body>
+</html>
+
+
